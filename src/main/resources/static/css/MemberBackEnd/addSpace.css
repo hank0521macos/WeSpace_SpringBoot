@@ -1,0 +1,776 @@
+*{
+    margin: 0;
+}
+
+body{
+    background-color: #f6f6f6;
+}
+/*********************** 架構 ***********************/
+div.tabs-container{
+    /* border: 1px solid black; */
+}
+
+div.tabs-pages{
+    height: 66px;
+    width: 100%;
+    /* border: 1px solid red; */
+    background-color: #fff;
+    border-bottom: 1px solid rgb(216, 216, 216);
+    position: fixed;
+    z-index: 109;
+}
+
+div.navbar{
+    float:left;
+    line-height: 66px;
+    font-size: 16px;
+    color: #4a4a4a;
+    text-align: center;
+    /* border: 1px solid red; */
+}
+
+div.navbar a,div.navbar a:visited{
+    text-decoration: none;
+    text-align: center;
+    color: #4a4a4a;
+    letter-spacing: 5px;
+    padding: 20px 20px;
+    /* border: 1px solid red; */
+
+}
+
+.tab.active {
+    border-bottom: 3px solid #53a385;
+    /* border-left: 1px solid rgb(216, 216, 216);
+    border-right: 1px solid rgb(216, 216, 216); */
+}
+
+.tabs-contents {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: relative;
+    height: 100%;
+}
+
+.tab-c {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* opacity: 0; */
+    width: 100%;
+    height: auto;
+    color: black;
+    height: 100%;
+    display: none;
+}
+
+.tab-c.active {
+    /* opacity: 1; */
+    display: block;
+}
+  
+.inner-content {
+    position: relative;
+}
+
+div.inner-content-left{
+    float: left;
+    height: 100%;
+    width: 50%;
+    background-color: #fff;
+    padding-top: 100px;
+    position: relative;
+}
+
+div.inner-content-right{
+    float: right;
+    height: 100%;
+    width: 50%;
+    background-color: #f6f6f6;
+    padding-top: 100px;
+    position: relative;
+}
+
+/*********************** 活動類型 ***********************/
+div.space-info{
+    /* border: 1px solid red; */
+    padding-left: 220px;
+    padding-right: 30px;
+}
+
+div.space-type{
+    padding-bottom: 40px;
+}
+
+div.title{
+    font-size: 24px;
+    font-weight: normal;
+    padding: 30px 0;
+    border-bottom: 0.5px solid rgb(221, 221, 221);
+    margin-bottom: 40px;
+}
+
+span.title-2{
+    font-size: 16px;
+    font-weight: normal;
+    color: rgb(156, 156, 156);
+    margin-left: 15px;
+}
+
+input.checkbox{
+    width: 20px;
+    height: 20px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+span.type{
+    font-size: 18px;
+    margin-left: 10px;
+    color: #4a4a4a;
+}
+
+div.next-button{
+    /* border: 1px solid gray; */
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #53a385;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: absolute;
+    right: 40px;
+    bottom: 20px;
+    display: none;
+    font-weight: normal;
+}
+
+div.nextAndPreButton{
+    position: relative;
+    height: 100px;
+    border-top: 0.5px solid rgb(221, 221, 221);
+}
+
+/*********************** 基本資訊 ***********************/
+div.inputName{
+    font-size: 20px;
+    margin:30px 0;
+}
+
+input.facilitiesName{
+    width: 95%;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid gray;
+    padding-left: 10px;
+}
+
+textarea.facilitiesRules{
+    width: 95%;
+    height: 200px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid gray;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+textarea.facilitiesCancellationPolicy{
+    width: 95%;
+    height: 200px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid gray;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+div.nextAndPreButton2{
+    position: relative;
+    height: 100px;
+}
+
+div.next-button2{
+    /* border: 1px solid gray; */
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #53a385;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: absolute;
+    right: 40px;
+    bottom: 20px;
+    font-weight: normal;
+}
+
+div.pre-button2{
+    /* border: 1px solid gray; */
+    width: 100px;
+    height: 40px;
+    border: 1px solid #53a385;
+    border-radius: 5px;
+    background-color: white;
+    color: #53a385;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: absolute;
+    left: 220px;
+    bottom: 20px;
+    font-weight: normal;
+}
+
+div.remind-tip{
+    /* border: 1px solid red; */
+    margin-top: 70px;
+    color: #666666;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
+.fa-exclamation-circle{
+    color: #FF6700;
+    margin: 0 10px 0 20px;
+    font-size: 18px;
+}
+
+/*********************** 位置 ***********************/
+div.addressTitle{
+    font-size: 24px;
+    padding: 30px 0;
+}
+
+.city{
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding-left: 5px;
+}
+
+.town{
+    width: 100px;
+    height: 40px;
+    margin-left: 20px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding-left: 5px;
+}
+
+input.facilitiesAddress{
+    width: 95%;
+    height: 40px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 1px solid gray;
+    outline: none;
+    padding-left: 10px;
+}
+
+input.facilitiesTransportation{
+    width: 95%;
+    height: 40px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 1px solid gray;
+    outline: none;
+    padding-left: 10px;
+}
+
+div.nextAndPreButton3{
+    position: relative;
+    height: 100px;
+    /* border: 1px solid red; */
+}
+
+div.next-button3{
+    /* border: 1px solid gray; */
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #53a385;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+    font-weight: normal;
+}
+
+div.pre-button3{
+    /* border: 1px solid gray; */
+    width: 100px;
+    height: 40px;
+    border: 1px solid #53a385;
+    border-radius: 5px;
+    background-color: white;
+    color: #53a385;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    font-weight: normal;
+}
+
+input.facilitiesSize{
+    width: 50px;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid gray;
+    margin: 20px;
+    padding-left: 15px;
+}
+
+input.facilitiesGuests{
+    width: 50px;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid gray;
+    margin: 20px 20px 280px;
+    padding-left: 15px;
+}
+
+/*********************** 設備 ***********************/
+div.facilitiesServiceTitle{
+    padding: 20px 0;
+    border-bottom: 0.5px solid rgb(221, 221, 221);
+    color: #4a4a4a;
+    position: relative;
+}
+
+.fa-angle-down{
+    color: #53a385;
+    position: absolute;
+    right: 5px;
+    top: 15px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.fa-angle-up{
+    color: #53a385;
+    position: absolute;
+    right: 5px;
+    top: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+div.facilitiesServiceCheckbox{
+    /* border: 1px solid red; */
+    display: none;
+}
+
+span.service{
+    font-size: 18px;
+    margin-left: 10px;
+    /* border: 1px solid red; */
+    color: #4a4a4a;
+}
+
+input.checkboxService{
+    width: 20px;
+    height: 20px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+a.service_button,a.service_button:visited{
+	text-decoration:none;
+	color:#4a4a4a;
+	letter-spacing:2px;
+	padding:20px 60% 20px 0px;
+	font-size:18px;
+}
+
+/*********************** 相片 ***********************/
+div.subtitle{
+    color: gray;
+    margin-bottom: 20px;
+}
+
+div.uploadImage{
+    min-height: 400px;
+    width: 100%;
+    position:relative;
+}
+
+.spaceImage{
+	height:180px;
+	width:180px;
+	margin:10px 20px;
+	border-radius:10px;
+}
+
+div.uploadFakeButton{
+	width:100%;
+	border:1px solid #53A385;
+	border-radius: 10px;
+	cursor:pointer;
+	text-align:center;
+	font-size:20px;
+	letter-spacing:5px;
+	line-height:40px;
+	color:#53A385;
+	margin-bottom:40px;
+}
+
+#filename{
+	position:absolute;
+	top:0;
+	width:100%;
+	height:40px;
+	cursor:pointer;
+	opacity:0;
+}
+
+.deleteImgButton{
+	position:absolute;
+	top:-10px;
+	right:-2px;
+ 	background-color:transparent;
+ 	border:0;
+	font-size:30px;
+	color:#53A385;
+	cursor:pointer;
+}
+
+div.spaceImageArea{
+	position:relative;
+	display:inline-block;
+}
+
+.preImageTitle{
+	font-size:24px;
+	letter-spacing:4px;
+	text-align:center;
+	margin:20px 0;
+	padding:10px 0;
+	border-bottom:0.5px solid rgb(221, 221, 221);
+	color:gray;
+}
+/*********************** 定價 ***********************/
+div.checkbox-days{
+    /* margin: 30px 0; */
+    padding: 20px 0;
+    border-bottom: 0.5px solid rgb(221, 221, 221);
+    width: 95%;
+}
+
+div.checkbox-days span{
+    color: #4a4a4a;
+    font-size: 20px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+div.checkbox-days input{
+    width: 120px;
+    height: 40px;
+    padding-left:10px;
+    font-size: 16px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid gray;
+    /* display: none; */
+}
+
+div.checkbox-hours{
+    /* border: 1px solid red; */
+    padding: 20px 0 0px 85px;
+    font-size: 18px;
+    display: none;
+}
+
+div.checkbox-hours input{
+    height: 40px;
+    width: 120px;
+    margin-left: 57px;
+    margin-right: 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid gray;
+}
+
+select.timeSelect{
+	width:133px;
+	height:45px;
+	border-radius: 5px;
+    outline: none;
+    border: 1px solid gray;
+    font-size: 18px;
+    padding-left:5px;
+}
+
+
+/*********************** 管理者 ***********************/
+#facilitiesOwnerArea{
+    /* border: 1px solid red; */
+    height: 1200px;
+    display:none;
+    /* margin-top: 100px; */
+}
+
+#facilitiesOwnerArea.open{
+	height: 1200px;
+    display:block;
+}
+
+select.selectOwner{
+	width:100%;
+	height:60px;
+	text-align:center;
+	font-size:18px;
+	letter-spacing:4px;
+	border-radius:5px;
+	border:1px solid gray;
+	outline:none;
+	color:#4a4a4a;
+}
+
+#showOwnerArea{
+	width:100%;
+	height:60px;
+	text-align:center;
+	font-size:50px;
+	letter-spacing:4px;
+	border-radius:5px;
+	border:0;
+	outline:none;
+	color:#53a385;
+	cursor:pointer;
+	margin-top:30px;
+	display:block;
+}
+
+#showOwnerArea.close{
+	width:100%;
+	height:60px;
+	text-align:center;
+	font-size:50px;
+	letter-spacing:4px;
+	border-radius:5px;
+	border:0;
+	outline:none;
+	color:#53a385;
+	cursor:pointer;
+	margin-top:30px;
+	display:none;
+}
+
+div.facilities_owner_image{
+    float: left;
+    /* border: 1px solid black; */
+    height: 400px;
+    width: 30%;
+    text-align: center;
+    position:relative;
+}
+
+div.facilities_owner_image img{
+    width: 120px;
+    height: 150px;
+    margin-top: 40px;
+}
+
+div.facilities_owner_data{
+    float: right;
+    /* border: 1px solid coral; */
+    height: 400px;
+    width: 65%;
+}
+
+div.facilities_owner_data h3{
+    font-weight: bold;
+    color: #4a4a4a;
+    margin-top: 40px;
+}
+
+div.owner_data_title{
+    margin: 20px 0 10px;
+    color: #4a4a4a;
+}
+
+div.facilities_owner_data input{
+    width: 95%;
+    border: 1px solid gray;
+    height: 40px;
+    border-radius: 3px;
+    padding-left: 10px;
+}
+
+select.owner_bank{
+    width: 100%;
+    border: 1px solid gray;
+    height: 45px;
+    border-radius: 3px;
+    padding-left: 10px;
+    color: #4a4a4a;
+}
+
+#ownerCancel{
+	width:120px;
+	height:40px;
+	font-size:16px;
+	letter-spacing:2px;
+	color:#53a385;
+	cursor:pointer;
+	border:1px solid #53a385;
+	background-color:transparent;
+	margin:20px 60px 0px 0px;
+	border-radius:5px;
+}
+
+.ownerButton{
+	width:120px;
+	height:40px;
+	font-size:16px;
+	letter-spacing:2px;
+	color:white;
+	cursor:pointer;
+	border:0;
+	background-color:#53a385;
+	margin:20px 0px 0px 0px;
+	border-radius:5px;
+}
+
+#previewImagePhoto{
+	height:125px;
+	width:125px;
+	border-radius:10px;
+}
+
+#file{
+	display:none;
+}
+
+#fakeFileImgUpload{
+	position:absolute;
+	top:180px;
+	width:100%;
+	cursor:pointer;
+	text-align:center;
+	color:#53a385;	
+	font-size:30px;
+	letter-spacing:2px;
+	line-height:40px;
+}
+
+#FileImgUploadTitle{
+	position:absolute;
+	top:230px;
+	text-align:center;
+	color:#4a4a4a;
+	font-size:14px;
+	letter-spacing:2px;
+}
+
+#ownerDetail{
+	position:relative;
+}
+
+#ownerDetail.close{
+	display:none;
+}
+
+#ownerDetail p{
+	font-size:20px;
+	color:#4a4a4a;
+	margin:40px 0 10px 0;
+	letter-spacing:3px;
+	text-align:center;
+	border-bottom:1px solid rgb(212, 212, 212);
+	padding-bottom:10px;
+}
+
+.tableLeft{
+	color:#9b9b9b;
+	font-size:14px;
+	padding: 8px 60px 8px 0px;
+}
+
+.tableRight{
+	color:#4a4a4a;
+	font-size:14px;
+}
+
+.updateOwner{
+	position:absolute;
+	bottom:-120px;
+	left:80px;
+	z-index:999;
+	width:150px;
+	line-height:30px;
+	border:0;
+	color:#53a385;
+	cursor:pointer;
+	background-color:transparent;
+	font-size:20px;
+}
+
+.deleteOwner{
+	position:absolute;
+	bottom:-120px;
+	right:80px;
+	z-index:999;
+	width:150px;
+	line-height:30px;
+	border:0;
+	color:gray;
+	cursor:pointer;
+	background-color:transparent;
+	font-size:20px;
+	
+}
+
+div.ownerImage{
+	height:200px;
+	width:50%;
+	background-size:cover;
+	background-position:center;
+	border-radius:10px;
+	margin:30px auto;
+	box-shadow:0px 0px 5px gray;
+}
+
+/*********************** 最後提交 ***********************/
+input.spaceSubmit{
+	width:100px;
+	height:40px;
+	position:fixed;
+	z-index:109;
+	right:50px;
+	top:14px;
+	font-size:16px;
+	letter-spacing:2px;
+	color:#53a385;
+	cursor:pointer;
+	border:0;
+	background-color:transparent;
+}

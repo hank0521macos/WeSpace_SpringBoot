@@ -1,0 +1,167 @@
+*{
+    margin: 0px;
+}
+
+body{
+	background-color: #f1f2f2;
+}
+
+div.main{
+	background-color: #f1f2f2;
+    padding: 10px 165px 0px;
+}
+
+div.sidebar{
+    background-color: #fff;
+    width: 210px;
+    height: 650px;
+    float: left;
+    padding: 20px;
+    /* border: 1px solid black; */
+    margin-top:100px;
+}
+
+div.sidebar p{
+    /* border: 1px solid yellow; */
+    color: #666666;
+    margin-bottom: 5px;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+div.sidebar select{
+    width: 210px;
+    height: 35px;
+    color: coral;
+    background-color: #f1f2f2;
+    border: 0;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+input.name_search{
+    width: 210px;
+    height: 35px;
+    background-color: #f1f2f2;
+    outline: none;
+    border: 0;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+div.sidebar span{
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #666666;
+    font-size: 14px;
+}
+
+input.checkbox{
+    margin-bottom:15px;
+}
+
+input.search-submit{
+    width: 210px;
+    height: 35px;
+    background-color: coral;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    letter-spacing: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+div.search_result{
+    background-color: #fff;
+    width: 820px;
+    height: 250px;
+    float: right;
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+    position: relative;
+   
+}
+
+div.search_result_item{
+    height: 250px;
+    width: 300px;
+    background-size: cover;
+    float: left;
+}
+
+div.search_result table{
+    /* border: 1px solid red; */
+    padding: 20px;
+    width: 500px;
+    height: 180px;
+    table-layout: fixed;
+}
+
+div.search_result td{
+    /* border: 1px solid red; */
+    padding: 5px;
+}
+
+td.facilities_name{
+    font-size: 22px;
+    color: #565a5c;
+    white-space: nowrap;  
+    overflow: hidden;  
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+
+td.facilities_name a,td.facilities_name a:visited{
+    color: #565a5c;
+    font-weight: bold;
+}
+
+td.facilities_info span{
+    font-size: 14px;
+    color: #8A4705;
+}
+
+td.facilities_info a,td.facilities_info a:visited{
+    font-size: 14px;
+    color: #8A4705;
+    text-decoration: none;
+}
+
+td.facilities_info a:hover{
+    color: coral;
+}
+
+.fas{
+    color: #565a5c;
+    margin-right: 5px;
+}
+
+.fa-map-marker-alt{
+    font-size: 20px;
+}
+
+.fa-user{
+    margin-left: 10px;
+}
+
+div.facilities_expense_per_hour{
+    height: 35px;
+    width: 130px;
+    background-color: coral;
+    color: #fff;
+    position: absolute;
+    top: 80px;
+    right: 50px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+div.facilities_expense_per_hour:hover{
+    filter: opacity(80%);
+}

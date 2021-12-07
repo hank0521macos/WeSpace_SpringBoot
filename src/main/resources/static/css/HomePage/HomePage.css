@@ -1,0 +1,351 @@
+*{
+    margin: 0px;
+}
+
+body{
+    background-color: #f1f2f2;
+}
+
+/* 複合搜索 */
+div.search_area{
+    /* border: 10px solid red; */
+    position: relative;
+    padding-top: 66px;
+}
+
+div.slideshow{
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    height: 420px;
+    width: 100%;
+    /* border: black 1px solid; */
+}
+
+div.slideshow img{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+}
+
+div.option_menu_1{
+    position: absolute;
+    bottom: 10%;
+    left: 23%;
+}
+
+div.option_menu_2{
+    position: absolute;
+    bottom: 10%;
+    left: 38%;
+}
+
+div.option_menu_3{
+    position: absolute;
+    bottom: 10%;
+    left: 53%;
+}
+
+div.search_area select{
+    letter-spacing: 3px;
+    width: 180px;
+    height: 50px;
+    border-radius: 4px;
+    padding:0 20px;
+    font-size: 16px;
+    border: 0;
+}
+
+input.search_area_button{
+    letter-spacing: 3px;
+    width: 120px;
+    height: 50px;
+    border-radius: 4px;
+    padding:0 20px;
+    position: absolute;
+    bottom: 10%;
+    left: 68%;
+    font-size: 18px;
+    border: 0;
+    background-color: #ff6700;
+    color: #fff;
+    cursor: pointer;
+}
+
+input.search_area_button:hover{
+    background-color: #ec5f01;
+}
+
+/* 滑動輪播廣告 */
+div.slidermenu_area{
+    height: 280px;
+    width: 1200px;
+    margin: 0 120px;
+    /* border: 1px solid red; */
+    border-bottom: 0.5px solid rgb(207, 207, 207);
+    padding-top: 30px;
+}
+
+/* 精選場地 */
+div.special_collections{
+    height: 900px;
+    width: 1200px;
+    margin: 0 120px;
+    /* border: 1px solid blue; */
+}
+
+div.special_collections a, div.special_collections a:visited{
+    text-decoration: none;
+    color: #666666;
+}
+
+div.special_collections_mark{
+    /* border: 1px solid red; */
+    text-align: center;
+    font-size: 50px;
+    padding: 30px 0 5px;
+    color: gray;
+}
+
+div.special_collections_title{
+    /* border: 1px solid red; */
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: #666666;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+div.special_collections_item_long_1{
+    width: 500px;
+    height: 270px;
+    float: left;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+div.special_collections_item_long_1:hover{
+    transform: scale(1.02);
+    transition:all 0.5s ease 0s;
+    filter:opacity(70%);
+    color: #ec5f01;
+    box-shadow: #666666 0px 0px 5px;
+}
+
+div.special_collections_item_long_1 h1{
+    position: absolute;
+    font-size: 20px;
+    bottom: -35px;
+    right: 0;
+}
+
+div.special_collections_item_short_1{
+    width: 300px;
+    height: 270px;
+    float: left;
+    margin-left: 48px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+div.special_collections_item_short_1:hover{
+    transform: scale(1.02);
+    transition:all 0.5s ease 0s;
+    filter:opacity(70%);
+    color: #ec5f01;
+    box-shadow: #666666 0px 0px 5px;
+}
+
+div.special_collections_item_short_1 h1{
+    position: absolute;
+    font-size: 20px;
+    bottom: -35px;
+    right: 0;
+}
+
+div.special_collections_item_long_2{
+    width: 500px;
+    height: 270px;
+    float: left;
+    margin-top: 100px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+div.special_collections_item_long_2:hover{
+    transform: scale(1.02);
+    transition:all 0.5s ease 0s;
+    filter:opacity(70%);
+    color: #ec5f01;
+    box-shadow: #666666 0px 0px 5px;
+}
+
+div.special_collections_item_long_2 h1{
+    position: absolute;
+    font-size: 20px;
+    bottom: -35px;
+    right: 0;
+}
+
+div.special_collections_item_short_2{
+    width: 300px;
+    height: 270px;
+    float: left;
+    margin-right: 48px;
+    margin-top: 100px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+div.special_collections_item_short_2:hover{
+    transform: scale(1.02);
+    transition:all 0.5s ease 0s;
+    filter:opacity(70%);
+    color: #ec5f01;
+    box-shadow: #666666 0px 0px 5px;
+}
+
+div.special_collections_item_short_2 h1{
+    position: absolute;
+    font-size: 20px;
+    bottom: -35px;
+    right: 0;
+}
+
+/* 廣告區塊 */
+#advertise{
+    height: 350px;
+    width: 100%;
+/*     border: 1px solid gray; */ 
+    background-image: url(../../img/廣告圖.png);
+    background-size: cover;
+}
+
+/* 類別區塊 */
+div.catg{
+    height: 500px;
+    width: 1200px;
+    /* border: 1px solid pink; */
+    margin: 0 120px;
+    /* border-bottom: 0.5px solid rgb(207, 207, 207); */
+    text-align: center;
+}
+
+div.catg h2{
+    margin: 30px 0px 10px;
+    font-size: 30px;
+    color: #666666;
+    letter-spacing: 4px;
+}
+
+div.catg p{
+    margin-bottom: 50px;
+    font-size: 16px;
+    color: #666666;
+    letter-spacing: 4px;
+}
+
+div.catg li{
+    list-style:none; 
+	margin:0; 
+	padding:0;
+    height: 300px;
+    width: 360px;
+    background-size: cover;
+    float: left;
+    margin-right: 20px;
+    position: relative;
+    background-position: center;
+}
+
+div.catg li:hover{
+    transform: scale(1.02);
+    transition:all 0.5s ease 0s;
+    filter:opacity(70%);
+    box-shadow: #666666 0px 0px 5px;
+}
+
+div.catg_info_1{
+    height: 45px;
+    background-color: #ec5f01;
+    color: white;
+    position: absolute;
+    line-height: 45px;
+    letter-spacing: 1px;
+    top: 20px;
+    left: -5px;
+    padding: 0 10px;
+}
+
+div.catg_info_2{
+    height: 35px;
+    background-color: white;
+    color: #666666;
+    position: absolute;
+    line-height: 35px;
+    letter-spacing: 1px;
+    top: 80px;
+    left: -5px;
+    padding: 0 10px;
+}
+
+div.catg_info_3{
+    height: 35px;
+    width:100%;
+    background-color: transparent;
+    color: #4a4a4a;
+    position: absolute;
+    line-height: 35px;
+    letter-spacing: 3px;
+    bottom: -50px;
+    padding: 0 10px;
+    font-size: 20px;
+}
+
+div.search_area_2{
+    height: 180px;
+    width: 1200px;
+    padding-top: 40px;
+    margin: 0 120px;
+    text-align: center;
+    position: relative;
+}
+
+div.search_area_2 h2{
+    color: #666666;
+}
+
+div.search_area_2_select select{
+    letter-spacing: 3px;
+    width: 180px;
+    height: 50px;
+    border-radius: 4px;
+    padding:0 20px;
+    font-size: 16px;
+    border: 0;
+    position: absolute;
+    top:50%;
+    left: 36%;
+}
+
+.search_area2_button{
+    letter-spacing: 3px;
+    width: 135px;
+    height: 50px;
+    border-radius: 4px;
+    padding:0 20px;
+    position: absolute;
+    top:50%;
+    right: 36%;
+    font-size: 18px;
+    border: 0;
+    background-color: #ff6700;
+    color: #fff;
+    cursor: pointer;
+}

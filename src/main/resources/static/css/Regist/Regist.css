@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+}
+
+span.alert-error{
+	color:#ff6700;
+	font-size: 12px;
+}
+
+#basic-modal-content{
+   /*  border: 0.5px solid green; */
+    height:600px; 
+    width:350px; 
+    border-radius: 20px;
+    color:rgb(26, 26, 26); 
+    background-color:rgb(255, 255, 255); 
+    padding:60px 12px 0;
+    margin: 0px auto 20px;
+    position: relative;
+}
+
+/* 註冊區塊的css */
+#basic-modal-content h2{
+    font-size: 30px;
+    font-weight: normal;
+    text-align: center;
+    margin: 50px 0px 20px;
+    letter-spacing:2px;
+    color:#4a4a4a;
+}
+
+#basic-modal-content p{
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing:2px;
+    color:#4a4a4a;
+}
+
+#basic-modal-content a,#basic-modal-content a:visited{
+    color: #53A385;
+    text-decoration: none;
+}
+
+div.sign-up-email{
+    margin: 10px 0;
+    color:#4a4a4a;
+    letter-spacing:2px;
+}
+
+input.sign-up-email{
+    width: 96%;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid gray;
+    padding-left: 10px;
+}
+
+div.sign-up-firstname{
+    margin: 10px 0;
+    color:#4a4a4a;
+    letter-spacing:2px;
+}
+
+input.sign-up-firstname{
+    width: 45%;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid gray;
+    padding-left: 10px;
+    /* float: left; */
+}
+
+div.sign-up-lastname{
+    margin: 10px 0;
+    position: absolute;
+    top:302px;
+    right: 167px;
+    color:#4a4a4a;
+    letter-spacing:2px;
+}
+
+input.sign-up-lastname{
+    width: 45%;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid gray;
+    padding-left: 10px;
+    float: right;
+}
+
+div.sign-up-mobile-phone{
+    margin: 10px 0;
+    color:#4a4a4a;
+    letter-spacing:2px;
+}
+
+input.sign-up-mobile-phone{
+    width: 96%;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid gray;
+    padding-left: 10px;
+}
+
+div.sign-up-password{
+    margin: 10px 0;
+    color:#4a4a4a;
+    letter-spacing:2px;
+}
+
+input.sign-up-password{
+    width: 96%;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid gray;
+    padding-left: 10px;
+}
+
+input.sign-up-submit{
+    width: 100%;
+    height: 40px;
+    margin: 30px 0px 40px;
+    cursor: pointer;
+    background-color: #53A385;
+    color: white;
+    letter-spacing: 20px;
+    border-radius: 40px;
+    outline: none;
+    border: 0;
+    font-size: 16px;
+    text-align: center;
+    padding-left: 20px;
+}
