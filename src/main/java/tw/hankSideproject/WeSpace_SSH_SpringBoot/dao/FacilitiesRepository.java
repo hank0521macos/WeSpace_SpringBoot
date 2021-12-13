@@ -60,5 +60,21 @@ public interface FacilitiesRepository extends JpaRepository<Facilities, Integer>
 				@Param("spaceType") Integer facilitiesTypeId,
 				@Param("spaceCity") String	facilitiesCity,
 				@Param("spaceGuestsMin") Integer facilitiesGuestsMin,
-				@Param("spaceGuestsMax") Integer facilitiesGuestsMax);
+				@Param("spaceGuestsMax") Integer facilitiesGuestsMax
+		);
+		
+		@Query(value = "call subSearch(:spaceType,:spaceGuestsMin,:spaceGuestsMax,:spaceCity,:spaceMaxBudget,:spaceMinBudget,:spaceName,:spaceMinOpeningDay,:spaceMaxOpeningDay,:spacePeriod);", nativeQuery = true)
+		List<Facilities> findFacilitiessBysubSearch(
+				@Param("spaceType") Integer facilitiesTypeId,
+				@Param("spaceGuestsMin") Integer facilitiesGuestsMin,
+				@Param("spaceGuestsMax") Integer facilitiesGuestsMax,
+				@Param("spaceCity") String	facilitiesCity,
+				@Param("spaceMaxBudget") Integer facilitiesMaxBudget,
+				@Param("spaceMinBudget") Integer facilitiesMinBudget,
+				@Param("spaceName") String facilitiesName,
+				@Param("spaceMinOpeningDay") Integer facilitiesMinOpeningDay,
+				@Param("spaceMaxOpeningDay") Integer facilitiesMaxOpeningDay,
+				@Param("spacePeriod") Integer facilitiesPeriod
+				
+		);
 }

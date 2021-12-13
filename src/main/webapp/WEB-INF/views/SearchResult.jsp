@@ -24,31 +24,32 @@
 
 	<div class="main">
 		<!-- --------------------左側區塊-------------------- -->
+		<form action="/subSearchResult" method="get" id="form1">
 		<div class="sidebar">
 			<p>目的</p>
-          	<select>
+          	<select name="facilitiesTypeId">
                 <option disabled selected>活動性質</option>
 	            <c:forEach var="facilitiesType" items="${facilitiesTypeAll}">
 	            	<option value="${facilitiesType.facilitiesTypeId}">${facilitiesType.name}</option>
 	            </c:forEach>    
             </select>
 			<p>活動人數</p>
-            <select>
+            <select name="facilitiesGuests">
                 <option disabled selected>活動人數</option>
-                <option>1-10</option>
-                <option>11-20</option>
-                <option>21-40</option>
-                <option>41-60</option>
-                <option>61-80</option>
-                <option>81-100</option>
-                <option>101-200</option>
-                <option>201-300</option>
-                <option>301-400</option>
-                <option>401-500</option>
-                <option>500+</option>
+                <option value="1">1-10</option>
+                <option value="11">11-20</option>
+                <option value="21">21-40</option>
+                <option value="41">41-60</option>
+                <option value="61">61-80</option>
+                <option value="81">81-100</option>
+                <option value="101">101-200</option>
+                <option value="201">201-300</option>
+                <option value="301">301-400</option>
+                <option value="401">401-500</option>
+                <option value="501">500+</option>
             </select>
 			<p>縣市</p>
-			<select>
+			<select name="facilitiesCity">
                 <option disabled selected>地點</option>
                 <option value="基隆市">基隆市</option>
                 <option value="臺北市">臺北市</option>
@@ -74,48 +75,50 @@
                 <option value="澎湖縣">澎湖縣</option>
             </select>
 			<p>每小時/預算上限</p>
-			<select>
+			<select name="facilitiesMaxBudget">
 				<option disabled selected>請選擇</option>
-				<option>200 NT$</option>
-				<option>300 NTS</option>
-				<option>400 NTS</option>
-				<option>500 NTS</option>
-				<option>700 NTS</option>
-				<option>1000 NTS</option>
-				<option>1500 NTS</option>
-				<option>2000 NTS</option>
-				<option>3000 NTS</option>
-				<option>4000 NTS</option>
-				<option>5000 NTS</option>
-				<option>7000 NTS</option>
+				<option value="200">200 NT$</option>
+				<option value="300">300 NTS</option>
+				<option value="400">400 NTS</option>
+				<option value="500">500 NTS</option>
+				<option value="700">700 NTS</option>
+				<option value="1000">1000 NTS</option>
+				<option value="1500">1500 NTS</option>
+				<option value="2000">2000 NTS</option>
+				<option value="3000">3000 NTS</option>
+				<option value="4000">4000 NTS</option>
+				<option value="5000">5000 NTS</option>
+				<option value="7000">7000 NTS</option>
 			</select>
 			<p>每小時/最低預算</p>
-			<select>
+			<select name="facilitiesMinBudget">
 				<option disabled selected>請選擇</option>
-				<option>200 NT$</option>
-				<option>300 NTS</option>
-				<option>400 NTS</option>
-				<option>500 NTS</option>
-				<option>700 NTS</option>
-				<option>1000 NTS</option>
-				<option>1500 NTS</option>
-				<option>2000 NTS</option>
-				<option>3000 NTS</option>
-				<option>4000 NTS</option>
-				<option>5000 NTS</option>
-				<option>7000 NTS</option>
+				<option value="200">200 NT$</option>
+				<option value="300">300 NTS</option>
+				<option value="400">400 NTS</option>
+				<option value="500">500 NTS</option>
+				<option value="700">700 NTS</option>
+				<option value="1000">1000 NTS</option>
+				<option value="1500">1500 NTS</option>
+				<option value="2000">2000 NTS</option>
+				<option value="3000">3000 NTS</option>
+				<option value="4000">4000 NTS</option>
+				<option value="5000">5000 NTS</option>
+				<option value="7000">7000 NTS</option>
 			</select>
 			<p>場地名稱搜尋</p>
-			<input type="text" class="name_search">
+			<input type="text" class="name_search" name="facilitiesName">
 			<p>平日或假日？</p>
-			<input type="checkbox" class="checkbox"><span>平日</span> 
-			<input type="checkbox" class="checkbox"><span>假日</span>
+			<input type="radio" class="checkbox" name="facilitiesOpeningDay" value="1"><span>平日</span> 
+			<input type="radio" class="checkbox" name="facilitiesOpeningDay" value="2"><span>假日</span>
 			<p>租用時段？</p>
-			<input type="checkbox" class="checkbox"><span>上午</span> 
-			<input type="checkbox" class="checkbox"><span>下午</span> 
-			<input type="checkbox" class="checkbox"><span>晚上</span> 
+			<input type="radio" name="facilitiesOpeningPeriod" class="checkbox" value="1"><span>上午</span> 
+			<input type="radio" name="facilitiesOpeningPeriod" class="checkbox" value="2"><span>下午</span> 
+			<input type="radio" name="facilitiesOpeningPeriod" class="checkbox" value="3"><span>晚上</span><br>
+			<input type="radio" name="facilitiesOpeningPeriod" class="checkbox" value="0"><span>凌晨</span> 
 			<input type="submit" class="search-submit" value="搜尋">
 		</div>
+		</form>
 		
 		<!-- --------------------右側區塊-------------------- -->
 		<div style="margin-top:100px;">
@@ -161,6 +164,18 @@
 				</a>
 			</div>
 		</c:forEach>
+		<!-- 若無搜尋結果則呈現此div -->
+		<c:if test="${empty facilitiesByMainSearch}">
+			<div class="search_result" style="
+											  background-color:transparent;
+											  font-size:30px;
+											  color:gray;
+											  text-align:center;
+											  letter-spacing:5px;
+											  padding-top:120px;">
+				<i class="fas fa-exclamation-circle"></i>查無結果，請重設查詢條件
+			</div>
+		</c:if>
 		</div>
 	</div>
 

@@ -83,6 +83,10 @@ public class MemberBackEndService {
 		member.getFacilities().add(facilities);
 		//存入初始化狀態為０：尚未認證通過
 		facilities.setStatus(0);
+		//存入初始化人數為null時：0人
+		if(facilities.getGuests()==null) {
+			facilities.setGuests(0);
+		}
 		//判斷空間類型checkbox是否有被選擇
 		if(facilitiesTypeId!=null) {
 			//Value取得checkbox的值，另用jpa的getid方法得出facilities的類型依序加入set集合裏
@@ -104,6 +108,10 @@ public class MemberBackEndService {
 		//判斷空間開放時間checkbox是否有被選擇
 		if(facilitiesOpeningId!=null) {
 			List<Double> expenseList = new ArrayList<Double>();
+			List<Integer> openingStartTimeList = new ArrayList<Integer>(); 
+			List<Integer> openingCloseTimeList = new ArrayList<Integer>();
+			List<Integer> openingDayList = new ArrayList<Integer>(); 
+			
 			//Value取得checkbox的值，另用jpa的getid方法得出facilities的場地費用與明細依序加入set集合裏
 			for(int i=0;i<facilitiesOpeningId.size();i++) {
 				FacilitiesOpeningDetail facilitiesOpeningDetail2 = new FacilitiesOpeningDetail();
@@ -115,19 +123,29 @@ public class MemberBackEndService {
 				facilitiesOpeningDetail2.setFacilitiesOpening(facilitiesOpeningRepository.getById(Integer.parseInt(facilitiesOpeningId.get(i))));
 				//配置多表關係
 				facilitiesOpening.getFacilitiesOpeningDetail().add(facilitiesOpeningDetailRepository.getById(Integer.parseInt(facilitiesOpeningId.get(i))));
+				//等等取出最早/晚營業日用
+				openingDayList.add(Integer.parseInt(facilitiesOpeningId.get(i)));
+				
+				Integer rootId = Integer.parseInt(facilitiesOpeningId.get(i))-1;
 				//存入memberBackEnd controller中所抓取的開放時間及費用細項資料
-				facilitiesOpeningDetail2.setStartTime(startTime.get(i));
-				facilitiesOpeningDetail2.setCloseTime(closeTime.get(i));
-				if(expense.get(i)==null) {
+				facilitiesOpeningDetail2.setStartTime(startTime.get(rootId));
+				//開始營業時間清單最為等等取出最早營業時間
+				openingStartTimeList.add(Integer.parseInt(startTime.get(rootId)));
+				facilitiesOpeningDetail2.setCloseTime(closeTime.get(rootId));
+				//結束營業時間清單最為等等取出最晚營業時間
+				openingCloseTimeList.add(Integer.parseInt(closeTime.get(rootId)));
+				
+				if(expense.get(rootId)==null) {
 					facilitiesOpeningDetail2.setExpense(0.0);
 					//花費清單作為等等取出最低/高價格用
 					expenseList.add(0.0);
 					
 				}else {
-					facilitiesOpeningDetail2.setExpense(expense.get(i));
+					facilitiesOpeningDetail2.setExpense(expense.get(rootId));
 					//花費清單作為等等取出最低/高價格用
-					expenseList.add(expense.get(i));
+					expenseList.add(expense.get(rootId));
 				}
+				
 				//調用save方法，insert場地開放時間及費用資料
 				facilitiesOpeningDetailRepository.save(facilitiesOpeningDetail2);			
 			}
@@ -135,7 +153,14 @@ public class MemberBackEndService {
 			facilities.setMinBudget(Collections.min(expenseList));
 			//存入最高價格為opening detail裡最高的價格
 			facilities.setMaxBudget(Collections.max(expenseList));
-			
+			//存入最早營業時間
+			facilities.setStartTime(Collections.min(openingStartTimeList));
+			//存入最晚營業時間
+			facilities.setCloseTime(Collections.max(openingCloseTimeList));
+			//存入最早營業日
+			facilities.setMinOpeningDay(Collections.min(openingDayList));
+			//存入最晚營業日
+			facilities.setMaxOpeningDay(Collections.max(openingDayList));
 		}
 	}
 	
@@ -162,7 +187,11 @@ public class MemberBackEndService {
 		facilitiesToUpdate.setTakeByBus(facilities.getTakeByBus());
 		facilitiesToUpdate.setTakeByCar(facilities.getTakeByCar());
 		facilitiesToUpdate.setSize(facilities.getSize());
-		facilitiesToUpdate.setGuests(facilities.getGuests());
+		if(facilities.getGuests()==null) {
+			facilitiesToUpdate.setGuests(0);
+		}else {
+			facilitiesToUpdate.setGuests(facilities.getGuests());
+		}
 		facilitiesToUpdate.setStatus(0);
 		facilitiesToUpdate.setFacilitiesOwner(facilities.getFacilitiesOwner());
 		facilitiesToUpdate.setMember(member);
@@ -193,6 +222,9 @@ public class MemberBackEndService {
 		if(facilitiesOpeningId!=null) {
 			facilitiesOpeningDetailRepository.deleteFacilitiesOpeningDetail(facilities.getId());
 			List<Double> expenseList = new ArrayList<Double>();
+			List<Integer> openingStartTimeList = new ArrayList<Integer>(); 
+			List<Integer> openingCloseTimeList = new ArrayList<Integer>(); 
+			List<Integer> openingDayList = new ArrayList<Integer>(); 
 			//Value取得checkbox的值，另用jpa的getid方法得出facilities的場地費用與明細依序加入set集合裏
 			for(int i=0;i<facilitiesOpeningId.size();i++) {
 				FacilitiesOpeningDetail facilitiesOpeningDetail2 = new FacilitiesOpeningDetail();
@@ -204,17 +236,27 @@ public class MemberBackEndService {
 				facilitiesOpeningDetail2.setFacilitiesOpening(facilitiesOpeningRepository.getById(Integer.parseInt(facilitiesOpeningId.get(i))));
 				//配置多表關係
 				facilitiesOpening.getFacilitiesOpeningDetail().add(facilitiesOpeningDetailRepository.getById(Integer.parseInt(facilitiesOpeningId.get(i))));
+				//等等取出最早/晚營業日用
+				openingDayList.add(Integer.parseInt(facilitiesOpeningId.get(i)));
+				
+				Integer rootId = Integer.parseInt(facilitiesOpeningId.get(i))-1;
 				//存入memberBackEnd controller中所抓取的開放時間及費用細項資料
-				facilitiesOpeningDetail2.setStartTime(startTime.get(i));
-				facilitiesOpeningDetail2.setCloseTime(closeTime.get(i));
-				if(expense.get(i)==null) {
+				facilitiesOpeningDetail2.setStartTime(startTime.get(rootId));
+				//開始營業時間清單最為等等取出最早營業時間
+				openingStartTimeList.add(Integer.parseInt(startTime.get(rootId)));
+				
+				facilitiesOpeningDetail2.setCloseTime(closeTime.get(rootId));
+				//結束營業時間清單最為等等取出最晚營業時間
+				openingCloseTimeList.add(Integer.parseInt(closeTime.get(rootId)));
+				
+				if(expense.get(rootId)==null) {
 					facilitiesOpeningDetail2.setExpense(0.0);
 					//花費清單作為等等取出最低/高價格用
 					expenseList.add(0.0);
 				}else {
-					facilitiesOpeningDetail2.setExpense(expense.get(i));
+					facilitiesOpeningDetail2.setExpense(expense.get(rootId));
 					//花費清單作為等等取出最低/高價格用
-					expenseList.add(expense.get(i));
+					expenseList.add(expense.get(rootId));
 				}
 				//調用save方法，insert場地開放時間及費用資料
 				facilitiesOpeningDetailRepository.save(facilitiesOpeningDetail2);			
@@ -223,6 +265,14 @@ public class MemberBackEndService {
 			facilitiesToUpdate.setMinBudget(Collections.min(expenseList));
 			//存入最高價格為opening detail裡最高的價格
 			facilitiesToUpdate.setMaxBudget(Collections.max(expenseList));
+			//存入最早營業時間
+			facilitiesToUpdate.setStartTime(Collections.min(openingStartTimeList));
+			//存入最晚營業時間
+			facilitiesToUpdate.setCloseTime(Collections.max(openingCloseTimeList));
+			//存入最早營業日
+			facilitiesToUpdate.setMinOpeningDay(Collections.min(openingDayList));
+			//存入最晚營業日
+			facilitiesToUpdate.setMaxOpeningDay(Collections.max(openingDayList));
 		}
 		
 		//調用save方法，insert空間資料

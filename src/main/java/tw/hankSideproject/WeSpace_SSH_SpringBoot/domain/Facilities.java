@@ -75,6 +75,18 @@ public class Facilities {
 	@Column(name = "facilities_max_budget")
 	private Double maxBudget;
 	
+	@Column(name = "facilities_start_time")
+	private Integer startTime;
+	
+	@Column(name = "facilities_close_time")
+	private Integer closeTime;
+	
+	@Column(name = "facilities_min_opening_day")
+	private Integer minOpeningDay;
+	
+	@Column(name = "facilities_max_opening_day")
+	private Integer maxOpeningDay;
+	
 	@ManyToOne(targetEntity=FacilitiesOwner.class)
 	@JoinColumn(name = "facilities_owner_id",referencedColumnName="facilities_owner_id")
 	private FacilitiesOwner facilitiesOwner;
@@ -232,6 +244,38 @@ public class Facilities {
 
 	public void setMaxBudget(Double maxBudget) {
 		this.maxBudget = maxBudget;
+	}
+
+	public Integer getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Integer startTime) {
+		this.startTime = startTime;
+	}
+
+	public Integer getCloseTime() {
+		return closeTime;
+	}
+
+	public void setCloseTime(Integer closeTime) {
+		this.closeTime = closeTime;
+	}
+
+	public Integer getMinOpeningDay() {
+		return minOpeningDay;
+	}
+
+	public void setMinOpeningDay(Integer minOpeningDay) {
+		this.minOpeningDay = minOpeningDay;
+	}
+
+	public Integer getMaxOpeningDay() {
+		return maxOpeningDay;
+	}
+
+	public void setMaxOpeningDay(Integer maxOpeningDay) {
+		this.maxOpeningDay = maxOpeningDay;
 	}
 
 	public Member getMember() {

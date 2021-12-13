@@ -346,19 +346,21 @@
             </ul>
         </div>
     </div>
-
-    <div class="search_area_2">
-        <h2>1000多個類型場地，立即瀏覽</h2>
-        <div class="search_area_2_select">
-          	<select>
-                <option disabled selected>活動性質</option>
-	            <c:forEach var="facilitiesType" items="${facilitiesTypeAll}" varStatus="loot">
-	            	<option value="${facilitiesType.facilitiesTypeId}">${facilitiesType.name}</option>
-	            </c:forEach>    
-            </select>
-        </div>
-        <input type="button" value="瀏覽場地" class="search_area2_button">
-    </div>
+    
+	<form action="/OneSearchResult" method="get" id="form2">
+	    <div class="search_area_2">
+	        <h2>1000多個類型場地，立即瀏覽</h2>
+	        <div class="search_area_2_select">
+	          	<select name="facilitiesTypeId">
+	                <option disabled selected>活動性質</option>
+		            <c:forEach var="facilitiesType" items="${facilitiesTypeAll}" varStatus="loot">
+		            	<option value="${facilitiesType.facilitiesTypeId}">${facilitiesType.name}</option>
+		            </c:forEach>    
+	            </select>
+	        </div>
+	        <input type="submit" value="瀏覽場地" class="search_area2_button">
+	    </div>
+    </form>
 
     <script src="vendors/jquery/jquery-3.6.0.min.js"></script>
     <script src="js/HomePage/SliderShow.js"></script>
