@@ -1,0 +1,27 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `mainSearch`(
+	IN spaceType INT,
+    IN spaceCity VARCHAR(255),
+    IN spaceGuestsMin INT,
+    IN spaceGuestsMax INT
+)
+IF(spaceType is null) THEN
+BEGIN
+	SELECT * 
+	FROM facilities F
+	WHERE F.facilities_city = if(spaceCity is null,F.facilities_city,spaceCity) AND
+		  F.facilities_guests >= if(spaceGuestsMin is null,F.facilities_guests,spaceGuestsMin) AND 
+		  F.facilities_guests <= if(spaceGuestsMax is null,F.facilities_guests,spaceGuestsMax);
+END;
+
+ELSE
+BEGIN
+	SELECT * 
+	FROM facilities F
+	INNER JOIN facilities_type_detail T
+    ON F.facilities_id = T.facilities_id
+	WHERE T.facilities_type_id = if(spaceType is null,T.facilities_type_id,spaceType) AND 
+		  F.facilities_city = if(spaceCity is null,F.facilities_city,spaceCity) AND
+		  F.facilities_guests >= if(spaceGuestsMin is null,F.facilities_guests,spaceGuestsMin) AND 
+		  F.facilities_guests <= if(spaceGuestsMax is null,F.facilities_guests,spaceGuestsMax);
+END;
+END IF

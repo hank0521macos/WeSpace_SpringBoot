@@ -1,0 +1,48 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `subSearch`(
+	IN spaceType INT,
+    IN spaceGuestsMin INT,
+    IN spaceGuestsMax INT,
+	IN spaceCity VARCHAR(255),
+	IN spaceMaxBudget INT,
+    IN spaceMinBudget INT,
+    IN spaceName VARCHAR(255),
+    IN spaceMinOpeningDay INT,
+    IN spaceMaxOpeningDay INT,
+    IN spacePeriod INT
+)
+BEGIN
+IF(spaceType is null) THEN
+	SELECT * 
+	FROM facilities F
+	WHERE F.facilities_guests >= if(spaceGuestsMin is null,F.facilities_guests,spaceGuestsMin) AND 
+		  F.facilities_guests <= if(spaceGuestsMax is null,F.facilities_guests,spaceGuestsMax) AND
+          F.facilities_city = if(spaceCity is null,F.facilities_city,spaceCity) AND
+          F.facilities_max_budget <= if(spaceMaxBudget is null,F.facilities_max_budget,spaceMaxBudget) AND
+          F.facilities_min_budget >= if(spaceMinBudget is null,F.facilities_min_budget,spaceMinBudget) AND
+		  F.facilities_name like if(spaceName = '%%' ,'%',spaceName) AND
+          (((F.facilities_min_opening_day >= if(spaceMinOpeningDay is null,F.facilities_min_opening_day,spaceMinOpeningDay) AND F.facilities_min_opening_day <= if(spaceMaxOpeningDay is null,F.facilities_min_opening_day,spaceMaxOpeningDay))) OR
+		  ((F.facilities_max_opening_day >= if(spaceMinOpeningDay is null,F.facilities_max_opening_day,spaceMinOpeningDay) AND F.facilities_max_opening_day <= if(spaceMaxOpeningDay is null,F.facilities_max_opening_day,spaceMaxOpeningDay)))) AND
+		  (floor(F.facilities_start_time/6) = if(spacePeriod is null,floor(F.facilities_start_time/6),spacePeriod) or floor(F.facilities_close_time/6) = if(spacePeriod is null,floor(F.facilities_close_time/6),spacePeriod) or
+          if(((F.facilities_close_time - F.facilities_start_time)/6)>=2,floor((F.facilities_close_time-6)/6),floor(F.facilities_close_time/6)) = if(spacePeriod is null,floor((F.facilities_close_time-6)/6),spacePeriod) or
+          if(((F.facilities_close_time - F.facilities_start_time)/6)>=2,floor((F.facilities_close_time-12)/6),floor(F.facilities_close_time/6)) = if(spacePeriod is null,floor((F.facilities_close_time-12)/6),spacePeriod));
+		
+ELSE IF(spaceType is not null) THEN
+	SELECT * 
+	FROM facilities F
+	INNER JOIN facilities_type_detail T
+    ON F.facilities_id = T.facilities_id
+	WHERE T.facilities_type_id = if(spaceType is null,T.facilities_type_id,spaceType) AND
+		  F.facilities_guests >= if(spaceGuestsMin is null,F.facilities_guests,spaceGuestsMin) AND 
+		  F.facilities_guests <= if(spaceGuestsMax is null,F.facilities_guests,spaceGuestsMax) AND
+          F.facilities_city = if(spaceCity is null,F.facilities_city,spaceCity) AND
+          F.facilities_max_budget <= if(spaceMaxBudget is null,F.facilities_max_budget,spaceMaxBudget) AND
+          F.facilities_min_budget >= if(spaceMinBudget is null,F.facilities_min_budget,spaceMinBudget) AND
+		  F.facilities_name like if(spaceName = '%%' ,'%',spaceName) AND
+          (((F.facilities_min_opening_day >= if(spaceMinOpeningDay is null,F.facilities_min_opening_day,spaceMinOpeningDay) AND F.facilities_min_opening_day <= if(spaceMaxOpeningDay is null,F.facilities_min_opening_day,spaceMaxOpeningDay))) OR
+		  ((F.facilities_max_opening_day >= if(spaceMinOpeningDay is null,F.facilities_max_opening_day,spaceMinOpeningDay) AND F.facilities_max_opening_day <= if(spaceMaxOpeningDay is null,F.facilities_max_opening_day,spaceMaxOpeningDay)))) AND
+		  (floor(F.facilities_start_time/6) = if(spacePeriod is null,floor(F.facilities_start_time/6),spacePeriod) or floor(F.facilities_close_time/6) = if(spacePeriod is null,floor(F.facilities_close_time/6),spacePeriod) or
+		  if(((F.facilities_close_time - F.facilities_start_time)/6)>=2,floor((F.facilities_close_time-6)/6),floor(F.facilities_close_time/6)) = if(spacePeriod is null,floor((F.facilities_close_time-6)/6),spacePeriod) or
+          if(((F.facilities_close_time - F.facilities_start_time)/6)>=2,floor((F.facilities_close_time-12)/6),floor(F.facilities_close_time/6)) = if(spacePeriod is null,floor((F.facilities_close_time-12)/6),spacePeriod));
+END IF;
+END IF;
+END

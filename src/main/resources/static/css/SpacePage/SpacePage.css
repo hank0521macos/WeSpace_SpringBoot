@@ -1,0 +1,486 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, "微軟正黑體";
+  margin: 0;
+}
+
+div.main{
+  padding: 0 160px;
+}
+
+#main-content {
+  margin: 20px 0px;
+}
+
+#content {
+  float: right;
+  /* border: 1px solid #aaaaaa; */
+  min-height: 2800px;
+  width: calc(100% - 400px);
+  position: relative;
+}
+
+#sidebar {
+  float: left;
+  width: 350px;
+  color: rgb(226, 226, 226);
+  height: 250px;
+}
+
+#sidebar .sidebar__inner {
+  border: 1px solid rgb(226, 226, 226);
+  height: 320px;
+  padding: 20px 0;
+  position: relative;
+  transform: translate(0, 0);
+  transform: translate3d(0, 0, 0);
+  border-radius: 10px;
+}
+
+.clearfix:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+div.spaceImgArea{
+  /* border: 1px solid red; */
+  width: 100%;
+  height: 550px;
+  padding-top:100px;
+}
+
+div.spaceImgLeft{
+  height: 100%;
+  width: 60%;
+  float: left;
+  background-position: center;
+  background-size: cover;
+}
+
+div.spaceImgRight{
+  height: 100%;
+  width: 38%;
+  float: right;
+  /* border: 1px solid black; */
+  position: relative;
+}
+
+div.spaceImgRightTop{
+  width: 100%;
+  height: 48%;
+  position: absolute;
+  top: 0;
+  background-position: center;
+  background-size: cover;
+}
+
+div.spaceImgRightBottom{
+  width: 100%;
+  height: 48%;
+  position: absolute;
+  bottom: 0;
+  background-position: center;
+  background-size: cover;
+}
+
+div.contentPageQQ{
+  position: absolute;
+  height: 45px;
+  width: 230px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* border: gray 1px solid; */
+  top:0;
+  left: -3px;
+}
+
+div.spaceBasicInfo{
+  border-bottom: 1px solid rgb(226, 226, 226);
+  color: #4e4e4e;
+  padding-bottom:20px;
+}
+
+div.spaceBasicInfo h1{
+  margin-top: 50px;
+  font-size: 30px;
+  margin-bottom:10px;
+}
+
+div.spaceBasicInfo p{
+  color: gray;
+}
+
+div.spaceSize{
+  width: 100%;
+  height: 120px;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  color: #4e4e4e;
+}
+
+div.spaceSizeInfo{
+  display: inline-block;
+  width: 120px;
+  height: 100%;
+  /* border: 1px solid red; */
+  text-align: center;
+  line-height: 155px;
+  color: #4e4e4e;
+  letter-spacing: 1px;
+  position: relative;
+  
+}
+
+.fa-star,.fa-user-friends,.fa-artstation{
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  font-size: 20px;
+}
+
+div.spaceItem{
+  height: 240px;
+  width: 100%;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  color: #4e4e4e;
+  padding: 20px 0;
+}
+
+div.spaceItem h1{
+  font-size: 20px;
+  text-align: center;
+  margin-bottom:15px;
+}
+
+div.spaceItem table{
+  /* border: 1px solid red; */
+  width: 100%;
+  height: 90px;
+  text-align: left;
+}
+
+div.spaceItem td{
+  /* border: 1px solid red; */
+  color: #4e4e4e;
+  width: 240px;
+}
+
+#showAllItems{
+  width: 170px;
+  height: 40px;
+  border-radius: 999em;
+  border: 0;
+  cursor: pointer;
+  margin: 20px 275px;
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid #4e4e4e;
+  text-align: center;
+}
+
+#showAllItems:hover{
+  background-color: #95bfaf;
+  border: #95bfaf;
+  color: white;
+  transition: all 0.4s;
+}
+
+div.chartContainer{
+  height: 240px; 
+  width: 100%; 
+  margin: 40px auto;
+}
+
+div.spaceType{
+  /* border: 1px solid black; */
+  position: relative;
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+div.block1{
+  width: 120px;
+  height: 30px;
+  /* border: 1px solid red; */
+  position: absolute;
+  top: 0px;
+  z-index: 10;
+  background-color: white;
+}
+
+div.block2{
+  width: 120px;
+  height: 30px;
+  /* border: 1px solid red; */
+  position: absolute;
+  bottom: 25px;
+  right: 0;
+  z-index: 10;
+  background-color: white;
+}
+
+div.datePickerArea{
+  border-bottom: 1px solid rgb(226, 226, 226);
+  padding: 20px 0 40px;
+}
+
+div.datePickerArea h1{
+  font-size: 20px;
+  text-align: center;
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus { 
+  background: #95bfaf!important; 
+  box-shadow: none; 
+}
+
+div.ui-datepicker-inline{
+  border: 0;
+}
+
+.ui-datepicker .ui-datepicker-title {
+  background: white!important; 
+  color: #4e4e4e!important;
+  font-size: 16px!important;
+  font-weight: lighter!important;
+} 
+
+.ui-datepicker-inline {
+  width: 100%!important;
+}
+
+.ui-datepicker-header{
+  background: white!important; 
+  border: 0!important;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+  border: 1px solid #95bfaf!important;
+  background: #ffffff!important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  background: none!important;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+  background: #8cc9b1!important;
+}
+
+.ui-datepicker-group th{
+  font-weight: lighter!important;
+}
+
+.ui-datepicker-prev,.ui-datepicker-next{
+  border-radius: 999em!important;
+  cursor: pointer!important;
+}
+
+.ui-datepicker-prev :hover{
+  background-color: transparent!important;
+}
+
+.ui-datepicker td span, .ui-datepicker td a{
+  height: 40px!important;
+  width: 40px!important;
+  line-height: 40px!important;
+  display: block!important;
+  padding: 0!important;
+  text-align: center!important;
+  background-color: white!important;
+  border-radius: 10px!important;
+  margin: 2px!important;
+  font-size: 12px;
+}
+
+div.spacePolicy{
+  border-bottom: 1px solid rgb(226, 226, 226);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #4e4e4e;
+}
+
+div.spacePolicy h1{
+  font-size: 20px;
+  text-align: center;
+  color: #4e4e4e;
+}
+
+div.spacePolicy p{
+  font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 30px;
+  color: #4e4e4e;
+}
+
+div.spaceLocation{
+  /* border: 1px solid red; */
+  padding-top: 20px;
+  height: 550px;
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+div.spaceAddress{
+  /* border: 1px solid black; */
+  height: 200px;
+  float: left;
+  width: 40%;
+}
+
+div.spaceAddress h1{
+  font-size: 20px;
+  color: #4e4e4e;
+  margin-bottom:15px;
+}
+
+div.spaceAddress p{
+  font-size: 16px;
+  color: #4e4e4e;
+  margin-bottom:15px;
+ /*  border:1px solid red; */
+}
+
+div.spaceTransportation{
+  /* border: 1px solid gray; */
+  height: 200px;
+  float: right;
+  width: 58%;
+}
+
+div.spaceTransportation h1{
+  font-size: 20px;
+  color: #4e4e4e;
+  margin-bottom:15px;
+}
+
+div.spaceTransportation p{
+  font-size: 16px;
+  color: #4e4e4e;
+  margin-bottom:15px;
+ /*  border:1px solid red; */
+}
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 280px;
+  width: 100%;
+}
+
+div.spaceOwner{
+  padding-top: 20px;
+  height: 170px;
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+div.spaceOwner h1{
+  font-size: 20px;
+  color: #4e4e4e;
+  margin-bottom: 20px;
+}
+
+div.spaceOwnerInfo{
+  height: 70px;
+  width: 100%;
+  /* border: 1px solid red; */
+  position: relative;
+}
+
+div.ownerPic{
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* border: 1px solid red; */
+  border-radius: 999em;
+  height: 70px;
+  width: 70px;
+ 
+}
+
+div.ownerDetail{
+  position: absolute;
+  left: 90px;
+  top:22px;
+  color: #4e4e4e;
+  font-size: 20px;
+}
+
+div.spaceCancellation{
+  /* border: 1px solid red; */
+  height: 200px;
+  padding: 20px 0;
+}
+
+div.spaceCancellation h1{
+  font-size: 20px;
+  color: #4e4e4e;
+}
+
+div.spaceCancellation p{
+  margin-top:10px;
+  letter-spacing: 2px;
+  font-size: 16px;
+  color: #4e4e4e;
+}
+
+
+div.spaceExpense{
+  height: 80px;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(226, 226, 226);
+  border-bottom: 1px solid rgb(226, 226, 226);
+  padding: 0 20px;
+}
+
+div.spaceExpense p{
+  color: rgb(226, 226, 226);
+  font-weight: normal;
+  font-size: 14px;
+}
+
+div.orderDate{
+  font-weight: bold;
+  font-size: 16px;
+  color: #4e4e4e;
+  height: 70px;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  padding: 0 20px;
+  line-height: 70px;
+}
+
+div.orderSubmit{
+  height: 130px;
+  /* border: 1px solid red; */
+  padding-top: 46px;
+}
+
+div.orderSubmit input{
+  width: 300px;
+  height: 45px;
+  border-radius: 999em;
+  outline: none;
+  border: 0;
+  background-color: rgb(226, 226, 226);
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  cursor:pointer;
+}
+
+div.banner{
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 1440px;
+  height: 390px;
+}
