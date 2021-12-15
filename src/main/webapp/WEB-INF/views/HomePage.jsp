@@ -156,7 +156,7 @@
         <div class="special_collections_title">精選場地</div>
         
         <c:forEach var="facilities" items="${facilitiesAll}" begin="0" end="0">
-            <a href="">
+            <a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilities.id}">
             <c:if test="${empty facilities.facilitiesImages}">
                 <div class="special_collections_item_long_1" style="background-image: url(img/default.png);">
                     <c:if test="${facilities.name == '' or facilities.name == null}">
@@ -177,7 +177,7 @@
         </c:forEach>
         
         <c:forEach var="facilities" items="${facilitiesAll}" begin="1" end="2">
-            <a href="">
+            <a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilities.id}">
            	<c:if test="${empty facilities.facilitiesImages}">
                 <div class="special_collections_item_short_1" style="background-image: url(img/default.png);">
                     <c:if test="${facilities.name == '' or facilities.name == null}">
@@ -198,7 +198,7 @@
         </c:forEach>
         
 		<c:forEach var="facilities" items="${facilitiesAll}" begin="3" end="4">
-            <a href="">
+            <a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilities.id}">
             <c:if test="${empty facilities.facilitiesImages}">
                 <div class="special_collections_item_short_2" style="background-image: url(img/default.png);">
                     <c:if test="${facilities.name == '' or facilities.name == null}">
@@ -219,7 +219,7 @@
         </c:forEach>
         
 		<c:forEach var="facilities" items="${facilitiesAll}" begin="5" end="5">
-            <a href="">
+            <a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilities.id}">
             <c:if test="${empty facilities.facilitiesImages}">
                 <div class="special_collections_item_long_2" style="background-image: url(img/default.png);">
                     <c:if test="${facilities.name == '' or facilities.name == null}">
@@ -249,7 +249,7 @@
             <ul>
             <c:forEach var="facilitiesType5" items="${facilitiesType5}" begin="0" end="2">
 	            <c:if test="${empty facilitiesType5.facilitiesImages}">
-	                <a href="">
+	                <a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilitiesType5.id}">
 	                    <li style="background-image: url(img/default.png);">
 	                        <div class="catg_info_1">${facilitiesType5.city}．${facilitiesType5.guests}人</div>
 	                        <div class="catg_info_2">$${facilitiesType5.minBudget}/hr</div>
@@ -260,7 +260,7 @@
 	                    </li>
 	                </a>
 	             </c:if>
-                <a href="">
+                <a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilitiesType5.id}">
                 	<c:forEach var="facilitiesImage" items="${facilitiesType5.facilitiesImages}" begin="0" end="0">
 	                    <li style="background-image: url(${pageContext.request.contextPath}/uploaded/${facilitiesImage.name});">
 	                        <div class="catg_info_1">${facilitiesType5.city}．${facilitiesType5.guests}人</div>
@@ -284,7 +284,7 @@
             <ul>
              <c:forEach var="facilitiesType1" items="${facilitiesType1}" begin="0" end="2">
              <c:if test="${empty facilitiesType1.facilitiesImages}">
-                <a href="">
+                <a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilitiesType1.id}">
                     <li style="background-image: url(img/default.png);">
                         <div class="catg_info_1">${facilitiesType1.city}．${facilitiesType1.guests}人</div>
                         <div class="catg_info_2">$${facilitiesType1.minBudget}/hr</div>
@@ -295,7 +295,7 @@
                     </li>
                 </a>
              </c:if>
-                <a href="">
+                <a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilitiesType1.id}">
                 	<c:forEach var="facilitiesImage" items="${facilitiesType1.facilitiesImages}" begin="0" end="0">
 	                    <li style="background-image: url(${pageContext.request.contextPath}/uploaded/${facilitiesImage.name});">
 	                        <div class="catg_info_1">${facilitiesType1.city}．${facilitiesType1.guests}人</div>
@@ -319,7 +319,7 @@
             <ul>
              <c:forEach var="facilitiesType3" items="${facilitiesType3}" begin="0" end="2">
 	             <c:if test="${empty facilitiesType3.facilitiesImages}">
-	                <a href="">
+	                <a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilitiesType3.id}">
 	                    <li style="background-image: url(img/default.png);">
 	                        <div class="catg_info_1">${facilitiesType3.city}．${facilitiesType3.guests}人</div>
 	                        <div class="catg_info_2">$${facilitiesType3.minBudget}/hr</div>
@@ -330,7 +330,7 @@
 	                    </li>
 	                </a>
 	             </c:if>
-                <a href="">
+                <a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilitiesType3.id}">
                 	<c:forEach var="facilitiesImage" items="${facilitiesType3.facilitiesImages}" begin="0" end="0">
 	                    <li style="background-image: url(${pageContext.request.contextPath}/uploaded/${facilitiesImage.name});">
 	                        <div class="catg_info_1">${facilitiesType3.city}．${facilitiesType3.guests}人</div>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -124,7 +123,7 @@
 		<div style="margin-top:100px;">
 		<c:forEach var="facilitiesByMainSearch" items="${facilitiesByMainSearch}">
 			<div class="search_result">
-				<a href="">
+				<a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilitiesByMainSearch.id}">
 				<c:if test="${empty facilitiesByMainSearch.facilitiesImages}">
 					<div class="search_result_item" style="background-image: url(img/default.png); background-position:center;"></div>
 				</c:if>
@@ -134,7 +133,7 @@
 				</a>
 				<table>
 					<tr>
-						<td class="facilities_name"><a href="#">${facilitiesByMainSearch.name}</a></td>
+						<td class="facilities_name"><a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilitiesByMainSearch.id}">${facilitiesByMainSearch.name}</a></td>
 					</tr>
 					<tr>
 						<td class="facilities_info"><i class="fas fa-house-user"></i>
@@ -151,13 +150,13 @@
 						<td class="facilities_info"><i class="fas fa-tags"></i> 
 							<span>
 							<c:forEach var="facilitiesTypeByMainSearch" items="${facilitiesByMainSearch.facilitiesType}">
-									<a href="#">${facilitiesTypeByMainSearch.name}</a>/ 
+									<a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=${facilitiesTypeByMainSearch.facilitiesTypeId}">${facilitiesTypeByMainSearch.name}</a>/ 
 							</c:forEach>
 							</span>
 						</td>
 					</tr>
 				</table>
-				<a href="#">
+				<a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilitiesByMainSearch.id}">
 					<div class="facilities_expense_per_hour">
 						<p>每小時$${facilitiesByMainSearch.minBudget}起</p>
 					</div>

@@ -960,31 +960,6 @@
 	             }
 	        })
         };
-        
-   	    //編輯頁面載入後facilitiesItems的checkbox自動checked
-  /*  	    var checkOpeningArray =${facilitiesOpeningRecord};
-   	    var checkOpeningBoxAll = $("input[name='facilitiesOpeningId']");
-   	    
-        for(var i=0;i<checkOpeningArray.length;i++){
-	    	$.each(checkOpeningBoxAll,function(j,checkbox){
-	             //獲取facilitiesType複選框的value屬性
-	             var checkValue=$(checkbox).val();
-	             if(checkOpeningArray[i]==checkValue){
-	                 $(checkbox).attr("checked",true);
-	             }
-	        })
-        }; */
-        
-   	    //編輯頁面載入後facilities的city使select自動selected
-/*    	    var selectCity = '${facilitiesRecord.city}';
-   	    var selectCityAll = $("select[name='city']");
-        selectCityAll.val(selectCity); */
-        
-   	    //編輯頁面載入後facilities的town使select自動selected
-   /* 	    var selectTown = '${facilitiesRecord.town}';
-   	    var selectTownAll = $("select[name='town']");
-        selectTownAll.val(selectTown); */
-        
    	});
     </script>
 </body>

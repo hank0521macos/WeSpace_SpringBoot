@@ -11,17 +11,10 @@
 jQuery(function ($) {
 	// Load dialog on page load
 	//$('#basic-modal-content').modal();
-
+	alert("123");
 	// Load dialog on click
-	$('#basic-modal .basic').click(function (e) {
+	$('#showAllItems').click(function (e) {
 		$('#basic-modal-content').modal();
-
-		return false;
-	});
-
-	// Load dialog on click
-	$('#basic-modal .basic2').click(function (e) {
-		$('#basic-modal-content2').modal();
 
 		return false;
 	});

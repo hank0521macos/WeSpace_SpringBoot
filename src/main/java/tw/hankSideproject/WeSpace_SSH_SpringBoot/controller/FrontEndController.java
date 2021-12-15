@@ -161,4 +161,11 @@ public class FrontEndController {
 		return "SearchResult";
 	}
 	
+	@GetMapping("/oneSpacePage")
+	public String spacePage(Model model,@RequestParam(value="facilitiesId",required=false)Integer facilitiesId) {
+		model.addAttribute("facilities",facilitiesRepository.getById(facilitiesId));
+		
+		return "spacePage";
+	}
+	
 }
