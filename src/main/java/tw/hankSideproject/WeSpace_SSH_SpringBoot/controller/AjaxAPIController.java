@@ -1,6 +1,5 @@
 package tw.hankSideproject.WeSpace_SSH_SpringBoot.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -14,15 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesImagesRepository;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesOpeningDetailRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesOwnerRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.MemberRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Facilities;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesImages;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesOpeningDetail;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesOwner;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Member;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.service.MemberBackEndService;
@@ -36,6 +36,9 @@ public class AjaxAPIController {
 	
 	@Autowired
 	FacilitiesOwnerRepository facilitiesOwnerRepository;
+	
+	@Autowired
+	FacilitiesOpeningDetailRepository facilitiesOpeningDetailRepository;
 	
 	@Autowired
 	FacilitiesImagesRepository facilitiesImagesRepository;
@@ -123,8 +126,6 @@ public class AjaxAPIController {
 	public Set<FacilitiesImages> listSpaceImages() {
 			Integer facilitiesIdForImages = MemberBackEndController.facilitiesIdForImages;
 			Facilities facilities = facilitiesRepository.getById(facilitiesIdForImages);
-			System.out.println("進來list圖片Ajax，此空間id為:"+ facilities.getId());
-			
 			return facilities.getFacilitiesImages(); 
 	}
     
@@ -132,13 +133,25 @@ public class AjaxAPIController {
     @CrossOrigin
     @DeleteMapping("/deleteSpaceImages/{id}")
     public ResponseEntity<FacilitiesImages> deleteSpaceImages(@PathVariable(value = "id") String id,HttpSession session) {
-    	System.out.println("要被刪除的名字是："+id);
     	FacilitiesImages facilitiesImages = facilitiesImagesRepository.getById(Integer.parseInt(id));
     	if(facilitiesImages == null) {
             return ResponseEntity.notFound().build();
         }
     	facilitiesImagesRepository.deleteById(Integer.parseInt(id));
         return ResponseEntity.ok().build();
+    }
+    
+	//消費者選擇日期時同時更動時間select表單查詢API
+	@CrossOrigin
+    @GetMapping("/listTime/{facilitiesId}&{facilitiesOpeningId}")
+    public ResponseEntity<FacilitiesOpeningDetail> getFacilitiesOpeningDetailById(@PathVariable(value = "facilitiesId") Integer id1,@PathVariable(value = "facilitiesOpeningId") Integer id2) {
+		FacilitiesOpeningDetail facilitiesOpeningDetail = facilitiesOpeningDetailRepository.findByFacilitiesAndFacilitiesOpening(id1, id2);
+        
+		if(facilitiesOpeningDetail == null) {
+            return ResponseEntity.notFound().build();
+        }
+		System.out.println("開始營業時間"+facilitiesOpeningDetail.getStartTime());
+        return ResponseEntity.ok().body(facilitiesOpeningDetail);
     }
 	
 }

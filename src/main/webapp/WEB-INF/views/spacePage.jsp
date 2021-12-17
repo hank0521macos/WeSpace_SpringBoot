@@ -55,15 +55,26 @@
             
             <div id="sidebar" class="sidebar">
                 <div class="sidebar__inner">
-                    <div class="spaceExpense">
+                    <div class="spaceExpense" id="spaceExpense">
                         <p>每小時</p>
                         $${facilities.minBudget} - ${facilities.maxBudget}
                     </div>
-                    <div class="orderDate">
+                    <div class="orderDate" id="alternate">
                         請選擇日期
                     </div>
+                    <div class="orderTime">
+                   		<select class="selectTime" id="startTime">
+                   			<option disabled selected>開始時間</option>
+                   		</select>
+                   		<i class="fas fa-long-arrow-alt-right"></i>
+                   		<select class="selectTime" id="closeTime">
+                   			<option disabled selected>結束時間</option>
+                   		</select>
+                    </div>
+                    <div class="subTotal"></div>
+                    <div class="Total"></div>
                     <div class="orderSubmit">
-                        <input type="submit" value="線上預訂">
+                        <input type="button" value="線上預訂" disabled>
                     </div>
                 </div>
             </div>
@@ -158,7 +169,7 @@
 	        	<c:forEach var="facilitiesItems" items="${facilities.facilitiesItems}">
 	        		<p><i class="fas fa-check"></i>&nbsp;&nbsp;${facilitiesItems.name}</p>
 	        	</c:forEach>
-        	</div>
+	        </div>
         </div>
         <!-- preload the images -->
         <div style='display:none'>
@@ -187,7 +198,7 @@
             containerSelector: '#main-content', // 側邊欄外面的區塊
             innerWrapperSelector: '.sidebar__inner',
             topSpacing: 100, // 距離頂部 20px，可理解成 padding-top:20px
-            bottomSpacing: 20 // 距離底部 20px，可理解成 padding-bottom:20px
+            bottomSpacing: 250 // 距離底部 20px，可理解成 padding-bottom:20px
         });
     </script>
     <script>
@@ -249,7 +260,7 @@
         $("#chartContainer").CanvasJSChart(options);
         }
         </script>
-        <script>
+        <script>    
             var opt={
                dayNames:["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
                dayNamesMin:["日","一","二","三","四","五","六"],
@@ -262,19 +273,130 @@
                dateFormat:"yy-mm-dd",
                numberOfMonths: 2,
                minDate: new Date(),
+               onSelect: show_select,
                beforeShowDay: function(date) { 
                var day = date.getDay();
-               return [
-            	   if()
-            	   
-            	   (day == 1)||(day ==2)
-            	   
-            	   
-            	   , '']; 
-            } 
+               var facilitiesOpeningDays = ${facilitiesOpeningDays}
+               for(i=0;i<=6;i++){
+	               if(facilitiesOpeningDays[i]==7){
+	            	   facilitiesOpeningDays[i]=0
+	               }
+               }
+               return [(day == facilitiesOpeningDays[0])||(day == facilitiesOpeningDays[1])||(day == facilitiesOpeningDays[2])||(day == facilitiesOpeningDays[3])||
+            	   (day == facilitiesOpeningDays[4])||(day == facilitiesOpeningDays[5])||(day == facilitiesOpeningDays[6]), '']; 
+               } 
            };
-        
             $("#datepicker").datepicker(opt);
+            
+            function show_select() {
+            	   $(".orderTime").css("display","block");
+            	   var date=$("#datepicker").datepicker("getDate");
+            	   var day = toweek(date);
+            	   refreshStartTimeSelect(date);
+            	   date = $.datepicker.formatDate("yy 年 mm 月 d 日", date);
+            	   $("#alternate").html(date +"&nbsp;&nbsp;"+ day);
+            	   $(".spaceExpense p").css("color","rgb(78,78,78)");
+            	   $("#spaceExpense").css("color","rgb(78,78,78)");
+            	   $('#closeTime').empty();
+            	   $('#closeTime').append('<option selected disabled>結束時間</option>');
+           		   $(".subTotal").css("display","none");
+        		   $(".Total").css("display","none");
+        		   $('.subTotal').empty();
+        		   $('.Total').empty();
+           		   $('.orderSubmit').empty();
+        		   $('.orderSubmit').append('<input type="button" value="線上預訂" disabled>');
+           	}
+            
+            function toweek(date){
+            	let datelist = ['週日','週一','週二','週三','週四','週五','週六']
+            	return datelist[new Date(date).getDay()];
+            }
+            
+        	//ajax動態刷新select表單方法
+        	function refreshStartTimeSelect(date) {
+        		$('#startTime').empty();
+				var openingDayId = new Date(date).getDay();
+				if(openingDayId == 0){
+					openingDayId = 7;
+				}
+        		$.ajax({
+        			type: "GET",
+        			url: "http://localhost:8081/listTime/"+${facilities.id}+"&"+openingDayId,
+        			success: function(data) {
+        				var openingDetail = JSON.parse(JSON.stringify(data));
+        				$('#startTime').append('<option selected disabled>開始時間</option>');
+        				for(i=0;i<=openingDetail.closeTime-openingDetail.startTime;i++){
+        					var sum =parseInt(openingDetail.startTime)+parseInt(i)
+        					$('#startTime').append('<option value="'+sum+'">'+sum+':00</option>');
+        				}
+        			},
+        			error: function(data) {
+        				console.log(data);
+        			}
+        		});
+        	};
+        	
+        	$("#startTime").change(refreshCloseTimeSelect);
+        	
+          	//ajax動態刷新select表單方法
+        	function refreshCloseTimeSelect() {
+        		let switchValue = $(this).val();
+        		var date=$("#datepicker").datepicker("getDate");
+         		$('#closeTime').empty();
+				var openingDayId = new Date(date).getDay();
+				if(openingDayId == 0){
+					openingDayId = 7;
+				}
+        		$.ajax({
+        			type: "GET",
+        			url: "http://localhost:8081/listTime/"+${facilities.id}+"&"+openingDayId,
+        			success: function(data) {
+        				var openingDetail = JSON.parse(JSON.stringify(data));
+        				$('#closeTime').append('<option selected disabled>結束時間</option>');
+        				for(i=0;i<=openingDetail.closeTime-switchValue;i++){
+        					var sum =parseInt(switchValue)+parseInt(i)
+        					$('#closeTime').append('<option value="'+sum+'">'+sum+':00</option>');
+        				}
+        			},
+        			error: function(data) {
+        				console.log(data);
+        			}
+        		});
+        	};
+            
+        	$("#closeTime").change(displaySubTotal);
+        	
+        	//出現小計區塊
+        	function displaySubTotal(){
+        		$(".subTotal").css("display","block");
+        		$(".Total").css("display","block");
+        		$('.subTotal').empty();
+        		$('.Total').empty();
+        		let closeTime = $(this).val();
+        		let startTime = $("#startTime").val();
+        		var date=$("#datepicker").datepicker("getDate");
+				var openingDayId = new Date(date).getDay();
+				if(openingDayId == 0){
+					openingDayId = 7;
+				}
+        		$.ajax({
+        			type: "GET",
+        			url: "http://localhost:8081/listTime/"+${facilities.id}+"&"+openingDayId,
+        			success: function(data) {
+        				var openingDetail = JSON.parse(JSON.stringify(data));
+                		$('.subTotal').append('<span class="subTotalLeft">$'+openingDetail.expense+' x '+(closeTime-startTime)+'小時</span><span class="subTotalRight">$'+(openingDetail.expense*(closeTime-startTime))+'</span>');
+                		$('.Total').append('<span class="twd">TWD</span><span class="totalPrice">$'+(openingDetail.expense*(closeTime-startTime))+'</span>');
+                		$('.orderSubmit').empty();
+                		$('.orderSubmit').append('<input type="submit" style="background-color:rgb(249, 111, 72);" value="線上預訂">');
+        			},
+        			error: function(data) {
+        				console.log(data);
+        			}
+        		});
+        	
+        	
+        	}
+            
         </script>
         <script>
             let map;

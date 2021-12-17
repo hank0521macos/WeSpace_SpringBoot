@@ -20,6 +20,7 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -87,10 +88,12 @@ public class Facilities {
 	@Column(name = "facilities_max_opening_day")
 	private Integer maxOpeningDay;
 	
+	@JsonBackReference
 	@ManyToOne(targetEntity=FacilitiesOwner.class)
 	@JoinColumn(name = "facilities_owner_id",referencedColumnName="facilities_owner_id")
 	private FacilitiesOwner facilitiesOwner;
 	
+	@JsonBackReference
 	@ManyToOne(targetEntity=Member.class)
 	@JoinColumn(name = "member_id",referencedColumnName="member_id")
 	private Member member;
@@ -101,6 +104,7 @@ public class Facilities {
 	private Set<FacilitiesImages> facilitiesImages = new HashSet<FacilitiesImages>();
 	
 	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="facilities")
 	private Set<FacilitiesOpeningDetail> facilitiesOpeningDetail = new HashSet<FacilitiesOpeningDetail>();
 	

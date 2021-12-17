@@ -20,7 +20,7 @@ div.main{
 #content {
   float: right;
   /* border: 1px solid #aaaaaa; */
-  min-height: 2800px;
+  min-height: 2200px;
   width: calc(100% - 400px);
   position: relative;
 }
@@ -29,12 +29,10 @@ div.main{
   float: left;
   width: 350px;
   color: rgb(226, 226, 226);
-  height: 250px;
 }
 
 #sidebar .sidebar__inner {
   border: 1px solid rgb(226, 226, 226);
-  height: 320px;
   padding: 20px 0;
   position: relative;
   transform: translate(0, 0);
@@ -412,13 +410,13 @@ div.ownerDetail{
 
 div.spaceCancellation{
   /* border: 1px solid red; */
-  height: 200px;
   padding: 20px 0;
 }
 
 div.spaceCancellation h1{
   font-size: 20px;
   color: #4e4e4e;
+  
 }
 
 div.spaceCancellation p{
@@ -443,6 +441,7 @@ div.spaceExpense p{
   color: rgb(226, 226, 226);
   font-weight: normal;
   font-size: 14px;
+  margin-bottom:15px;
 }
 
 div.orderDate{
@@ -456,9 +455,9 @@ div.orderDate{
 }
 
 div.orderSubmit{
-  height: 130px;
+  height: 60px;
   /* border: 1px solid red; */
-  padding-top: 46px;
+  padding-top: 17px;
 }
 
 div.orderSubmit input{
@@ -483,4 +482,72 @@ div.banner{
   background-repeat: no-repeat;
   width: 1440px;
   height: 390px;
+  margin-top:250px;
+}
+
+div.orderTime{
+  font-weight: bold;
+  font-size: 16px;
+  color: #4e4e4e;
+  height: 70px;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  padding: 0 20px;
+  line-height: 70px;
+  display:none;
+}
+
+.selectTime{
+	border:1px solid red;
+	width:110px;
+	height:35px;
+	text-align:center;
+	cursor:pointer;
+	border:0;
+	font-size:16px;
+}
+
+.fa-long-arrow-alt-right{
+	margin:0 20px;
+}
+
+div.subTotal{
+	font-size: 16px;
+	color: gray;
+	height: 70px;
+	border-bottom: 1px solid rgb(226, 226, 226);
+	padding: 0 20px;
+	line-height: 70px;
+	display:none;
+}
+
+span.subTotalLeft{
+	float:left;
+}
+
+span.subTotalRight{
+	float:right;
+}
+
+div.Total{
+  	height: 70px;
+  	padding: 0 20px;
+  	line-height: 70px;
+  	/* display:none; */
+  	position:relative;
+  	display:none;
+}
+
+span.twd{
+  	position:absolute;
+  	left:22px;
+  	font-size:10px;
+  	color:gray;
+}
+
+span.totalPrice{
+	position:absolute;
+	right:22px;
+	color:#4e4e4e;
+	font-weight:bold;
+	font-size:24px;
 }

@@ -1,7 +1,6 @@
 package tw.hankSideproject.WeSpace_SSH_SpringBoot.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -12,9 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesOpeningDetailRepository;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesOpeningRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesTypeRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Facilities;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesOpeningDetail;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesType;
 
 @Controller
@@ -25,6 +27,12 @@ public class FrontEndController {
 	
 	@Autowired
 	FacilitiesTypeRepository facilitiesTypeRepository;
+	
+	@Autowired
+	FacilitiesOpeningRepository facilitiesOpeningRepository;
+	
+	@Autowired
+	FacilitiesOpeningDetailRepository facilitiesOpeningDetailRepository;
 	
 	//首頁頁面導向
 	@RequestMapping("/")
@@ -149,6 +157,7 @@ public class FrontEndController {
 	public String OneSearchResult(Model model,@RequestParam(value="facilitiesTypeId",required=false) Integer facilitiesTypeId){
 		model.addAttribute("facilitiesTypeAll",facilitiesTypeRepository.findAll());
 		model.addAttribute("facilitiesAll",facilitiesRepository.findAll());
+		
 		if(facilitiesTypeId == null) {
 			List<Facilities> oneSearch = new ArrayList<Facilities>();
 			oneSearch = facilitiesRepository.findAll();
@@ -164,7 +173,8 @@ public class FrontEndController {
 	@GetMapping("/oneSpacePage")
 	public String spacePage(Model model,@RequestParam(value="facilitiesId",required=false)Integer facilitiesId) {
 		model.addAttribute("facilities",facilitiesRepository.getById(facilitiesId));
-		
+		List<Integer> facilitiesOpeningId = facilitiesRepository.listFacilitiesOpeningIdByFacilitiesId(facilitiesId);
+		model.addAttribute("facilitiesOpeningDays",facilitiesOpeningId);
 		return "spacePage";
 	}
 	

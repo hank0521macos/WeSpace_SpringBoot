@@ -52,8 +52,9 @@ public interface FacilitiesRepository extends JpaRepository<Facilities, Integer>
 		
 		@Transactional
 		@Modifying
-		@Query(value="select * from facilities_opening_detail where facilities_id=?1",nativeQuery = true)
-		public List<FacilitiesOpeningDetail> listFacilitiesOpeningDetailByFacilitiesId(int id);
+		@Query(value="select FACILITIES_OPENING_ID from facilities_opening_detail where facilities_id=?1",nativeQuery = true)
+		public List<Integer> listFacilitiesOpeningIdByFacilitiesId(int id);
+		
 		
 		@Query(value = "call mainSearch(:spaceType,:spaceCity,:spaceGuestsMin,:spaceGuestsMax);", nativeQuery = true)
 		List<Facilities> findFacilitiessByMainSearch(

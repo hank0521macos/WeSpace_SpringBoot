@@ -88,56 +88,56 @@
             <div class="slider">
               <ul class="list">
                 <li>
-                    <a href="javascript:;">
+                    <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=5">
                         <h1>課程講座</h1>
                         <p><i class="fas fa-chalkboard"></i></p>
                         <h2>查看方案</h2>  
                     </a>
                  </li>
                  <li>
-                    <a href="javascript:;">
+                    <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=2">
                         <h1>派對</h1>
                         <p><i class="fas fa-birthday-cake"></i></p>
                         <h2>查看方案</h2>  
                     </a>
                  </li>
                  <li>
-                    <a href="javascript:;">
+                    <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=1">
                         <h1>會議</h1>
                         <p><i class="far fa-handshake"></i></p>
                         <h2>查看方案</h2>  
                     </a>
                  </li>
                  <li>
-                    <a href="javascript:;">
+                    <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=3">
                         <h1>聚會餐敘</h1>
                         <p><i class="fas fa-utensils"></i></p>
                         <h2>查看方案</h2>  
                     </a>
                  </li>
                  <li>
-                    <a href="javascript:;">
+                    <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=11">
                         <h1>拍攝攝影</h1>
                         <p><i class="fas fa-video"></i></i></p>
                         <h2>查看方案</h2>  
                     </a>
                  </li>
                  <li>
-                    <a href="javascript:;">
+                    <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=9">
                         <h1>音樂表演</h1>
                         <p><i class="fas fa-drum"></i></i></p>
                         <h2>查看方案</h2>  
                     </a>
                  </li>
                  <li>
-                    <a href="javascript:;">
+                    <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=8">
                         <h1>靜態展覽</h1>
                         <p><i class="fas fa-beer"></i></i></p>
                         <h2>查看方案</h2>  
                     </a>
                  </li>
                  <li>
-                    <a href="javascript:;">
+                    <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=15">
                         <h1>發表會</h1>
                         <p><i class="fas fa-book-reader"></i></i></p>
                         <h2>查看方案</h2>  

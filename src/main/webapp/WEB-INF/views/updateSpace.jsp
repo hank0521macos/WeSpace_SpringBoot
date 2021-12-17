@@ -223,7 +223,7 @@
 	                               		</select>
 	                                <strong id="dash${facilitiesOpening.facilitiesOpeningId}" style="display: none;"> ~ </strong>
 	                                  	 <select class="timeSelect" name="closeTime" id="timeEnd${facilitiesOpening.facilitiesOpeningId}" style="display: none;">
-	                               			<option value="0">00:00</option>
+	                               			<option value="24">00:00</option>
 	                               			<option value="1">01:00</option>
 	                               			<option value="2">02:00</option>
 	                               			<option value="3">03:00</option>
