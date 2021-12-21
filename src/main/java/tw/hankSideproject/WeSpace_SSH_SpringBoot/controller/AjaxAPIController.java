@@ -150,7 +150,6 @@ public class AjaxAPIController {
 		if(facilitiesOpeningDetail == null) {
             return ResponseEntity.notFound().build();
         }
-		System.out.println("開始營業時間"+facilitiesOpeningDetail.getStartTime());
         return ResponseEntity.ok().body(facilitiesOpeningDetail);
     }
 	

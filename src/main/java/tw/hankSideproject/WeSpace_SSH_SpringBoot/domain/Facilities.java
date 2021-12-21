@@ -1,6 +1,8 @@
 package tw.hankSideproject.WeSpace_SSH_SpringBoot.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -107,6 +109,11 @@ public class Facilities {
 	@JsonManagedReference
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="facilities")
 	private Set<FacilitiesOpeningDetail> facilitiesOpeningDetail = new HashSet<FacilitiesOpeningDetail>();
+	
+	@JsonIgnore
+	@JsonManagedReference
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="facilities")
+	private List<Orders> order = new ArrayList<Orders>();
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "facilities_type_detail",
@@ -320,6 +327,14 @@ public class Facilities {
 
 	public void setFacilitiesItems(Set<FacilitiesItems> facilitiesItems) {
 		this.facilitiesItems = facilitiesItems;
+	}
+
+	public List<Orders> getOrder() {
+		return order;
+	}
+
+	public void setOrder(List<Orders> order) {
+		this.order = order;
 	}
 	
 }

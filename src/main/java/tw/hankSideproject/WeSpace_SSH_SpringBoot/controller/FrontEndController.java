@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,12 +18,17 @@ import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesOpeningDetailRepo
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesOpeningRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesTypeRepository;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.MemberRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Facilities;
-import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesOpeningDetail;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesType;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Member;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Orders;
 
 @Controller
 public class FrontEndController {
+	
+	@Autowired
+	MemberRepository memberRepository;
 	
 	@Autowired
 	FacilitiesRepository facilitiesRepository;
@@ -176,6 +184,18 @@ public class FrontEndController {
 		List<Integer> facilitiesOpeningId = facilitiesRepository.listFacilitiesOpeningIdByFacilitiesId(facilitiesId);
 		model.addAttribute("facilitiesOpeningDays",facilitiesOpeningId);
 		return "spacePage";
+	}
+	
+	@PostMapping("/orderPage")
+	public String orderPage(HttpSession session,Model model) {
+		model.addAttribute("facilitiesTypeAll",facilitiesTypeRepository.findAll());
+		Member member = (Member)session.getAttribute("loginData");
+		model.addAttribute("member",member);
+		Orders orders = new Orders();
+		
+		session.setAttribute("orderData", orders); 
+		
+		return "OrderPage";
 	}
 	
 }

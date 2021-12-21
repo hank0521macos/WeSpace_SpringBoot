@@ -1,0 +1,322 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body{
+    background-color: rgb(255, 255, 255);
+}
+
+.tab1 {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.tab2 {
+    width: 100%;
+    height: auto;
+    display: none;
+}
+
+
+div.contentPageLeft{
+    padding: 100px 40px 0 180px;
+    float: left;
+    width: 50%;
+    height: 750px;
+    /* border: 1px solid red; */
+}
+
+div.contentPageRight{
+    padding: 100px 180px 0 40px;
+    float: right;
+    width: 50%;
+    height: 750px;
+    /* border: 1px solid red; */
+    background-color: #f6f6f6;
+}
+
+div.contentPageLeft2{
+    padding: 100px 40px 0 180px;
+    float: left;
+    width: 50%;
+    /* height: 750px; */
+    /* border: 1px solid red; */
+}
+
+div.contentPageRight2{
+    padding: 100px 180px 0 40px;
+    float: right;
+    width: 50%;
+    height: 1100px;
+    /* border: 1px solid red; */
+    background-color: #f6f6f6;
+}
+
+div.step{
+    /* border: 1px solid gray; */
+    height: 50px;
+    width: 100%;
+    position: relative;
+    line-height: 50px;
+    color: #4e4e4e;
+}
+
+.fa-arrow-alt-circle-left{
+    color: #53A385;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+div.step span{
+    position: absolute;
+    right: 0;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+div.barLine{
+    width: 100%;
+}
+
+div.barLineLeft{
+    border: 3px solid #53A385;
+    float: left;
+    width: 50%;
+    border-radius: 5px;
+}
+
+div.barLineRight{
+    border: 3px solid rgb(226, 226, 226);
+    float: right;
+    width: 50%;
+    border-radius: 5px;
+}
+
+div.barLineLeft2{
+    border: 3px solid #53A385;
+    float: right;
+    width: 50%;
+    border-radius: 5px;
+}
+
+div.barLineRight2{
+    border: 3px solid rgb(226, 226, 226);
+    float: left;
+    width: 50%;
+    border-radius: 5px;
+}
+
+div.formTitle{
+    width: 100%;
+    height: 70px;
+    /* border: 1px solid red; */
+    line-height: 70px;
+    color: #4e4e4e;
+}
+
+span.formTitleRight{
+   margin-left: 128px;
+}
+
+span.formTitleRight2{
+    margin-left: 128px;
+}
+
+div.form{
+    width: 100%;
+    /* border: 1px solid red; */
+    height: 40px;
+    line-height: 40px;
+}
+
+div.form input{
+    margin-right: 25px;
+    border: 1px solid rgb(199, 199, 199);
+    padding-left: 5px;
+    border-radius: 5px;
+    color: #4e4e4e;
+}
+
+select.spaceType{
+    width: 200px;
+    height: 33px;
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 5px;
+    letter-spacing: 2px;
+    padding-left: 5px;
+    color: #4e4e4e;
+}
+
+div.input-group{
+    /* border: 1px solid red; */
+    width: 30%;
+    float: right;
+    margin-right: 100px;
+}
+
+input.form-control.input-number{
+    width: 72px;
+    position: absolute;
+    top:3px;
+}
+
+div.form textarea{
+    width: 100%;
+    height: 80px;
+    border: 1px solid rgb(199, 199, 199);
+    padding-left: 20px;
+}
+
+div.bottomLine{
+    width: 100%;
+    border-bottom: 1px solid rgb(199, 199, 199);
+    margin-top: 120px;
+}
+
+div.bottomLine2{
+    width: 100%;
+    border-bottom: 1px solid rgb(199, 199, 199);
+    margin-top: 50px;
+}
+
+div.buttonArea{
+    width: 100%;
+    height: 70px;
+    /* border: 1px solid red; */
+    padding: 10px 0;
+    position: relative;
+}
+
+div.buttonArea p{
+    color: #4e4e4e;
+    font-size: 12px;
+}
+
+#tab1{
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+    width: 120px;
+    height: 40px;
+    background-color: #f96f48;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50px;
+    color: white;
+}
+
+div.spaceInfo{
+    width: 320px;
+    /* border: 1px solid red; */
+    height: 100%;
+}
+
+div.spaceImg{
+    width: 100%;
+    height: 300px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+div.spaceName{
+    height: 60px;
+    line-height: 60px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #4e4e4e;
+}
+
+div.spaceAddress{
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    color: #4e4e4e;
+    border-bottom: 1px solid rgb(199, 199, 199);
+    padding-bottom: 50px;
+}
+
+div.orderDate{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px 0;
+    color: #4e4e4e;
+}
+
+div.orderTime{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px 0 50px 0;
+    border-bottom: 1px solid rgb(199, 199, 199);
+    color: #4e4e4e;
+}
+
+div.subTotal{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px 0 50px 0;
+    color: #4e4e4e;
+}
+
+span.subTotalPrice{
+    margin-left: 190px;
+    color: #4e4e4e;
+}
+
+div.total{
+    width: 100%;
+    font-weight: bold;
+    color: #4e4e4e;
+    /* border: 1px solid red; */
+}
+
+span.totalPrice{
+    margin-left: 180px;
+    color: #4e4e4e;
+    font-size: 24px;
+}
+
+div.contactInfo{
+    height: 60px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 60px;
+    padding: 10px 0;
+    color: #4e4e4e;
+}
+
+input.creditCardNumber{
+    width: 110px;
+    padding-left: 5px;
+    border-radius: 5px;
+    color: #4e4e4e;
+}
+
+input.creditCardDate{
+    width: 110px;
+    padding-left: 5px;
+    border-radius: 5px;
+    color: #4e4e4e;
+}
+
+input.orderSubmit{
+    width: 100%;
+    height: 40px;
+    color: white;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 999em;
+    border: 0;
+    background-color:#f96f48;
+    margin: 20px auto;
+    letter-spacing: 5px;
+    font-size: 16px;
+}

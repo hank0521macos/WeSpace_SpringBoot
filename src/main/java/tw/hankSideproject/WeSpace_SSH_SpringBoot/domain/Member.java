@@ -15,13 +15,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "member")
@@ -65,12 +65,19 @@ public class Member {
 	private int status;
 	
 	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="member")
 	private Set<Facilities> facilities = new HashSet<Facilities>();
 	
 	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="member")
 	private List<FacilitiesOwner> facilitiesOwner = new ArrayList<FacilitiesOwner>();
+	
+	@JsonIgnore
+	@JsonManagedReference
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="member")
+	private List<Orders> order = new ArrayList<Orders>();
 	
 
 	public Integer getId() {
@@ -176,6 +183,13 @@ public class Member {
 	public void setFacilitiesOwner(List<FacilitiesOwner> facilitiesOwner) {
 		this.facilitiesOwner = facilitiesOwner;
 	}
-	
+
+	public List<Orders> getOrder() {
+		return order;
+	}
+
+	public void setOrder(List<Orders> order) {
+		this.order = order;
+	}
 	
 }

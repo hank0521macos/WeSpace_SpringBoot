@@ -52,33 +52,38 @@
         </div>
     </div>
         <div id="main-content" class="main clearfix">
-            
-            <div id="sidebar" class="sidebar">
-                <div class="sidebar__inner">
-                    <div class="spaceExpense" id="spaceExpense">
-                        <p>每小時</p>
-                        $${facilities.minBudget} - ${facilities.maxBudget}
-                    </div>
-                    <div class="orderDate" id="alternate">
-                        請選擇日期
-                    </div>
-                    <div class="orderTime">
-                   		<select class="selectTime" id="startTime">
-                   			<option disabled selected>開始時間</option>
-                   		</select>
-                   		<i class="fas fa-long-arrow-alt-right"></i>
-                   		<select class="selectTime" id="closeTime">
-                   			<option disabled selected>結束時間</option>
-                   		</select>
-                    </div>
-                    <div class="subTotal"></div>
-                    <div class="Total"></div>
-                    <div class="orderSubmit">
-                        <input type="button" value="線上預訂" disabled>
-                    </div>
-                </div>
-            </div>
-
+        <!-- ------------左側訂單資訊------------ -->
+            <form action="/orderPage" method="post">
+	            <div id="sidebar" class="sidebar">
+	                <div class="sidebar__inner">
+	                    <div class="spaceExpense" id="spaceExpense">
+	                        <p>每小時</p>
+	                        $${facilities.minBudget} - ${facilities.maxBudget}
+	                    </div>
+	                    <div class="orderDate" id="orderDate">
+	                        請選擇日期
+	                    </div>
+	                    <input type="hidden" name="date">
+	                    <div class="orderTime">
+	                   		<select class="selectTime" id="startTime" name="startTime">
+	                   			<option disabled selected>開始時間</option>
+	                   		</select>
+	                   		<i class="fas fa-long-arrow-alt-right"></i>
+	                   		<select class="selectTime" id="closeTime" name="endTime">
+	                   			<option disabled selected>結束時間</option>
+	                   		</select>
+	                    </div>
+	                    <div class="subTotal"></div>
+	                    <div class="Total"></div>
+	                    <input type="hidden" name="expense">
+	                    <div class="orderSubmit">
+	                        <input type="button" value="線上預訂" disabled>
+	                    </div>
+	                </div>
+	            </div>
+			</form>
+			
+			<!-- ------------右側空間資訊------------ -->
             <div id="content" class="content">
                 <div class="contentPageQQ" style="background-image: url(img/contentPageQQ.png);"></div>
 
@@ -162,7 +167,7 @@
             </div>
         </div>
         
-        <!-- 註冊的modal content -->
+        <!-- 設備的modal content -->
         <div id="basic-modal-content">
         	<div class="spaceSupply">
 	        	<h1>設備</h1>
@@ -171,12 +176,12 @@
 	        	</c:forEach>
 	        </div>
         </div>
-        <!-- preload the images -->
+        <!-- 讀取設備視窗的xx圖片 -->
         <div style='display:none'>
             <img src='img/x.png' alt='' />
         </div>
 
-
+	<!-- ------------下面footer資訊------------ -->
     <div class="banner" style="background-image: url(img/banner.png);"></div>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCelgQQuBsyBirT-R-gE3kEt9HyLO7fyH0&callback=initMap&v=weekly" async></script>
@@ -294,7 +299,8 @@
             	   var day = toweek(date);
             	   refreshStartTimeSelect(date);
             	   date = $.datepicker.formatDate("yy 年 mm 月 d 日", date);
-            	   $("#alternate").html(date +"&nbsp;&nbsp;"+ day);
+            	   $("#orderDate").html(date +"&nbsp;&nbsp;"+ day);
+            	   $("input[name='date']").val(date);
             	   $(".spaceExpense p").css("color","rgb(78,78,78)");
             	   $("#spaceExpense").css("color","rgb(78,78,78)");
             	   $('#closeTime').empty();
