@@ -16,6 +16,7 @@
     <script src="js/addSpace/addSpace.js"></script>
     <script src="js/addSpace/ajaxCRUD.js"></script>
     <script src="https://kit.fontawesome.com/d210246855.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     <div class="tabs-container">
@@ -89,7 +90,7 @@
                         <div class="space-info">
                             <div class="addressTitle">地址</div>
                             <div id="twzipcode"></div>
-                            <input type="text" name="address" class="facilitiesAddress" placeholder="例：新生南路二段..." value="${facilitiesRecord.address}">
+                            <input type="text" id="search_input" name="address" class="facilitiesAddress" placeholder="例：新生南路二段..." value="${facilitiesRecord.address}">
                             <div class="addressTitle">提供交通方式<span class="title-2">選填</span></div>
                             <div class="addressSubtitle">搭乘捷運</div>
                             <input type="text" name="takeByTrain" value="${facilitiesRecord.takeByTrain}" class="facilitiesTransportation"
@@ -440,7 +441,25 @@
         </div>
     </div>
 
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCelgQQuBsyBirT-R-gE3kEt9HyLO7fyH0&libraries=places"></script>
+<script>
+	/* var searchInput = 'search_input';
+	
+	$(document).ready(function () {
+	 var autocomplete;
+	 autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+	  types: ['geocode'],
+	  componentRestrictions: {
+	   country: "tw"
+	  }
+	 });
+	  
+	 google.maps.event.addListener(autocomplete, 'place_changed', function () {
+	  var near_place = autocomplete.getPlace();
+	 });
+	}); */
+</script>  
+    
     <script>
     //確認刪除提交
     function confirmSubmit() {

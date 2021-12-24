@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +41,7 @@
             </div>
 
             <div class="form">
-                <select name="" id="" class="spaceType">
+                <select name="facilitiesType" class="spaceType">
                     <option value="" disabled selected>使用目的</option>
                     <c:forEach var="facilitiesType" items="${facilitiesTypeAll}">
                     	<option value="${facilitiesType.facilitiesTypeId}">${facilitiesType.name}</option>
@@ -53,7 +54,7 @@
                             <span class="glyphicon glyphicon-minus"></span>
                         </button>
                     </span>
-                    <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="20" style="text-align:center;">
+                    <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="${orderData.facilities.guests}" style="text-align:center;">
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quantity">
                             <span class="glyphicon glyphicon-plus"></span>
@@ -66,7 +67,7 @@
                 <span>備註</span>
             </div>
             <div class="form">
-                <textarea name="" id="" placeholder="您可以留言或詢問場地主:可否提供折疊椅或投影機、寵物可否進入等等"></textarea>
+                <textarea name="note" placeholder="您可以留言或詢問場地主:可否提供折疊椅或投影機、寵物可否進入等等"></textarea>
             
             </div>
             <div class="bottomLine"></div>
@@ -78,21 +79,25 @@
         </div>
         <div class="contentPageRight">
             <div class="spaceInfo">
-                <div class="spaceImg" style="background-image: url(./img/小樹屋.png);"></div>
-                <div class="spaceName">HOWSHOW | 中山國小(台北) C間</div>
+            	<c:forEach var="facilitiesImage" items="${orderData.facilities.facilitiesImages}" begin="0" end="0">
+                	<div class="spaceImg" style="background-image: url(${pageContext.request.contextPath}/uploaded/${facilitiesImage.name});"></div>
+                </c:forEach>
+                <div class="spaceName">${orderData.facilities.name}</div>
                 <div class="spaceAddress">
                     <i class="far fa-compass"></i>
-                    臺北市中山區新生北路三段84巷36號
+                    ${orderData.facilities.city}${orderData.facilities.town}${orderData.facilities.address}
                 </div>
-                <div class="orderDate">2022 年 01 月 19 日 週三</div>
-                <div class="orderTime">07:00-10:00</div>
+                <div class="orderDate">
+                	<fmt:formatDate value='${orderData.date}' pattern='yyyy 年 MM 月 dd 日'/>
+                </div>
+                <div class="orderTime">${orderData.startTime}:00-${orderData.endTime}:00</div>
                 <div class="subTotal">
-                    <span>$440 x 3 小時</span>
-                    <span class="subTotalPrice">$1320</span>
+                    <span>$${periodExpense} x ${orderData.endTime-orderData.startTime} 小時</span>
+                    <span class="subTotalPrice">$${periodExpense*(orderData.endTime-orderData.startTime)}</span>
                 </div>
                 <div class="total">
                     <span>總計(TWD)</span>
-                    <span class="totalPrice">$1320</span>
+                    <span class="totalPrice">$${orderData.expense}</span>
                 </div>
             </div>
         </div>
@@ -153,34 +158,36 @@
                 <span class="formTitleRight2" style="margin-left: 185px;">驗證碼</span>
             </div>
             <div class="form">
-                <input type="text" class="creditCardDate" style="margin-right: 10px;" placeholder="月">
-                <input type="text" class="creditCardDate" style="margin-right: 10px;" placeholder="年">
-                <input type="text" class="creditCardDate" style="margin-right: 10px;" placeholder="CVC">
+                <input type="number" class="creditCardDate" style="margin-right: 10px;" placeholder="月">
+                <input type="number" class="creditCardDate" style="margin-right: 10px;" placeholder="年">
+                <input type="number" class="creditCardDate" style="margin-right: 10px;" placeholder="CVC">
             </div>
             <div class="bottomLine2"></div>
             <div class="buttonArea">
                 <h5>三大保證，安心交易</h5>
-                <p>幕後授權服務由第三方金流「藍新金流」提供，WeSpace不會儲存您的任何信用卡資訊。</p>
+                <p>幕後授權服務由第三方金流「綠界金流」提供，WeSpace不會儲存您的任何信用卡資訊。</p>
                 <input type="submit" value="送出預訂" class="orderSubmit">
             </div>
         </div>
-        <div class="contentPageRight2">
+     	<div class="contentPageRight2">
             <div class="spaceInfo">
                 <div class="spaceImg" style="background-image: url(./img/小樹屋.png);"></div>
-                <div class="spaceName">HOWSHOW | 中山國小(台北) C間</div>
+                <div class="spaceName">${orderData.facilities.name}</div>
                 <div class="spaceAddress">
                     <i class="far fa-compass"></i>
-                    臺北市中山區新生北路三段84巷36號
+                    ${orderData.facilities.city}${orderData.facilities.town}${orderData.facilities.address}
                 </div>
-                <div class="orderDate">2022 年 01 月 19 日 週三</div>
-                <div class="orderTime">07:00-10:00</div>
+                <div class="orderDate">
+                	<fmt:formatDate value='${orderData.date}' pattern='yyyy 年 MM 月 dd 日'/>
+                </div>
+                <div class="orderTime">${orderData.startTime}:00-${orderData.endTime}:00</div>
                 <div class="subTotal">
-                    <span>$440 x 3 小時</span>
-                    <span class="subTotalPrice">$1320</span>
+                    <span>$${periodExpense} x ${orderData.endTime-orderData.startTime} 小時</span>
+                    <span class="subTotalPrice">$${periodExpense*(orderData.endTime-orderData.startTime)}</span>
                 </div>
                 <div class="total">
                     <span>總計(TWD)</span>
-                    <span class="totalPrice">$1320</span>
+                    <span class="totalPrice">$${orderData.expense}</span>
                 </div>
             </div>
         </div>

@@ -24,6 +24,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -89,7 +90,8 @@ public class Facilities {
 	
 	@Column(name = "facilities_max_opening_day")
 	private Integer maxOpeningDay;
-	
+
+	@JsonIgnoreProperties
 	@JsonBackReference
 	@ManyToOne(targetEntity=FacilitiesOwner.class)
 	@JoinColumn(name = "facilities_owner_id",referencedColumnName="facilities_owner_id")
@@ -115,6 +117,7 @@ public class Facilities {
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="facilities")
 	private List<Orders> order = new ArrayList<Orders>();
 	
+	@JsonBackReference
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "facilities_type_detail",
 			joinColumns = {@JoinColumn(name = "facilities_id",referencedColumnName = "facilities_id")},
@@ -122,6 +125,7 @@ public class Facilities {
 	)  
 	private Set<FacilitiesType> facilitiesType = new HashSet<FacilitiesType>();
 	
+	@JsonBackReference
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "facilities_items_detail",
 			joinColumns = {@JoinColumn(name = "facilities_id",referencedColumnName = "facilities_id")},

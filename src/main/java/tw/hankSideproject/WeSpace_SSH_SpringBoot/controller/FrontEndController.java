@@ -1,6 +1,9 @@
 package tw.hankSideproject.WeSpace_SSH_SpringBoot.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -187,15 +191,31 @@ public class FrontEndController {
 	}
 	
 	@PostMapping("/orderPage")
-	public String orderPage(HttpSession session,Model model) {
+	public String orderPage(
+			HttpSession session,Model model,
+			@ModelAttribute Orders orders,
+			@RequestParam(value="facilities",required=false) Integer id,
+			@RequestParam(value="ordersDate",required=false) String date,
+			@RequestParam(value="periodExpense",required=false) Integer periodExpense)
+	throws ParseException {
+		//傳遞類型select表單
 		model.addAttribute("facilitiesTypeAll",facilitiesTypeRepository.findAll());
 		Member member = (Member)session.getAttribute("loginData");
+		//傳遞會員資料
 		model.addAttribute("member",member);
-		Orders orders = new Orders();
-		
-		session.setAttribute("orderData", orders); 
+		//將字串轉成日期格式
+		Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
+		orders.setDate(date1);
+		Facilities facilities = facilitiesRepository.getById(id);
+		orders.setFacilities(facilities);
+		//傳遞order物件資料
+		model.addAttribute("orderData", orders);
+		//傳遞時段所需費用
+		model.addAttribute("periodExpense", periodExpense);
 		
 		return "OrderPage";
 	}
+	
+	
 	
 }

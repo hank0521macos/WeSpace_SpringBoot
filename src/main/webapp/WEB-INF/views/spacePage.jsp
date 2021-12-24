@@ -63,7 +63,6 @@
 	                    <div class="orderDate" id="orderDate">
 	                        請選擇日期
 	                    </div>
-	                    <input type="hidden" name="date">
 	                    <div class="orderTime">
 	                   		<select class="selectTime" id="startTime" name="startTime">
 	                   			<option disabled selected>開始時間</option>
@@ -74,8 +73,13 @@
 	                   		</select>
 	                    </div>
 	                    <div class="subTotal"></div>
-	                    <div class="Total"></div>
+	                    <!-- 透過js賦值傳遞參數給結帳頁面 -->
+	                    <input type="hidden" name="periodExpense">
+	                    <input type="hidden" name="facilities" value="${facilities.id}">
+	                    <input type="hidden" name="ordersDate">
 	                    <input type="hidden" name="expense">
+	                    
+	                    <div class="Total"></div>
 	                    <div class="orderSubmit">
 	                        <input type="button" value="線上預訂" disabled>
 	                    </div>
@@ -298,9 +302,9 @@
             	   var date=$("#datepicker").datepicker("getDate");
             	   var day = toweek(date);
             	   refreshStartTimeSelect(date);
-            	   date = $.datepicker.formatDate("yy 年 mm 月 d 日", date);
+            	   date = $.datepicker.formatDate("yy-mm-dd", date);
             	   $("#orderDate").html(date +"&nbsp;&nbsp;"+ day);
-            	   $("input[name='date']").val(date);
+            	   $("input[name='ordersDate']").val(date);
             	   $(".spaceExpense p").css("color","rgb(78,78,78)");
             	   $("#spaceExpense").css("color","rgb(78,78,78)");
             	   $('#closeTime').empty();
@@ -392,6 +396,8 @@
         				var openingDetail = JSON.parse(JSON.stringify(data));
                 		$('.subTotal').append('<span class="subTotalLeft">$'+openingDetail.expense+' x '+(closeTime-startTime)+'小時</span><span class="subTotalRight">$'+(openingDetail.expense*(closeTime-startTime))+'</span>');
                 		$('.Total').append('<span class="twd">TWD</span><span class="totalPrice">$'+(openingDetail.expense*(closeTime-startTime))+'</span>');
+                		$("input[name='expense']").val(openingDetail.expense*(closeTime-startTime));
+                		$("input[name='periodExpense']").val(openingDetail.expense);
                 		$('.orderSubmit').empty();
                 		$('.orderSubmit').append('<input type="submit" style="background-color:rgb(249, 111, 72);" value="線上預訂">');
         			},

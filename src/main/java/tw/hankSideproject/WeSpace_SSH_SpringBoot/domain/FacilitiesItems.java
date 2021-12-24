@@ -16,6 +16,8 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "facilities_items")
 @EntityListeners(AuditingEntityListener.class)
@@ -30,9 +32,11 @@ public class FacilitiesItems {
 	private String name;
 	
 	@ManyToOne(targetEntity=FacilitiesItemsCatg.class)
+	@JsonBackReference
 	@JoinColumn(name = "facilities_items_catg_id",referencedColumnName="facilities_items_catg_id")
 	private FacilitiesItemsCatg facilitiesItemsCatg;
 
+	@JsonBackReference
 	@ManyToMany(mappedBy = "facilitiesItems")
 	private Set<Facilities> facilities = new HashSet<Facilities>();
 	

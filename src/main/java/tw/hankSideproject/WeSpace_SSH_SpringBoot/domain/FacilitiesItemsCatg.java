@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "facilities_items_catg")
@@ -32,6 +33,7 @@ public class FacilitiesItemsCatg {
 	private String name;
 	
 	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="facilitiesItemsCatg")
 	private Set<FacilitiesItems> facilitiesItems = new HashSet<FacilitiesItems>();
 

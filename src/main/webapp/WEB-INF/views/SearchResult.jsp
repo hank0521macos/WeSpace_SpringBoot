@@ -150,7 +150,7 @@
 						<td class="facilities_info"><i class="fas fa-tags"></i> 
 							<span>
 							<c:forEach var="facilitiesTypeByMainSearch" items="${facilitiesByMainSearch.facilitiesType}">
-									<a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=${facilitiesTypeByMainSearch.facilitiesTypeId}">${facilitiesTypeByMainSearch.name}</a>/ 
+									<a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=${facilitiesTypeByMainSearch.facilitiesTypeId}">${facilitiesTypeByMainSearch.name}</a>｜ 
 							</c:forEach>
 							</span>
 						</td>
