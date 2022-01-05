@@ -27,8 +27,8 @@ public class Orders {
 	@Column(name = "orders_id")
 	private Integer id;
 	
-	@Column(name = "orders_description")
-	private String description;
+	@Column(name = "orders_space_name")
+	private String spaceName;
 	
 	@Column(name = "orders_date")
 	private Date date;
@@ -101,12 +101,12 @@ public class Orders {
 		this.id = id;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getSpaceName() {
+		return spaceName;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setSpaceName(String spaceName) {
+		this.spaceName = spaceName;
 	}
 
 	public Date getDate() {

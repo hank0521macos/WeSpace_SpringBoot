@@ -24,10 +24,12 @@
 	<c:if test="${loginData != null && loginData.status == 1}">
 		<jsp:include page="HeaderLogin.jsp" flush="true" />
 	</c:if>
+	
+	<form action="/addOrders" method="post">
     <div class="tab1">
         <div class="contentPageLeft">
             <div class="step">
-                <a href="#"><i class="far fa-arrow-alt-circle-left"></i></a>
+                <a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${orderData.facilities.id}"><i class="far fa-arrow-alt-circle-left"></i></a>
                 <span>第1步/共2步</span>
             </div>
             <div class="barLine">
@@ -68,7 +70,6 @@
             </div>
             <div class="form">
                 <textarea name="note" placeholder="您可以留言或詢問場地主:可否提供折疊椅或投影機、寵物可否進入等等"></textarea>
-            
             </div>
             <div class="bottomLine"></div>
             <div class="buttonArea">
@@ -77,6 +78,7 @@
                 <a href="javascript:;" class="tab" id="tab1">下一步</a>
             </div>
         </div>
+        
         <div class="contentPageRight">
             <div class="spaceInfo">
             	<c:forEach var="facilitiesImage" items="${orderData.facilities.facilitiesImages}" begin="0" end="0">
@@ -102,7 +104,12 @@
             </div>
         </div>
     </div>
-
+	<input type="hidden" name="facilitiesId" value="${orderData.facilities.id}">
+	<input type="hidden" name="date" value="${orderData.date}">
+	<input type="hidden" name="startTime" value="${orderData.startTime}">
+	<input type="hidden" name="endTime" value="${orderData.endTime}">
+	<input type="hidden" name="expense" value="${orderData.expense}">
+	
     <!-- 第二步驟 -->
     <div class="tab2">
         <div class="contentPageLeft2">
@@ -121,8 +128,8 @@
             </div>
 
             <div class="form">
-                <input type="text" value="${member.firstname}">
-                <input type="text" value="${member.lastname}">
+                <input type="text" name="firstname" value="${member.firstname}">
+                <input type="text" name="lastname" value="${member.lastname}">
             </div>
 
             <div class="formTitle">
@@ -131,7 +138,7 @@
 
             <div class="form">
                 <input type="text" placeholder="Taiwan (+886)" disabled>
-                <input type="text" value="${member.mobilePhone}">
+                <input type="text" name="contactMobilePhone" value="${member.mobilePhone}">
             </div>
 
 
@@ -140,7 +147,7 @@
             </div>
 
             <div class="form">
-                <input type="text" style="width:70%" value="${member.email}">
+                <input type="text" name="contactEmail" style="width:70%" value="${member.email}">
             </div>
 
             <div class="contactInfo">選擇付款信用卡</div>
@@ -148,19 +155,19 @@
                 <span class="formTitleLeft2">信用卡號*</span>
             </div>
             <div class="form">
-                <input type="text" name="creditCardNumber" maxlength="4" size="4" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">-
-                <input type="text" name="creditCardNumber" maxlength="4" size="4" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">-
-                <input type="text" name="creditCardNumber" maxlength="4" size="4" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">-
-                <input type="text" name="creditCardNumber" maxlength="4" size="4" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">
+                <input type="text" name="creditCardNo" maxlength="4" size="4" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">-
+                <input type="text" name="creditCardNo" maxlength="4" size="4" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">-
+                <input type="text" name="creditCardNo" maxlength="4" size="4" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">-
+                <input type="text" name="creditCardNo" maxlength="4" size="4" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">
             </div>
             <div class="formTitle">
                 <span class="formTitleLeft2">到期月年*</span>
                 <span class="formTitleRight2" style="margin-left: 185px;">驗證碼</span>
             </div>
             <div class="form">
-                <input type="number" class="creditCardDate" style="margin-right: 10px;" placeholder="月">
-                <input type="number" class="creditCardDate" style="margin-right: 10px;" placeholder="年">
-                <input type="number" class="creditCardDate" style="margin-right: 10px;" placeholder="CVC">
+                <input type="number" name="creditCardMonth" class="creditCardDate" min="1" max="12" style="margin-right: 10px;" placeholder="月">
+                <input type="number" name="creditCardYear" class="creditCardDate" min="20" max="40" style="margin-right: 10px;" placeholder="年">
+                <input type="number" name="creditCardCvc" class="creditCardDate" min="0" max="999" style="margin-right: 10px;" placeholder="CVC">
             </div>
             <div class="bottomLine2"></div>
             <div class="buttonArea">
@@ -169,6 +176,7 @@
                 <input type="submit" value="送出預訂" class="orderSubmit">
             </div>
         </div>
+        
      	<div class="contentPageRight2">
             <div class="spaceInfo">
                 <div class="spaceImg" style="background-image: url(./img/小樹屋.png);"></div>
@@ -192,6 +200,7 @@
             </div>
         </div>
     </div>
+    </form>
 
     <script>
         $(document).ready(function(){

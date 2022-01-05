@@ -104,7 +104,7 @@ public class Facilities {
 	
 	@JsonIgnore
 	@JsonManagedReference
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="facilities")
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="facilities")
 	private Set<FacilitiesImages> facilitiesImages = new HashSet<FacilitiesImages>();
 	
 	@JsonIgnore

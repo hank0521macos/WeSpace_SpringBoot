@@ -1,5 +1,6 @@
 package tw.hankSideproject.WeSpace_SSH_SpringBoot.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,12 @@ import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesOpeningRepository
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesTypeRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.MemberRepository;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.OrdersRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Facilities;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesType;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Member;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Orders;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.service.FrontEndService;
 
 @Controller
 public class FrontEndController {
@@ -45,6 +49,12 @@ public class FrontEndController {
 	
 	@Autowired
 	FacilitiesOpeningDetailRepository facilitiesOpeningDetailRepository;
+	
+	@Autowired
+	OrdersRepository ordersRepository;
+	
+	@Autowired
+	FrontEndService frontEndService;
 	
 	//首頁頁面導向
 	@RequestMapping("/")
@@ -216,6 +226,27 @@ public class FrontEndController {
 		return "OrderPage";
 	}
 	
-	
+	@PostMapping("/addOrders")
+	public String addOrders(HttpSession session,Model model,
+			@ModelAttribute Orders orders,
+			@RequestParam(value="facilitiesId",required=false) Integer facilitiesId,
+			@RequestParam(value="quantity",required=false) Integer quantity,
+			@RequestParam(value="firstname",required=false) String firstname,
+			@RequestParam(value="lastname",required=false) String lastname) throws UnsupportedEncodingException, MessagingException {
+		Facilities facilities = facilitiesRepository.getById(facilitiesId);
+		Member member = (Member)session.getAttribute("loginData");
+		orders.setSpaceName(facilities.getName());
+		orders.setGuests(quantity);
+		orders.setContactName(firstname+lastname);
+		orders.setCreateTime(new java.sql.Timestamp(new java.util.Date().getTime()));
+		orders.setStatus(1); //0:取消訂單/退訂 1:處理中 2:已預訂 3:已結束
+		orders.setMember(member);
+		orders.setFacilities(facilities);
+		
+		frontEndService.saveOrders(orders);
+		//傳遞order物件資料
+		model.addAttribute("orders", orders);
+		return "OrdersResult";
+	}
 	
 }

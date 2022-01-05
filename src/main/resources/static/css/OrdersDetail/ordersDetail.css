@@ -1,0 +1,349 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body{
+    background-color: rgb(255, 255, 255);
+}
+
+div.content-wrapper{
+	padding: 100px 180px 400px;
+}
+
+div.title p{
+    font-size: 30px;
+    letter-spacing: 1px;
+    color: #4a4a4a;
+    padding: 20px 10px;
+}
+
+div.nav-bar{
+    border-bottom: 0.5px solid rgb(190, 190, 190);
+}
+
+div.nav-bar ul{
+    padding: 0;
+}
+
+div.nav-bar li{
+    display: inline-block;
+    font-size: 18px;
+    letter-spacing:2px;
+    color:#4a4a4a;
+    text-align: center;
+    padding: 20px 40px;
+}
+
+div.nav-bar a, div.nav-bar a:visited{
+    color: #4a4a4a;
+    text-decoration: none;
+}
+
+div.createSpaceArea{
+    /* border: 1px solid red; */
+    padding: 20px 0px;
+    position: relative;
+}
+
+.fa-plus-circle{
+    color: #53A385;
+    font-size: 30px;
+    position: absolute;
+    left: 18px;
+    top:25px;
+    z-index: -99;
+}
+
+a.insertSpace{
+    color: #53A385;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-decoration:none;
+    position: absolute;
+    left: 58px;
+    top:27px;
+}
+
+
+/* ************** 建立的空間列表 ***************/
+div.unverifySpace{
+	width:500px;
+	height:350px;
+	margin:60px 18px 0px;
+	display:inline-block;
+	box-shadow:0px 0px 2px gray;
+	border-radius:10px;
+}
+
+div.spaceImage{
+	/* border:1px solid red; */
+	height:250px;
+	border-radius:10px 10px 0 0;
+	border-bottom:1px solid rgb(212, 212, 212);
+	background-size:cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+div.spaceUI{
+	/* border:1px solid black; */
+	height:100px;
+	border-radius:0 0 10px 10px;
+}
+
+div.spaceInfo{
+	/* border:1px solid black; */
+	width:50%;
+	float:left;
+	height:100%;
+	padding:20px 20px;
+}
+
+div.spaceInfo h3{
+	color:#4a4a4a;
+	letter-spacing:2px;
+}
+
+div.spaceInfo p{
+	color:gray;
+	letter-spacing:2px;
+}
+
+div.spaceButton{
+/* 	border:1px solid red; */
+	width:50%;
+	float:right;
+	height:100%;
+	padding:28px 0;
+}
+
+div.spaceButton input{
+	cursor:pointer;
+	background-color:transparent;
+	color:#4A4A4A;
+/* 	color:gray; */
+	width:50px;
+	height:40px;
+	margin:0 12px;
+	border:0;
+	letter-spacing:2px;
+	font-size:16px;
+}
+
+div.ordersButton{
+    /* border: 1px solid red; */
+    height: 80px;
+    position: relative;
+    font-size: 14px;
+}
+
+div.ordersButton a,div.ordersButton a:visited{
+    color: #2b211e;
+}
+
+.fa-arrow-right{
+    margin-left: 5px;
+}
+
+div.ordersDetailButton{
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+    color: #2b211e;
+}
+
+div.ordersDetailCounts{
+    height: 90px;
+    /* border: 1px solid red; */
+    color: white;
+}
+
+div.c1{
+    width: 250px;
+    background-color: #F08646;
+    height: 100%;
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    text-align: right;
+}
+
+.fa-star{
+    position: absolute;
+    font-size: 40px;
+    left: 10px;
+    top:10px
+}
+
+div.c2{
+    width: 250px;
+    background-color: #5cb85c;
+    height: 100%;
+    display: inline-block;
+    margin-left: 21px;
+    padding: 10px;
+    position: relative;
+    text-align: right;
+}
+
+.fa-thumbs-up{
+    position: absolute;
+    font-size: 40px;
+    left: 10px;
+    top:10px
+}
+
+div.c3{
+    width: 250px;
+    background-color: #428bca;
+    height: 100%;
+    display: inline-block;
+    margin-left: 20px;
+    padding: 10px;
+    position: relative;
+    text-align: right;
+}
+
+.fa-thumbs-down{
+    position: absolute;
+    font-size: 40px;
+    left: 10px;
+    top:10px
+}
+
+div.c4{
+    width: 250px;
+    background-color: #FF3333;
+    height: 100%;
+    display: inline-block;
+    margin-left: 21px;
+    padding: 10px;
+    position: relative;
+    text-align: right;
+}
+
+.fa-question-circle{
+    position: absolute;
+    font-size: 40px;
+    left: 10px;
+    top:10px
+}
+
+div.searchCondition{
+    height: 90px;
+    /* border: 1px solid red; */
+    padding: 30px 0;
+    text-align: right;
+}
+
+div.searchCondition select{
+    width: 100px;
+    height: 33px;
+    padding-left: 10px;
+}
+
+input.searchConditionDate,input.searchConditionName{
+    width: 150px;
+    height: 33px;
+    padding-left: 10px;
+    margin:0 10px;
+}
+
+.searchConditionSubmit{
+    width: 80px;
+    height: 33px;
+    background-color: black;
+    color: white;
+    border-radius: 999em;
+    outline: none;
+    border: 0;
+    cursor: pointer;
+}
+
+div.undisposed{
+    text-align: right;
+    color: gray;
+}
+
+table.ordersList{
+    /* border: 1px solid red; */
+    width: 100%;
+    table-layout: fixed;
+    border-top: 1px solid gray;
+    /* border-bottom: 1px solid gray; */
+    margin-top: 20px;
+}
+
+table.ordersList th{
+    border-bottom: 1px solid rgb(216, 216, 216);
+    padding: 10px 0;
+    color: #2b211e;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+table.ordersList button{
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    color: #2b211e;
+    /* border: 1px solid red; */
+}
+
+table.ordersList button:hover{
+    color: gray;
+}
+
+.fa-sort{
+    margin-left: 5px;
+}
+
+table.ordersList td{
+    padding: 10px 0;
+    text-align: center;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    color: #2b211e;
+    font-size: 14px;
+    /* border: 1px solid red; */
+}
+
+
+/* 彈出視窗css */
+.bg-modal {
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 900px;
+	position: absolute;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-contents {
+	height: 600px;
+	width: 900px;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 4px;
+}
+
+.close{
+	position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 42px;
+	color: #333;
+	transform: rotate(45deg);
+	cursor: pointer;
+}
+
+.close:hover{
+	color: #666;
+}

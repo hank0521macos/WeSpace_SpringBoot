@@ -20,16 +20,18 @@ import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesOpeningDetailRepo
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesOwnerRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.MemberRepository;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.OrdersRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Facilities;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesImages;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesOpeningDetail;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesOwner;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Member;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Orders;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.service.MemberBackEndService;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
-public class AjaxAPIController {
+public class SpaceAjaxAPIController {
 	
 	@Autowired
 	MemberBackEndService memberBackEndService;

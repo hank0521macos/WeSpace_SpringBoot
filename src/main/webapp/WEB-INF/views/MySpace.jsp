@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>WeSpace|場地管理</title>
+<title>WeSpace | 場地管理</title>
 <link rel="stylesheet" href="css/MemberBackEnd/mySpace.css">
 <script src="https://kit.fontawesome.com/d210246855.js" crossorigin="anonymous"></script>
 <script src="js/facilitiesMySpace/mySpace.js"></script>
@@ -25,9 +25,9 @@
 		</div>
 		<div class="nav-bar">
 			<ul>
-				<li><a href="#">預訂單</a></li>
-				<li><a href="#">聯絡單</a></li>
-				<li style="border-bottom: 3px solid black;"><a href="#">我的空間</a></li>
+				<li><a href="/ordersDetail">預訂單</a></li>
+				<li><a href="/ordersContact">聯絡單</a></li>
+				<li style="border-bottom: 3px solid black;"><a href="/mySpace">我的空間</a></li>
 			</ul>
 		</div>
 		<div class="createSpaceArea">

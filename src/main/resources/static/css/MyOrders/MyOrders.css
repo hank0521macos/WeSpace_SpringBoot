@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body{
+    background-color: rgb(255, 255, 255);
+}
+
+div.content-wrapper{
+	padding: 100px 180px;
+}
+
+div.title p{
+    font-size: 30px;
+    letter-spacing: 1px;
+    color: #4a4a4a;
+    padding: 20px 10px;
+}
+
+.far{
+	color:rgb(167, 167, 167);
+	margin-right:10px;	
+}
+
+div.nav-bar{
+    border-bottom: 0.5px solid rgb(190, 190, 190);
+}
+
+div.nav-bar ul{
+    padding: 0;
+}
+
+div.nav-bar li{
+    display: inline-block;
+    font-size: 18px;
+    letter-spacing:2px;
+    color:#4a4a4a;
+    text-align: center;
+    padding: 20px 40px;
+}
+
+div.nav-bar a, div.nav-bar a:visited{
+    color: #4a4a4a;
+    text-decoration: none;
+}
+
+div.myOrdersArea{
+    /* border: 1px solid red; */
+    min-height: 600px;
+}
+
+div.myOrdersList{
+    height: 250px;
+    border-bottom: 0.5px solid rgb(190, 190, 190);
+    padding: 40px 0;
+    position: relative;
+}
+
+div.spaceImg{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 170px;
+    border-radius: 10px;
+    /* border: 1px solid red; */
+}
+
+div.spaceInfo{
+    /* border: 1px solid red; */
+    width: 80%;
+    position: absolute;
+    right: 0;
+    top:0;
+    height: 100%;
+    padding: 40px 0;
+    /* float:right; */
+}
+
+table.tableA{
+    /* border: 1px solid red; */
+    height: 100%;
+}
+
+table.tableA td{
+    /* border:1px solid black; */
+    color: #4a4a4a;
+}
+
+table.tableB{
+    /* border: 1px solid red; */
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top:0;
+    padding: 40px 0;
+    width: 60%;
+    color: #4a4a4a;
+}
+
+.tableB_title{
+    color: rgb(167, 167, 167);
+}
+
+input.deleteOrders{
+    background-color: transparent;
+    border: 0;
+    color: #53A385;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    font-size: 16px;
+    border:1px solid #53A385; 
+    border-radius:10px; 
+    padding:10px;
+
+}
+
+div.noOrders{
+	padding:40px 0;
+	color:rgb(167, 167, 167);
+}
+
+div.noOrders span{
+	color: #53A385;
+}

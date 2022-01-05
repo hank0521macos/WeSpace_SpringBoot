@@ -19,7 +19,7 @@
                 <div class="navbar">
                 	<a href="javascript:;" style="letter-spacing:2px; cursor:unset;">您好，${loginData.firstname} ${loginData.lastname}</a>
                     <a href="${pageContext.request.contextPath}/">找場地</a>               
-                    <a href="">我的預訂</a>
+                    <a href="${pageContext.request.contextPath}/myOrders">我的預訂</a>
                     <a href="${pageContext.request.contextPath}/mySpace">我的場地</a>
                     <a href="">客服中心</a>
                     <a href="javascript:;" id="toggle-button" onclick="show22()"><i class="far fa-user-circle"></i></a>

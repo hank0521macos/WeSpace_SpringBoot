@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +29,7 @@ import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesOpeningRepository
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesOwnerRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.FacilitiesTypeRepository;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.dao.OrdersRepository;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Facilities;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesImages;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesItems;
@@ -40,6 +38,7 @@ import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesOpeningDetail;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesOwner;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesType;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Member;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Orders;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.service.MemberBackEndService;
 import tw.hankSideproject.WeSpcae_SSH_imageUpload.util.FileUtils;
 
@@ -73,6 +72,9 @@ public class MemberBackEndController {
 	@Autowired
 	FacilitiesOwnerRepository facilitiesOwnerRepository;
 	
+	@Autowired
+	OrdersRepository ordersRepository;
+	
 	//ownerSave裡ownerImage的fileName
 	static String ownerImageFileName;
 	
@@ -86,7 +88,7 @@ public class MemberBackEndController {
 		Member member = (Member)session.getAttribute("loginData");
 		List<Facilities> facilities = facilitiesRepository.listFacilitiesByMemberId(member.getId());
 		model.addAttribute("facilities", facilities);
-		return "FacilitiesMySpace";
+		return "MySpace";
 	}
 	
 	//新增管理員照片API(Ajax)
@@ -112,7 +114,7 @@ public class MemberBackEndController {
 			e.printStackTrace();
 			return "上傳失敗," + e.getMessage();
 		}	
-		return "FacilitiesMySpace";
+		return "MySpace";
 	}
 	
 	//管理員新增API
@@ -121,9 +123,9 @@ public class MemberBackEndController {
 			Member member = (Member)session.getAttribute("loginData");
 			if(member != null) {
 			memberBackEndService.saveOwner(facilitiesOwner,member,ownerImageFileName);
-			return "FacilitiesMySpace";
+			return "MySpace";
 		}
-		return "FacilitiesMySpace";
+		return "MySpace";
 	}
 		
 	//場地管理頁面導向
@@ -159,7 +161,7 @@ public class MemberBackEndController {
                 }
             }
         }
-        return "FacilitiesMySpace";
+        return "MySpace";
     }
 		
 	
@@ -287,7 +289,70 @@ public class MemberBackEndController {
 		return "redirect:/mySpace";
 	}
 	
+	//訂單管理頁面導向
+	@GetMapping("/myOrders")
+	public String myOrders(Model model,HttpSession session){
+		Member member = (Member)session.getAttribute("loginData");
+		List<Orders> orders = ordersRepository.listOrdersByMemberId(member.getId());
+		model.addAttribute("orders",orders);
+		return "MyOrders";
+	}
 	
+	//取消訂單頁面導向
+	@GetMapping("/myOrdersCancel")
+	public String myOrdersCancel(Model model,HttpSession session){
+		Member member = (Member)session.getAttribute("loginData");
+		List<Orders> orders = ordersRepository.listOrdersByMemberId(member.getId());
+		model.addAttribute("orders",orders);
+		return "MyOrdersCancel";
+	}
+	
+	//退訂標籤頁面
+	@GetMapping("/cancelOrders")
+	public String cancelOrders(Model model,HttpSession session,@RequestParam(value="ordersId",required=false) Integer ordersId) {
+		Orders orders = ordersRepository.getById(ordersId);
+		orders.setStatus(0);//0:取消/退訂 1:處理中 2:已預訂 3:已結束
+		ordersRepository.save(orders);
+		Member member = (Member)session.getAttribute("loginData");
+		List<Orders> orders2 = ordersRepository.listOrdersByMemberId(member.getId());
+		model.addAttribute("orders",orders2);
+		return "MyOrders";
+	}
+	
+	//取消退訂重新訂購
+	@GetMapping("/reCancelOrders")
+	public String reCancelOrders(Model model,HttpSession session,@RequestParam(value="ordersId",required=false) Integer ordersId) {
+		Orders orders = ordersRepository.getById(ordersId);
+		orders.setStatus(1); //0:取消/退訂 1:處理中 2:已預訂 3:已結束
+		ordersRepository.save(orders);
+		Member member = (Member)session.getAttribute("loginData");
+		List<Orders> orders2 = ordersRepository.listOrdersByMemberId(member.getId());
+		model.addAttribute("orders",orders2);
+		return "MyOrdersCancel";
+	}
+	
+	//我的場地-訂單明細頁面
+	@GetMapping("/ordersDetail")
+	public String ordersDetail(Model model,HttpSession session) {
+		Member member = (Member)session.getAttribute("loginData");
+		List<Orders> orders = ordersRepository.listOrdersByLoginMemberId(member.getId());
+		model.addAttribute("orders",orders);
+		model.addAttribute("allCounts",ordersRepository.allOrdersCounts(member.getId()));
+		model.addAttribute("status1Counts",ordersRepository.allOrdersCountsByStatus1(member.getId()));
+		return "OrdersDetail";
+	}
+	
+	//我的場地-訂單明細2頁面
+	@GetMapping("/ordersDetailInfo")
+	public String ordersDetailInfo(Model model,HttpSession session) {
+		return "OrdersDetail2";
+	}
+	
+	//我的場地-聯絡單頁面
+	@GetMapping("/ordersContact")
+	public String ordersContact(Model model,HttpSession session) {
+		return "OrdersContact";
+	}
 	
 
 }

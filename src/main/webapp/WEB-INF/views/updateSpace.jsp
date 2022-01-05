@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WeSpace|新增空間</title>
+    <title>WeSpace | 更新空間</title>
     <link rel="stylesheet" href="vendors/dist/switchery.css">
     <link rel="stylesheet" href="css/MemberBackEnd/addSpace.css">
     <script src="vendors/jquery/jquery-3.6.0.min.js"></script>

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import tw.hankSideproject.WeSpace_SSH_SpringBoot.controller.AjaxAPIController;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.controller.SpaceAjaxAPIController;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.controller.MemberBackEndController;
 
 @EnableJpaAuditing
