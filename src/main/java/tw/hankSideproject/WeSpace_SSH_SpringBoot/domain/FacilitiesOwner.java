@@ -68,13 +68,12 @@ public class FacilitiesOwner {
 	@Column(name = "facilities_owner_account")
 	private String account;
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne(targetEntity=Member.class)
 	@JoinColumn(name = "member_id",referencedColumnName="member_id")
 	private Member member;
 	
 	@JsonIgnore
-	@JsonManagedReference
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="facilitiesOwner")
 	private Set<Facilities> facilities = new HashSet<Facilities>();
 	

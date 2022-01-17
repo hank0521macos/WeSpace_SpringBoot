@@ -38,7 +38,6 @@ public class FacilitiesType {
 	private Set<Facilities> facilities = new HashSet<Facilities>();
 	
 	@JsonIgnore
-	@JsonManagedReference
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="facilitiesType")
 	private List<Orders> order = new ArrayList<Orders>();
 

@@ -9,12 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WeSpace</title>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCelgQQuBsyBirT-R-gE3kEt9HyLO7fyH0&callback=initMap"></script>
 <script src="https://kit.fontawesome.com/d210246855.js" crossorigin="anonymous"></script>
 <script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
 <link href="https://unpkg.com/nanogallery2/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css"></link>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-sidebar/3.3.1/sticky-sidebar.min.js"></script>
-<link rel="stylesheet" href="css/SpacePage/SpacePage.css">
-<script type="text/javascript" src="https://unpkg.com/nanogallery2/dist/jquery.nanogallery2.min.js"></script>
+<link rel="stylesheet" href="css/SpacePage/SpacePage.css"><script type="text/javascript" src="https://unpkg.com/nanogallery2/dist/jquery.nanogallery2.min.js"></script>
 <script src="js/SpacePage/SpacePage.js"></script>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
@@ -188,13 +188,14 @@
 	<!-- ------------下面footer資訊------------ -->
     <div class="banner" style="background-image: url(img/banner.png);"></div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCelgQQuBsyBirT-R-gE3kEt9HyLO7fyH0&callback=initMap&v=weekly" async></script>
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
     <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script type='text/javascript' src='js/SpacePage/jquery.simplemodal.js'></script>
 	<script type='text/javascript' src='js/SpacePage/basic.js'></script>
+	
+	
 	<!-- <script type='text/javascript' src='js/SpacePage/jquery.js'></script> -->
     <script>
 	// Load dialog on click

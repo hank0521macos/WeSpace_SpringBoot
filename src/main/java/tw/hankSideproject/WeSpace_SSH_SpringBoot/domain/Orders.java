@@ -14,8 +14,7 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "orders")
@@ -75,20 +74,20 @@ public class Orders {
 	@Column(name = "orders_status")
 	private Integer status;
 	
-	@JsonIgnoreProperties
-	@JsonBackReference
+	@Column(name = "orders_status_note")
+	private String statusNote;
+	
+	@JsonIgnore
 	@ManyToOne(targetEntity=Member.class)
 	@JoinColumn(name = "member_id",referencedColumnName="member_id")
 	private Member member;
 	
-	@JsonIgnoreProperties
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne(targetEntity=Facilities.class)
 	@JoinColumn(name = "facilities_id",referencedColumnName="facilities_id")
 	private Facilities facilities;
 	
-	@JsonIgnoreProperties
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne(targetEntity=FacilitiesType.class)
 	@JoinColumn(name = "facilities_type_id",referencedColumnName="facilities_type_id")
 	private FacilitiesType facilitiesType;
@@ -227,6 +226,14 @@ public class Orders {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public String getStatusNote() {
+		return statusNote;
+	}
+
+	public void setStatusNote(String statusNote) {
+		this.statusNote = statusNote;
 	}
 
 	public Member getMember() {

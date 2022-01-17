@@ -65,17 +65,14 @@ public class Member {
 	private int status;
 	
 	@JsonIgnore
-	@JsonManagedReference
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="member")
 	private Set<Facilities> facilities = new HashSet<Facilities>();
 	
 	@JsonIgnore
-	@JsonManagedReference
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="member")
 	private List<FacilitiesOwner> facilitiesOwner = new ArrayList<FacilitiesOwner>();
 	
 	@JsonIgnore
-	@JsonManagedReference
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="member")
 	private List<Orders> order = new ArrayList<Orders>();
 	

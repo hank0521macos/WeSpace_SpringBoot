@@ -173,3 +173,119 @@ table.ordersList td{
     font-size: 14px;
     /* border: 1px solid red; */
 }
+
+
+/* i按鈕訂單明細彈出視窗css */
+.bg-modal {
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 1200px;
+	position: absolute;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-contents {
+	height:1000px;
+	width: 900px;
+	background-color: white;
+	text-align: left;
+	padding: 20px 40px;
+	position: relative;
+	border-radius: 10px;
+}
+
+.close{
+	position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 42px;
+	color: #333;
+	transform: rotate(45deg);
+	cursor: pointer;
+}
+
+.close:hover{
+	color: #666;
+}
+
+div.ordersTitle{
+	border-bottom:4px solid #53A385;
+	padding:15px 0;
+	font-size:20px;
+	color:#4e4e4e;
+	letter-spacing:2px;
+	margin:20px 0 10px;
+	
+}
+
+div.ordersSubTitle{
+	padding-top:15px;
+	font-size:16px;
+	color:gray;
+	letter-spacing:2px;
+	
+}
+
+div.ordersInformationLeft{
+	float:left;
+	width:50%;
+	margin-bottom:40px;
+}
+
+div.ordersInformationRight{
+	float:right;
+	width:50%;
+	margin-bottom:40px;
+}
+
+div.spaceInfo{
+	width:100%;
+	height:300px;
+}
+
+div.spaceInfo table{
+	width:100%;
+	height:240px;
+	color:gray;
+	border:1px solid #e0e0e0;
+	padding:20px;
+}
+
+div.spaceInfo th{
+	font-weight:normal;
+	color:#4e4e4e;
+	letter-spacing:2px;
+}
+
+div.spaceInfo td{
+	padding:10px 0;
+}
+
+div.spaceImg{
+	height:160px;
+	width:160px;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#closeButtonArea{
+	width:200px;
+	height:40px;
+	color:white;
+	border-radius:10px;
+	padding:5px;
+	cursor:pointer;
+	border:0;
+	background-color:#53A385;
+	letter-spacing:5px;
+	font-size:16px;
+	margin-top:60px;
+	position:absolute;
+	bottom:50px;
+	right:350px;
+}
+

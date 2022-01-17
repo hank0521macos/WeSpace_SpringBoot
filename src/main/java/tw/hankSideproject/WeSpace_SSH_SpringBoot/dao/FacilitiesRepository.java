@@ -35,6 +35,11 @@ public interface FacilitiesRepository extends JpaRepository<Facilities, Integer>
 		
 		@Transactional
 		@Modifying
+		@Query(value="delete from orders where facilities_id=?1",nativeQuery = true)
+		void deleteOrdersByFacilities(int id);
+		
+		@Transactional
+		@Modifying
 		@Query(value="select * from facilities where member_id=?1",nativeQuery = true)
 		public List<Facilities> listFacilitiesByMemberId(int id);
 		

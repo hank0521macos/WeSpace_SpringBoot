@@ -25,6 +25,7 @@ import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesOpeningDetail;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesOwner;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesType;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Member;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Orders;
 
 @Service
 @Transactional
@@ -322,6 +323,14 @@ public class MemberBackEndService {
 	    	for (FacilitiesItems  n : facilitiesItems) {
 	    		facilitiesRepository.deleteFacilitiesItemsDetail(id);
 			}
+    	}
+    	
+    	//刪除與faiclities關聯的訂單-一對多(兩者均需被刪除)
+    	List<Orders> orders = facilities.getOrder();
+    	if(orders != null) {
+    		for(Orders o : orders) {
+    			facilitiesRepository.deleteOrdersByFacilities(id);
+    		}
     	}
 		
 		facilitiesRepository.deleteFacilities(id);;

@@ -91,13 +91,12 @@ public class Facilities {
 	@Column(name = "facilities_max_opening_day")
 	private Integer maxOpeningDay;
 
-	@JsonIgnoreProperties
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne(targetEntity=FacilitiesOwner.class)
 	@JoinColumn(name = "facilities_owner_id",referencedColumnName="facilities_owner_id")
 	private FacilitiesOwner facilitiesOwner;
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne(targetEntity=Member.class)
 	@JoinColumn(name = "member_id",referencedColumnName="member_id")
 	private Member member;
@@ -113,7 +112,6 @@ public class Facilities {
 	private Set<FacilitiesOpeningDetail> facilitiesOpeningDetail = new HashSet<FacilitiesOpeningDetail>();
 	
 	@JsonIgnore
-	@JsonManagedReference
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="facilities")
 	private List<Orders> order = new ArrayList<Orders>();
 	

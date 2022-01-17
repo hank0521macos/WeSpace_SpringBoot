@@ -3,16 +3,24 @@ package tw.hankSideproject.WeSpace_SSH_SpringBoot.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.transaction.annotation.Transactional;
 
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Orders;
 
-public interface OrdersRepository extends JpaRepository<Orders,Integer> {
+public interface OrdersRepository extends JpaRepository<Orders,Integer> ,JpaSpecificationExecutor<Orders>{
 	
 	@Query(value="select * from orders where member_id=?1",nativeQuery = true)
 	public List<Orders> listOrdersByMemberId(int id);
+	
+	@Query(value="select * from orders where orders_id=?1",nativeQuery = true)
+	public Orders listOrdersById(int id);
+	
+	@Query(value="select * from orders where member_id=?1 and orders_status = 1",nativeQuery = true)
+	public List<Orders> listPendingOrdersByMemberId(int id);
+	
+	@Query(value="select * from orders where member_id=?1 and orders_status = 4",nativeQuery = true)
+	public List<Orders> listFinishOrdersByMemberId(int id);
 	
 	//列出所有訂單-訂單號遞增
 	@Query(value="select * from orders O "
@@ -93,6 +101,72 @@ public interface OrdersRepository extends JpaRepository<Orders,Integer> {
 			+ "where F.member_id=?1 "
 			+ "order by orders_time desc",nativeQuery = true)
 	public List<Orders> listOrdersByLoginMemberIdOrderByTimeDesc(int id);
+	
+	////////////////////////////////付款明細的排序方法/////////////////////////////////////
+	
+	//列出所有訂單-訂單號遞增
+	@Query(value="select * from orders O "
+			+ "left join facilities F "
+			+ "on O.facilities_id = F.facilities_id "
+			+ "where F.member_id=?1 and O.orders_status = '4'"
+			+ "order by orders_id asc",nativeQuery = true)
+	public List<Orders> listFinishOrdersByLoginMemberIdOrderByAsc(int id);
+	
+	//列出所有訂單-訂單號遞減
+	@Query(value="select * from orders O "
+			+ "left join facilities F "
+			+ "on O.facilities_id = F.facilities_id "
+			+ "where F.member_id=?1 and O.orders_status = '4'"
+			+ "order by orders_id desc",nativeQuery = true)
+	public List<Orders> listFinishOrdersByLoginMemberIdOrderByDesc(int id);
+
+	//列出所有訂單-訂單活動日期遞增
+	@Query(value="select * from orders O "
+			+ "left join facilities F "
+			+ "on O.facilities_id = F.facilities_id "
+			+ "where F.member_id=?1 and O.orders_status = '4'"
+			+ "order by orders_date asc",nativeQuery = true)
+	public List<Orders> listFinishOrdersByLoginMemberIdOrderByDateAsc(int id);	
+	
+	//列出所有訂單-訂單活動日期遞減
+	@Query(value="select * from orders O "
+			+ "left join facilities F "
+			+ "on O.facilities_id = F.facilities_id "
+			+ "where F.member_id=?1 and O.orders_status = '4'"
+			+ "order by orders_date desc",nativeQuery = true)
+	public List<Orders> listFinishOrdersByLoginMemberIdOrderByDateDesc(int id);
+	
+	//列出所有訂單-訂單金額遞增
+	@Query(value="select * from orders O "
+			+ "left join facilities F "
+			+ "on O.facilities_id = F.facilities_id "
+			+ "where F.member_id=?1 and O.orders_status = '4'"
+			+ "order by orders_expense asc",nativeQuery = true)
+	public List<Orders> listFinishOrdersByLoginMemberIdOrderByExpenseAsc(int id);
+	
+	//列出所有訂單-訂單金額遞減
+	@Query(value="select * from orders O "
+			+ "left join facilities F "
+			+ "on O.facilities_id = F.facilities_id "
+			+ "where F.member_id=?1 and O.orders_status = '4'"
+			+ "order by orders_expense desc",nativeQuery = true)
+	public List<Orders> listFinishOrdersByLoginMemberIdOrderByExpenseDesc(int id);
+	
+	//列出所有訂單-下訂日期遞增
+	@Query(value="select * from orders O "
+			+ "left join facilities F "
+			+ "on O.facilities_id = F.facilities_id "
+			+ "where F.member_id=?1 and O.orders_status = '4'"
+			+ "order by orders_time asc",nativeQuery = true)
+	public List<Orders> listFinishOrdersByLoginMemberIdOrderByTimeAsc(int id);
+	
+	//列出所有訂單-下訂日期遞減
+	@Query(value="select * from orders O "
+			+ "left join facilities F "
+			+ "on O.facilities_id = F.facilities_id "
+			+ "where F.member_id=?1 and O.orders_status = '4'"
+			+ "order by orders_time desc",nativeQuery = true)
+	public List<Orders> listFinishOrdersByLoginMemberIdOrderByTimeDesc(int id);
 	
 	//所有筆數
 	@Query(value="select count(*) from orders O "

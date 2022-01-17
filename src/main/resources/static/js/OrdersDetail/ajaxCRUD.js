@@ -41,22 +41,22 @@ $(document).ready(function() {
 				
 				for (var i in orders) {
 					if(orders[i].status ==0){
-						var status = '使用者取消';
+						var status = '<font style="color:gray;">使用者取消</font>';
 						var edit = '-';
 					}else if(orders[i].status ==1){
-						var status = '未處理';
+						var status = '<font style="color:#FF3333;">未處理</font>';
 						var edit = '<button onclick="acceptOrders('+orders[i].id+');">接受</button>/<button onclick="refuseOrders('+orders[i].id+');">拒絕</button>';
 					}else if(orders[i].status ==2){
-						var status = '已預訂';
-						var edit = '<button onclick="cancelOrders('+orders[i].id+');">取消預訂</button>';
+						var status = '<font style="color:#5cb85c;">已預訂</font>';
+						var edit = '<button onclick="cancelOrders('+orders[i].id+');">取消</button>/<button onclick="finishOrders('+orders[i].id+');">完成</button>';
 					}else if(orders[i].status ==3){
-						var status = '已拒絕';
+						var status = '<font style="color:#428bca;">已拒絕</font>';
 						var edit = '-';
 					}else if(orders[i].status ==4){
-						var status = '完成預訂';
+						var status = '<font style="color:gray;">已完成</font>';
 						var edit = '-';
 					}else if(orders[i].status ==5){
-						var status = '預訂取消';
+						var status = '<font style="color:gray;">預訂取消</font>';
 						var edit = '-';
 					};
 					

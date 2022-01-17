@@ -26,7 +26,6 @@
 		<div class="nav-bar">
 			<ul>
 				<li><a href="/ordersDetail">預訂單</a></li>
-				<li><a href="/ordersContact">聯絡單</a></li>
 				<li style="border-bottom: 3px solid black;"><a href="/mySpace">我的空間</a></li>
 			</ul>
 		</div>
