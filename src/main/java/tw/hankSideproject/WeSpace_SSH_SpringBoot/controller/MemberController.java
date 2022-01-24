@@ -72,7 +72,7 @@ public class MemberController {
 		memberService.saveMember(member,getSiteURL(request));
 		
 		// 註冊後同時登入
-//		session.setAttribute("loginData", member); 
+		session.setAttribute("checkMail", member); 
 		
 		return "VerifyWaiting";
 	}
@@ -170,7 +170,7 @@ public class MemberController {
 	//重新寄認證信-註冊
 	@RequestMapping("/reVerifyMailRegist")
 	public String reVerifyMailRegist(HttpServletRequest request, HttpSession session) throws UnsupportedEncodingException, MessagingException {
-		Member loginData = (Member) session.getAttribute("loginData");
+		Member loginData = (Member) session.getAttribute("checkMail");
 		memberService.sendVerificationEmail(loginData,getSiteURL(request));
 		return "VerifyWaiting";
 	}

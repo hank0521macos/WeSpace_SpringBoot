@@ -81,7 +81,7 @@ public class LoginFilter implements Filter {
 		String uri = httpRequest.getRequestURI();
 		
 		//不需要過濾直接傳給下一個過濾器
-		if (uri.contains("/lang")||uri.contains("/listTime")||uri.contains("/oneSpacePage")||
+		if (uri.contains("/verify")||uri.contains("/lang")||uri.contains("/listTime")||uri.contains("/oneSpacePage")||
 			uri.contains("/OneSearchResult")||uri.contains("/subSearchResult")||uri.contains("/searchResult")||
 			uri.equals(forgotPassword)||uri.equals(resendForgotPassword)||
 			uri.equals(resetPassword)||uri.equals(resetResult2)||uri.equals(verify)||
