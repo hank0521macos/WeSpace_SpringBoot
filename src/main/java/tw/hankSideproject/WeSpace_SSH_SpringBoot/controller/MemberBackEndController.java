@@ -142,7 +142,7 @@ public class MemberBackEndController {
 	
    //場地圖片上傳API
    @RequestMapping("/multipleImageUpload")
-   public String multipleImageUpload(@RequestParam("uploadFiles") MultipartFile[] files){
+   public String multipleImageUpload(HttpServletRequest req,@RequestParam("uploadFiles") MultipartFile[] files){
         //循環保存文件
         for (MultipartFile file : files) {
             //判斷上傳文件格式
@@ -150,7 +150,7 @@ public class MemberBackEndController {
             if (fileType.equals("image/jpeg") || fileType.equals("image/png") || fileType.equals("image/jpeg")) {
                 // 要上傳的目標文件存放路徑
             	// /Users/hank/Desktop/WeSpace_SSH_SpringBoot/WeSpace_SSH_SpringBoot/src/main/webapp/uploaded
-                final String localPath="/Users/hank/Desktop/WeSpace_SSH_SpringBoot/WeSpace_SSH_SpringBoot/src/main/webapp/uploaded";
+                final String localPath=req.getServletContext().getRealPath("") + "uploaded";
                 //上傳後保存的文件名(需要防止圖片重名導致的文件覆蓋)
                 //獲取文件名
                 String fileName = file.getOriginalFilename();
