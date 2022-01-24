@@ -1,4 +1,4 @@
-package tw.hankSideproject.WeSpcae_SSH_imageUpload.util;
+package tw.hankSideproject.WeSpace_SSH_SpringBoot.imageUpload.util;
 
 import org.springframework.web.multipart.MultipartFile;
 

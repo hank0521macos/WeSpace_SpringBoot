@@ -26,16 +26,16 @@
 		</div>
 		<div class="nav-bar">
 			<ul>
-                <li style="border-bottom: 3px solid black;"><a href="${pageContext.request.contextPath}/myOrders">處理中</a></li>
+                <li><a href="${pageContext.request.contextPath}/myOrders">處理中</a></li>
 				<li><a href="${pageContext.request.contextPath}/myOrdersAccept">已預訂</a></li>
 				<li><a href="${pageContext.request.contextPath}/myOrdersCancel">退訂</a></li>
-				<li><a href="${pageContext.request.contextPath}/myOrdersFinish">已結束</a></li>
+				<li style="border-bottom: 3px solid black;"><a href="${pageContext.request.contextPath}/myOrdersFinish">已結束</a></li>
 			</ul>
 		</div>
 		
 		<div class="myOrdersArea" id="myOrdersArea">
 			<c:if test="${empty orders}">
-				<div class="noOrders">你沒有任何即將到來的預訂。<br>
+				<div class="noOrders">你沒有任何已完成的訂單。<br>
 					 趕緊來尋找場地，規劃下一段美好時光吧。<br>
 					 <br>
 					 找不到你的預訂？<span>聯絡我們</span>
@@ -88,7 +88,15 @@
                         </tr>
                         <tr>
                             <td class="tableB_title">狀態</td>
-                            <td style="color:#FF3333; font-weight:bold;">等待回覆</td>
+                            <c:if test="${orders.status == 3}">
+                            	<td style="font-weight:bold;">已拒絕</td>
+                            </c:if>
+                            <c:if test="${orders.status == 4}">
+                            	<td style="font-weight:bold;">已完成</td>
+                            </c:if>
+                            <c:if test="${orders.status == 5}">
+                            	<td style="font-weight:bold;">預訂取消：請洽空間管理方</td>
+                            </c:if>
                         </tr>
                         <tr>
                             <td class="tableB_title">空間管理者</td>
@@ -99,24 +107,32 @@
                             <td>${orders.facilities.member.email}</td>
                         </tr>
                     </table>
-                    <form action="/cancelOrders" method="get" onsubmit="return confirmSubmit(this);">
-	                    <input name="ordersId" type="hidden" value="${orders.id}">
-	                    <input type="submit" class="deleteOrders" value="取消訂單">
-                    </form>
+                    <c:if test="${orders.status == 3}">
+	                	<input type="button" id="reasonButton${orders.id}" class="deleteOrders" value="拒絕事由" onclick="reasonBox(${orders.id});">
+	                	<div class="reasonArea" id="reasonArea${orders.id}">
+	                	拒絕事由：<br>
+	                		${orders.statusNote}
+	                	</div>
+	                	<button class="close123" id="closeButton${orders.id}" onclick="closeBox(${orders.id});"><i class="fas fa-long-arrow-alt-left"></i></button>
+	                </c:if>
                 </div>
             </div>
        	</c:forEach>
 		</div>
 	</div>
-	<script>
-    //確認刪除提交
-    function confirmSubmit(form) {
-    	var agree = confirm("確定要取消此筆訂單？");
-    	if (agree)
-    		return true;
-    	else
-    		return false;
-    };
-	</script>
 </body>
+<script>
+	function reasonBox(ordersId){
+		document.querySelector('#reasonArea'+ordersId+'').style.display = "flex";
+		document.querySelector('#reasonButton'+ordersId+'').style.display = "none";
+		document.querySelector('#closeButton'+ordersId+'').style.display = "flex";
+	}
+	
+	function closeBox(ordersId){
+		document.querySelector('#reasonArea'+ordersId+'').style.display = "none";
+		document.querySelector('#reasonButton'+ordersId+'').style.display = "flex";
+		document.querySelector('#closeButton'+ordersId+'').style.display = "none";
+	}
+</script>
+
 </html>

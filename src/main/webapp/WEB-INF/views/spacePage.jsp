@@ -223,6 +223,11 @@
     </script>
 
     <script>
+    	const type = ${ordersTypeList};
+    	var dataPoints = [];
+        for (var i = 0; i <= (type.length/3-1); i++){
+        	dataPoints.push({ y: type[i*3], label: type[i*3+1], indexLabel: type[i*3+2]});
+        }
         window.onload = function () {
         //Better to construct options first and then pass it as a parameter
         var options = {
@@ -256,16 +261,10 @@
                 indexLabelFontFamily: "Verdana",
                 color: "#95bfaf",
                 type: "bar",
-                dataPoints: [
-                    { y: 15, label: "15%", indexLabel: "聚會" },
-                    { y: 21, label: "21%", indexLabel: "會議" },
-                    { y: 25, label: "25%", indexLabel: "課程" },
-                    { y: 33, label: "33%", indexLabel: "其他" }
-                    
-                ]
+                dataPoints: dataPoints
             }]
-            
         };
+        
         
         $("#chartContainer").CanvasJSChart(options);
         }

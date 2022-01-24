@@ -6,7 +6,7 @@ $('.slideshow').each(function(){
     
     slideImgs.eq(currentIndex).fadeIn();
     
-    setInterval(showNextSlide, 5000);
+    setInterval(showNextSlide, 3000);
     
     function showNextSlide(){
         let nextIndex = (currentIndex + 1) % slideImgsCount;

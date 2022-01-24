@@ -53,6 +53,7 @@
         <div>
             <table id="ordersTable" class="ordersList"></table>
         </div>
+        <div style="height:100px;"></div>
 	</div>
 	
 	<!-- i按鈕訂單明細顯示的區塊 -->
@@ -69,7 +70,7 @@ function searchConditionSubmit(){
 	  var endingCreateDate;
 	  
 	  if($('#dateCondition').val() == 0){
-		  assignDataToOrdersTable();
+		  window.location.reload();
 	  }
 	  
 	  if($('#dateCondition').val() == 1){

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix = "spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,12 +25,12 @@
 	<form action="/searchResult"" method="get" id="form1">
     <div class="search_area">
         <div class="slideshow">
-            <img src="img/sliderShow1.jpg" alt="">
-            <img src="img/sliderShow2.jpg" alt="">
+            <img src="img/MainPhoto1.jpg" alt="">
+            <img src="img/MainPhoto2.jpg" alt="">
         </div>
         <div class="option_menu_1">
             <select name="facilitiesTypeId">
-                <option disabled selected>活動性質</option>
+                <option disabled selected><spring:message code="homepage.searchBox.spaceType"/></option>
 	            <c:forEach var="facilitiesType" items="${facilitiesTypeAll}">
 	            	<option value="${facilitiesType.facilitiesTypeId}">${facilitiesType.name}</option>
 	            </c:forEach>    
@@ -38,7 +38,7 @@
         </div>
         <div class="option_menu_2">
             <select name="facilitiesCity">
-                <option disabled selected>地點</option>
+                <option disabled selected><spring:message code="homepage.searchBox.spaceLocation"/></option>
                 <option value="基隆市">基隆市</option>
                 <option value="臺北市">臺北市</option>
                 <option value="新北市">新北市</option>
@@ -65,7 +65,7 @@
         </div>
         <div class="option_menu_3">
             <select name="facilitiesGuests">
-                <option disabled selected>活動人數</option>
+                <option disabled selected><spring:message code="homepage.searchBox.spaceGuests"/></option>
                 <option value="1">1-10</option>
                 <option value="11">11-20</option>
                 <option value="21">21-40</option>
@@ -79,7 +79,7 @@
                 <option value="501">500+</option>
             </select>
         </div>
-        <input type="submit" value="找場地" class="search_area_button">
+        <input type="submit" value="<spring:message code="homepage.searchButton"/>" class="search_area_button">
     </div>
     </form>
 
@@ -89,58 +89,58 @@
               <ul class="list">
                 <li>
                     <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=5">
-                        <h1>課程講座</h1>
+                        <h1><spring:message code="homepage.catg.lecture"/></h1>
                         <p><i class="fas fa-chalkboard"></i></p>
-                        <h2>查看方案</h2>  
+                        <h2><spring:message code="homepage.catg.seeMore"/></h2>  
                     </a>
                  </li>
                  <li>
                     <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=2">
-                        <h1>派對</h1>
+                        <h1><spring:message code="homepage.catg.party"/></h1>
                         <p><i class="fas fa-birthday-cake"></i></p>
-                        <h2>查看方案</h2>  
+                        <h2><spring:message code="homepage.catg.seeMore"/></h2>  
                     </a>
                  </li>
                  <li>
                     <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=1">
-                        <h1>會議</h1>
+                        <h1><spring:message code="homepage.catg.meeting"/></h1>
                         <p><i class="far fa-handshake"></i></p>
-                        <h2>查看方案</h2>  
+                        <h2><spring:message code="homepage.catg.seeMore"/></h2>  
                     </a>
                  </li>
                  <li>
                     <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=3">
-                        <h1>聚會餐敘</h1>
+                        <h1><spring:message code="homepage.catg.dinner"/></h1>
                         <p><i class="fas fa-utensils"></i></p>
-                        <h2>查看方案</h2>  
+                        <h2><spring:message code="homepage.catg.seeMore"/></h2>  
                     </a>
                  </li>
                  <li>
                     <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=11">
-                        <h1>拍攝攝影</h1>
+                        <h1><spring:message code="homepage.catg.photography"/></h1>
                         <p><i class="fas fa-video"></i></i></p>
-                        <h2>查看方案</h2>  
+                        <h2><spring:message code="homepage.catg.seeMore"/></h2>  
                     </a>
                  </li>
                  <li>
                     <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=9">
-                        <h1>音樂表演</h1>
+                        <h1><spring:message code="homepage.catg.show"/></h1>
                         <p><i class="fas fa-drum"></i></i></p>
-                        <h2>查看方案</h2>  
+                        <h2><spring:message code="homepage.catg.seeMore"/></h2>  
                     </a>
                  </li>
                  <li>
                     <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=8">
-                        <h1>靜態展覽</h1>
+                        <h1><spring:message code="homepage.catg.exhibition"/></h1>
                         <p><i class="fas fa-beer"></i></i></p>
-                        <h2>查看方案</h2>  
+                        <h2><spring:message code="homepage.catg.seeMore"/></h2>  
                     </a>
                  </li>
                  <li>
                     <a href="${pageContext.request.contextPath}/searchResult?facilitiesTypeId=15">
-                        <h1>發表會</h1>
+                        <h1><spring:message code="homepage.catg.conference"/></h1>
                         <p><i class="fas fa-book-reader"></i></i></p>
-                        <h2>查看方案</h2>  
+                        <h2><spring:message code="homepage.catg.seeMore"/></h2>  
                     </a>
                  </li>
               </ul>
@@ -153,7 +153,7 @@
 
     <div class="special_collections">
         <div class="special_collections_mark"><i class="fas fa-laptop-house"></i></div>
-        <div class="special_collections_title">精選場地</div>
+        <div class="special_collections_title"><spring:message code="homepage.hotSpace"/></div>
         
         <c:forEach var="facilities" items="${facilitiesAll}" begin="0" end="0">
             <a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilities.id}">
@@ -243,9 +243,9 @@
     <div id="advertise"></div>
 
     <div class="catg">
-        <h2>課程講座</h2>
-        <p>類型場地可舉辦課程、演講、說明會、發表會等</p>
-        <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1200">
+        <h2><spring:message code="homepage.catg.lecture"/></h2>
+        <p><spring:message code="homepage.lecture.title"/></p>
+        <div data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
             <ul>
             <c:forEach var="facilitiesType5" items="${facilitiesType5}" begin="0" end="2">
 	            <c:if test="${empty facilitiesType5.facilitiesImages}">
@@ -278,9 +278,9 @@
     </div>
 
     <div class="catg">
-        <h2>會議</h2>
-        <p>類型場地可舉辦會議、研討會、讀書會等</p>
-        <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1200">
+        <h2><spring:message code="homepage.catg.meeting"/></h2>
+        <p><spring:message code="homepage.meeting.title"/></p>
+        <div data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
             <ul>
              <c:forEach var="facilitiesType1" items="${facilitiesType1}" begin="0" end="2">
              <c:if test="${empty facilitiesType1.facilitiesImages}">
@@ -313,9 +313,9 @@
     </div>
 
     <div class="catg">
-        <h2>聚會派對</h2>
-        <p>類型場地可舉辦校友會、慶生會、同樂會等</p>
-        <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1200">
+        <h2><spring:message code="homepage.catg.dinner"/></h2>
+        <p><spring:message code="homepage.dinner.title"/></p>
+        <div data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
             <ul>
              <c:forEach var="facilitiesType3" items="${facilitiesType3}" begin="0" end="2">
 	             <c:if test="${empty facilitiesType3.facilitiesImages}">
@@ -349,16 +349,16 @@
     
 	<form action="/OneSearchResult" method="get" id="form2">
 	    <div class="search_area_2">
-	        <h2>1000多個類型場地，立即瀏覽</h2>
+	        <h2><spring:message code="homepage.footer.search.title"/></h2>
 	        <div class="search_area_2_select">
 	          	<select name="facilitiesTypeId">
-	                <option disabled selected>活動性質</option>
+	                <option disabled selected><spring:message code="homepage.footer.search.spaceType"/></option>
 		            <c:forEach var="facilitiesType" items="${facilitiesTypeAll}" varStatus="loot">
 		            	<option value="${facilitiesType.facilitiesTypeId}">${facilitiesType.name}</option>
 		            </c:forEach>    
 	            </select>
 	        </div>
-	        <input type="submit" value="瀏覽場地" class="search_area2_button">
+	        <input type="submit" value="<spring:message code="homepage.footer.searchButton"/>" class="search_area2_button">
 	    </div>
     </form>
 

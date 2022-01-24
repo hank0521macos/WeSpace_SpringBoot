@@ -56,11 +56,6 @@
 								<p>${facilities.facilitiesOwner.name}</p>
 						</div>
 						<div class="spaceButton">
-						
-							<form action="/previewSpace" method="get" style="display:inline;">	
-						  		<input type="hidden" name="id" value="${facilities.id}">
-								<input type="submit" value="預覽">
-							</form>
 							<form action="/listOneSpace" method="get" style="display:inline;">	
 						  		<input type="hidden" name="id" value="${facilities.id}">
 								<input type="submit" value="編輯">

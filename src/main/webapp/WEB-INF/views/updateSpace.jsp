@@ -23,13 +23,27 @@
         <div class="tabs-pages">          
             <div class="navbar">
             	<a href="${pageContext.request.contextPath}/mySpace">回前頁</a>
-                <a href="javascript:;" class="tab active" id="tab1">活動類型</a>
-                <a href="javascript:;" class="tab" id="tab2">基本資訊</a>
-                <a href="javascript:;" class="tab" id="tab3">位置</a>
-                <a href="javascript:;" class="tab" id="tab4">空間配置</a>
+                <a href="javascript:;" class="tab active" id="tab1">
+                	<c:if test="${spaceTypeError!=null}"><i class="fas fa-exclamation-triangle" style="color:red;"></i></c:if>
+                	活動類型
+                </a>
+                <a href="javascript:;" class="tab" id="tab2">
+                	<c:if test="${spaceNameError!=null}"><i class="fas fa-exclamation-triangle" style="color:red;"></i></c:if>
+                	基本資訊
+                </a>
+                <a href="javascript:;" class="tab" id="tab3">
+                    <c:if test="${spaceAddressError!=null}"><i class="fas fa-exclamation-triangle" style="color:red;"></i></c:if>
+                	位置
+                </a>
+                <a href="javascript:;" class="tab" id="tab4">
+                    <c:if test="${spaceSizeError!=null || spaceGuestsError!=null}"><i class="fas fa-exclamation-triangle" style="color:red;"></i></c:if>
+                	空間配置
+                </a>
                 <a href="javascript:;" class="tab" id="tab5">設備</a>
                 <a href="javascript:;" class="tab" id="tab6">相片</a>
-                <a href="javascript:;" class="tab" id="tab7">定價</a>
+                <a href="javascript:;" class="tab" id="tab7">
+                    <c:if test="${spaceOpeningError!=null || spaceOpeningError!=null}"><i class="fas fa-exclamation-triangle" style="color:red;"></i></c:if>
+                	定價</a>
                 <a href="javascript:;" class="tab" id="tab8">管理者</a>
             </div>
         </div>	
@@ -66,9 +80,9 @@
                             <div class="inputName">空間名稱</div>
                             <input type="text" name="name" value="${facilitiesRecord.name}" class="facilitiesName" placeholder="例：中山捷運站步行五分鐘，大型陽光會議室">
                             <div class="inputName">場地規範</div>
-                            <textarea name="rules" value="${facilitiesRecord.rules}" class="facilitiesRules" placeholder="例：禁帶寵物"></textarea>
+                            <textarea name="rules" class="facilitiesRules" placeholder="例：禁帶寵物">${facilitiesRecord.rules}</textarea>
                             <div class="inputName">退訂政策</div>
-                            <textarea name="cancellationPolicy" value="${facilitiesRecord.cancellationPolicy}" class="facilitiesCancellationPolicy" placeholder="例：7天前可全額退費，3天內取消恕不退費！"></textarea>
+                            <textarea name="cancellationPolicy" class="facilitiesCancellationPolicy" placeholder="例：7天前可全額退費，3天內取消恕不退費！">${facilitiesRecord.cancellationPolicy}</textarea>
                         </div>
                         <div class="nextAndPreButton2">
                             <div class="pre-button2" onclick="preStep2()">上一步</div>
@@ -116,8 +130,8 @@
                     <div class="inner-content-left">
                         <div class="space-info">
                             <div class="addressTitle">空間配置</div>
-                            <span>空間大小</span><input type="text" name="size" value="${facilitiesRecord.size}" class="facilitiesSize"><span>坪</span><br>
-                            <span>空間可容納</span><input type="text" name="guests" value="${facilitiesRecord.guests}" class="facilitiesGuests"><span>人</span>
+                            <span>空間大小</span><input type="text" onkeyup="value=value.replace( /[^\d]/g,'')"  maxlength="5" name="size" value="${facilitiesRecord.size}" class="facilitiesSize"><span>坪</span><br>
+                            <span>空間可容納</span><input type="text" onkeyup="value=value.replace( /[^\d]/g,'')"  maxlength="8" name="guests" value="${facilitiesRecord.guests}" class="facilitiesGuests"><span>人</span>
                         </div>
                         <div class="nextAndPreButton3">
                             <div class="pre-button2" onclick="preStep4()">上一步</div>
@@ -249,7 +263,7 @@
 	                               			<option value="23">23:00</option>
 	                               	    </select>
 	                                <div class="checkbox-hours" id="checkbox-hours${facilitiesOpening.facilitiesOpeningId}">
-	                                    <input type="number" name="expense"> 元/小時
+	                                    <input type="text" onkeyup="value=value.replace( /[^\d]/g,'')"  maxlength="8" name="expense"> 元/小時
 	                                </div>
 	                            </div>
                             </c:forEach>
@@ -300,13 +314,13 @@
                                     <div class="owner_data_title">聯絡人 *</div>
                                     <input type="text" id="contactName" name="contactName" placeholder="請填寫真實姓名">
                                     <div class="owner_data_title">常用電話/公司電話</div>
-                                    <input type="text" id="contactPhone" name="contactPhone" placeholder="例：0228123456">
+                                    <input type="text" id="contactPhone" name="contactPhone"  maxlength="10" placeholder="例：0228123456" onkeyup="value=value.replace( /[^\d]/g,'')" >
                                     <div class="owner_data_title">手機</div>
-                                    <input type="text" id="contactMobilePhone" name="contactMobilePhone" placeholder="例：0912345678">
+                                    <input type="text" id="contactMobilePhone" name="contactMobilePhone"  maxlength="10" placeholder="例：0912345678" onkeyup="value=value.replace( /[^\d]/g,'')" >
                                     <div class="owner_data_title">發票抬頭</div>
                                     <input type="text" id="invoiceHeading" name="invoiceHeading">
                                     <div class="owner_data_title">發票統編</div>
-                                    <input type="text" id="taxId" name="taxId">
+                                    <input type="text" id="taxId" name="taxId"  maxlength="8" onkeyup="value=value.replace( /[^\d]/g,'')" >
                                     <h3>收款資訊</h3>
                                     <div class="owner_data_title">收款銀行名稱與代號 *</div>
                                     <select id="payeeBankName" name="payeeBankName" class="owner_bank">
@@ -415,7 +429,7 @@
                                     <div class="owner_data_title">分行 *</div>
                                     <input type="text" id="payeeBranchName" name="payeeBranchName">
                                     <div class="owner_data_title">收款帳號 *</div>
-                                    <input type="text" id="account" name="account" placeholder="勿填寫符號或空白">
+                                    <input type="text" id="account" name="account" placeholder="勿填寫符號或空白"  maxlength="14" onkeyup="value=value.replace( /[^\d]/g,'')" >
                                     <div class="owner_data_title">戶名 *</div>
                                     <input type="text" id="payeeName" name="payeeName">
                                     <button type="button" id="ownerCancel" onclick="showAreaButton()">取消</button>

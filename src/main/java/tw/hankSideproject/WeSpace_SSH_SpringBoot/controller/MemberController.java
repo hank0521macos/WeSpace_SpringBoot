@@ -72,7 +72,7 @@ public class MemberController {
 		memberService.saveMember(member,getSiteURL(request));
 		
 		// 註冊後同時登入
-		session.setAttribute("loginData", member); 
+//		session.setAttribute("loginData", member); 
 		
 		return "VerifyWaiting";
 	}
@@ -209,7 +209,7 @@ public class MemberController {
 	public String forgotPassword(@ModelAttribute Member member,HttpServletRequest request, HttpSession session) throws UnsupportedEncodingException, MessagingException {
 		
 		Member loginData = memberService.findByAccount(member.getAccount());
-		session.setAttribute("loginData", loginData); 
+//		session.setAttribute("loginData", loginData); 
 		
 		if(loginData != null) {
 			memberService.sendResetPasswordEmail(loginData,getSiteURL(request));

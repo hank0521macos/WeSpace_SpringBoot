@@ -7,52 +7,75 @@ $(document).ready(function() {
 		var file = $('#file')[0].files[0];
 		var data = $('#form2').serialize();
 		formData.append("file", file);
-
-		$.ajax({
-			url: 'http://localhost:8081/uploadOwnerImg',
-			type: 'POST',
-			data: formData,
-			enctype: 'multipart/form-data',
-			contentType: false,
-			cache: false,
-			processData: false,
-			sync: true,
-			success: function() {
-				$.ajax({
-					type: "POST",
-					url: "http://localhost:8081/saveOwner",
-					data: data,
-					sync: true,
-					success: function(data) {
-						alert("成功新增一名管理員");
-						//showAreaButton();
-						assignDataToOwnerSelect();
-						$('#ownerDetail').empty();
-						$('#ownerDetail').show();
-						$('#facilitiesOwnerArea').toggleClass('open');
-						$('#showOwnerArea').toggleClass('close');
-
-						$('#name').val('');
-						$('#description').val('');
-						$('#contactName').val('');
-						$('#contactPhone').val('');
-						$('#contactMobilePhone').val('');
-						$('#invoiceHeading').val('');
-						$('#taxId').val('');
-						$('#payeeBranchName').val('');
-						$('#account').val('');
-						$('#payeeName').val('');
-					},
-					error: function(err) {
-						console.log(err);
-						alert(err);
-					}
-				});
-			},
-			error: function() {
-				alert("請至少上傳一張管理員照片");
+		if($('#name').val()==''||$('#contactName').val()==''||$('#payeeBranchName').val()==''||$('#account').val()==''||$('#payeeName').val()==''){
+			if($('#name').val()==''){
+				$('#name').css("border","1px solid red");
+				$('#ownerNameError').css("display","inline");
 			}
-		});
+			if($('#contactName').val()==''){
+				$('#contactName').css("border","1px solid red");
+				$('#ownerContactNameError').css("display","inline");
+			}
+			if($('#payeeBranchName').val()==''){
+				$('#payeeBranchName').css("border","1px solid red");
+				$('#ownerPayeeBranchNameError').css("display","inline");
+			}
+			if($('#account').val()==''){
+				$('#account').css("border","1px solid red");
+				$('#ownerAccountError').css("display","inline");
+			}
+			if($('#payeeName').val()==''){
+				$('#payeeName').css("border","1px solid red");
+				$('#ownerPayeeNameError').css("display","inline");
+			}
+			return false;
+		}else{
+			$.ajax({
+				url: 'http://localhost:8081/uploadOwnerImg',
+				type: 'POST',
+				data: formData,
+				enctype: 'multipart/form-data',
+				contentType: false,
+				cache: false,
+				processData: false,
+				sync: true,
+				success: function() {
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:8081/saveOwner",
+						data: data,
+						sync: true,
+						success: function(data) {
+							alert("成功新增一名管理員");
+							//showAreaButton();
+							assignDataToOwnerSelect();
+							$('#ownerDetail').empty();
+							$('#ownerDetail').show();
+							$('#facilitiesOwnerArea').toggleClass('open');
+							$('#showOwnerArea').toggleClass('close');
+	
+							$('#name').val('');
+							$('#description').val('');
+							$('#contactName').val('');
+							$('#contactPhone').val('');
+							$('#contactMobilePhone').val('');
+							$('#invoiceHeading').val('');
+							$('#taxId').val('');
+							$('#payeeBranchName').val('');
+							$('#account').val('');
+							$('#payeeName').val('');
+						},
+						error: function(err) {
+							console.log(err);
+							alert(err);
+						}
+					});
+				},
+				error: function() {
+					alert("請至少上傳一張管理員照片");
+				}
+			});
+		}
 	});
 
 	//ajax動態刷新select表單方法

@@ -25,7 +25,7 @@
 		<jsp:include page="HeaderLogin.jsp" flush="true" />
 	</c:if>
 	
-	<form action="/addOrders" method="post">
+	<form action="/addOrders" method="post" onsubmit="return checkError();">
     <div class="tab1">
         <div class="contentPageLeft">
             <div class="step">
@@ -56,7 +56,7 @@
                             <span class="glyphicon glyphicon-minus"></span>
                         </button>
                     </span>
-                    <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="${orderData.facilities.guests}" style="text-align:center;">
+                    <input type="text" onkeyup="value=value.replace( /[^\d]/g,'')" name="quantity" class="form-control input-number" value="1" min="1" max="${orderData.facilities.guests}" style="text-align:center;">
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quantity">
                             <span class="glyphicon glyphicon-plus"></span>
@@ -123,51 +123,51 @@
             </div>
             <div class="contactInfo">聯絡人資料</div>
             <div class="formTitle">
-                <span class="formTitleLeft2">聯絡人姓*</span>
-                <span class="formTitleRight2">名*</span>
+                <span class="formTitleLeft2" id="firstnameError">聯絡人姓*</span>
+                <span class="formTitleRight2" id="lastnameError">名*</span>
             </div>
 
             <div class="form">
-                <input type="text" name="firstname" value="${member.firstname}">
-                <input type="text" name="lastname" value="${member.lastname}">
+                <input type="text" name="firstname" id="firstname" value="${member.firstname}">
+                <input type="text" name="lastname" id="lastname" value="${member.lastname}">
             </div>
 
             <div class="formTitle">
-                <span class="formTitleLeft2">聯絡電話*</span>
+                <span class="formTitleLeft2" id="contactMobilePhoneError">聯絡電話*</span>
             </div>
 
             <div class="form">
                 <input type="text" placeholder="Taiwan (+886)" disabled>
-                <input type="text" name="contactMobilePhone" value="${member.mobilePhone}">
+                <input type="text" id="contactMobilePhone" onkeyup="value=value.replace( /[^\d]/g,'')" maxlength="10" name="contactMobilePhone" value="${member.mobilePhone}">
             </div>
 
 
             <div class="formTitle">
-                <span class="formTitleLeft2">Email*</span>
+                <span class="formTitleLeft2" id="contactEmailError">Email*</span>
             </div>
 
             <div class="form">
-                <input type="text" name="contactEmail" style="width:70%" value="${member.email}">
+                <input type="email" id="contactEmail" name="contactEmail" style="width:70%" value="${member.email}">
             </div>
 
             <div class="contactInfo">選擇付款信用卡</div>
             <div class="formTitle">
-                <span class="formTitleLeft2">信用卡號*</span>
+                <span class="formTitleLeft2" id="creditCardNoError">信用卡號*</span>
             </div>
             <div class="form">
-                <input type="text" name="creditCardNo" maxlength="4" size="4" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">-
-                <input type="text" name="creditCardNo" maxlength="4" size="4" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">-
-                <input type="text" name="creditCardNo" maxlength="4" size="4" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">-
-                <input type="text" name="creditCardNo" maxlength="4" size="4" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">
+                <input type="text" id="creditCardNo1" name="creditCardNo" maxlength="4" size="4" onkeyup="value=value.replace( /[^\d]/g,'')" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">-
+                <input type="text" id="creditCardNo2" name="creditCardNo" maxlength="4" size="4" onkeyup="value=value.replace( /[^\d]/g,'')" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">-
+                <input type="text" id="creditCardNo3" name="creditCardNo" maxlength="4" size="4" onkeyup="value=value.replace( /[^\d]/g,'')" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">-
+                <input type="text" id="creditCardNo4" name="creditCardNo" maxlength="4" size="4" onkeyup="value=value.replace( /[^\d]/g,'')" onKeyUp="next(this)" class="creditCardNumber" style="margin-right: 5px;">
             </div>
             <div class="formTitle">
-                <span class="formTitleLeft2">到期月年*</span>
-                <span class="formTitleRight2" style="margin-left: 185px;">驗證碼</span>
+                <span class="formTitleLeft2" id="creditCardDateError">到期月年*</span>
+                <span class="formTitleRight2" style="margin-left: 185px;" id="creditCardCvcError">驗證碼</span>
             </div>
             <div class="form">
-                <input type="number" name="creditCardMonth" class="creditCardDate" min="1" max="12" style="margin-right: 10px;" placeholder="月">
-                <input type="number" name="creditCardYear" class="creditCardDate" min="20" max="40" style="margin-right: 10px;" placeholder="年">
-                <input type="number" name="creditCardCvc" class="creditCardDate" min="0" max="999" style="margin-right: 10px;" placeholder="CVC">
+                <input type="text" id="creditCardMonth" name="creditCardMonth" class="creditCardDate" onkeyup="value=value.replace( /[^\d]/g,'')" maxlength="2" style="margin-right: 10px;" placeholder="01">
+                <input type="text" id="creditCardYear" name="creditCardYear" class="creditCardDate" onkeyup="value=value.replace( /[^\d]/g,'')" maxlength="2" style="margin-right: 10px;" placeholder="23">
+                <input type="text" id="creditCardCvc" name="creditCardCvc" class="creditCardDate" onkeyup="value=value.replace( /[^\d]/g,'')" maxlength="3" style="margin-right: 10px;" placeholder="123">
             </div>
             <div class="bottomLine2"></div>
             <div class="buttonArea">
@@ -215,6 +215,58 @@
             })
             
         })
+        
+        function checkError(){
+        	if($('#firstname').val()==''||$('#lastname').val()==''||$('#contactMobilePhone').val()==''||
+        	   $('#contactEmail').val()==''|| $('#creditCardMonth').val()==''||$('#creditCardCvc').val()==''){
+				if($('#firstname').val()==''){
+					$('#firstname').css("border","1px solid red");
+					$('#firstnameError').css("color","red");
+				}
+				if($('#lastname').val()==''){
+					$('#lastname').css("border","1px solid red");
+					$('#lastnameError').css("color","red");
+				}
+				if($('#contactMobilePhone').val()==''){
+					$('#contactMobilePhone').css("border","1px solid red");
+					$('#contactMobilePhoneError').css("color","red");
+				}
+				if($('#contactEmail').val()==''){
+					$('#contactEmail').css("border","1px solid red");
+					$('#contactEmailError').css("color","red");
+				}
+				if($('#creditCardNo1').val()==''){
+					$('#creditCardNo1').css("border","1px solid red");
+				}
+				if($('#creditCardNo2').val()==''){
+					$('#creditCardNo2').css("border","1px solid red");
+				}
+				if($('#creditCardNo3').val()==''){
+					$('#creditCardNo3').css("border","1px solid red");
+				}
+				if($('#creditCardNo4').val()==''){
+					$('#creditCardNo4').css("border","1px solid red");
+				}
+				if($('#creditCardNo1').val()==''|| $('#creditCardNo2').val()==''|| $('#creditCardNo3').val()==''|| $('#creditCardNo4').val()==''){
+					$('#creditCardNoError').css("color","red");
+				}
+				if($('#creditCardMonth').val()==''){
+					$('#creditCardMonth').css("border","1px solid red");
+					$('#creditCardDateError').css("color","red");
+				}
+				if($('#creditCardYear').val()==''){
+					$('#creditCardYear').css("border","1px solid red");
+					$('#creditCardDateError').css("color","red");
+				}
+				if($('#creditCardCvc').val()==''){
+					$('#creditCardCvc').css("border","1px solid red");
+					$('#creditCardCvcError').css("color","red");
+				}
+				return false;
+        	}else{
+        		return true;
+        	}
+        }
     </script>
 </body>
 </html>

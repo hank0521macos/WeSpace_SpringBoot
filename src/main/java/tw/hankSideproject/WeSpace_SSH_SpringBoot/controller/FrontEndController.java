@@ -4,7 +4,9 @@ import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -194,9 +196,46 @@ public class FrontEndController {
 	
 	@GetMapping("/oneSpacePage")
 	public String spacePage(Model model,@RequestParam(value="facilitiesId",required=false)Integer facilitiesId) {
-		model.addAttribute("facilities",facilitiesRepository.getById(facilitiesId));
+		//設置該空間相關參數
+		Facilities facilitiesData = facilitiesRepository.getById(facilitiesId);
+		model.addAttribute("facilities",facilitiesData);
+		//設置開放日參數
 		List<Integer> facilitiesOpeningId = facilitiesRepository.listFacilitiesOpeningIdByFacilitiesId(facilitiesId);
 		model.addAttribute("facilitiesOpeningDays",facilitiesOpeningId);
+		
+		//宣告set待會去除重複類型名稱用
+		Set<String> orderSet = new HashSet<String>();
+		//宣告前台所需計算的變數
+		Double spaceTypeCounts;
+		Double spaceOrdersCounts;
+		Double spaceTypeRate;
+		String spaceTypeName;
+		//取出該空間所有相關的訂單，消費者選擇的類型並且裝入set去除重複
+		for(Orders o:facilitiesData.getOrder()) {
+			spaceTypeName = o.getFacilitiesType().getName();
+			orderSet.add(spaceTypeName);
+		}
+		//將上面的set轉化成list
+		List<String> list = new ArrayList<String>(orderSet);
+		
+		//宣告List待會裝入各筆計算後的資料
+		List<String> orderList2 = new ArrayList<String>();
+		for(int i=0; i<=list.size()-1; i++) {
+			//計算符合該空間內該類型的訂單次數
+			spaceTypeCounts = ordersRepository.countSpaceType(facilitiesId,list.get(i));
+			//計算該空間內訂單總次數-除法用
+			spaceOrdersCounts = ordersRepository.countSpaceOrders(facilitiesId);
+			//計算該類型的佔比
+			spaceTypeRate = spaceTypeCounts/spaceOrdersCounts*100;
+			//宣告區域變數裝入各筆資料
+			List<String> orderList = new ArrayList<String>();
+			orderList.add(String.valueOf(Math.round(spaceTypeCounts)));
+			orderList.add("'"+String.valueOf(Math.round(spaceTypeRate*100.0)/100.0)+"%'");
+			orderList.add("'"+list.get(i)+"'");
+			orderList2.addAll(orderList);
+		}
+		//設置參數至前台javascript使用
+		model.addAttribute("ordersTypeList",orderList2);
 		return "spacePage";
 	}
 	
@@ -226,6 +265,18 @@ public class FrontEndController {
 		return "OrderPage";
 	}
 	
+	////////////////////預訂單管理按鈕API////////////////////
+	//	使用者/開發者
+	//	--退訂--
+	//	0: 已退訂/使用者取消
+	//	--處理中--
+	//	1: 處理中/未處理
+	//	--已預訂--
+	//	2: 預訂成功/已預訂
+	//	--已結束--
+	//	3: 預訂失敗/已拒絕
+	//	4: 完成預訂/已完成
+	//	5: 取消預訂/預訂取消
 	@PostMapping("/addOrders")
 	public String addOrders(HttpSession session,Model model,
 			@ModelAttribute Orders orders,
@@ -239,7 +290,7 @@ public class FrontEndController {
 		orders.setGuests(quantity);
 		orders.setContactName(firstname+lastname);
 		orders.setCreateTime(new java.sql.Timestamp(new java.util.Date().getTime()));
-		orders.setStatus(1); //0:取消訂單/退訂 1:處理中 2:已預訂 3:已結束
+		orders.setStatus(1);
 		orders.setMember(member);
 		orders.setFacilities(facilities);
 		

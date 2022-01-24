@@ -55,19 +55,19 @@
 }
 
 .slider p{
-	color: rgb(39, 204, 163);
+	color: #53A385;
 	font-size: 25px;
 }
 
 .slider h2{
-	color: #ec8443;
+	color: #ff6700;
     font-size: 1em;
 	margin: 20px 0;
 	letter-spacing: 2px;
 }
 
 .slider a:hover{ 
-	box-shadow: rgb(170, 170, 170) 0px 0px 4px;
+	box-shadow: rgb(170, 170, 170) 0px 0px 2px;
 	opacity: 0.9; 
 }
 

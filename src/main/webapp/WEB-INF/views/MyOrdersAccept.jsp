@@ -26,8 +26,8 @@
 		</div>
 		<div class="nav-bar">
 			<ul>
-                <li style="border-bottom: 3px solid black;"><a href="${pageContext.request.contextPath}/myOrders">處理中</a></li>
-				<li><a href="${pageContext.request.contextPath}/myOrdersAccept">已預訂</a></li>
+                <li><a href="${pageContext.request.contextPath}/myOrders">處理中</a></li>
+				<li style="border-bottom: 3px solid black;"><a href="${pageContext.request.contextPath}/myOrdersAccept">已預訂</a></li>
 				<li><a href="${pageContext.request.contextPath}/myOrdersCancel">退訂</a></li>
 				<li><a href="${pageContext.request.contextPath}/myOrdersFinish">已結束</a></li>
 			</ul>
@@ -35,7 +35,7 @@
 		
 		<div class="myOrdersArea" id="myOrdersArea">
 			<c:if test="${empty orders}">
-				<div class="noOrders">你沒有任何即將到來的預訂。<br>
+				<div class="noOrders">你沒有任何已預訂的行程。<br>
 					 趕緊來尋找場地，規劃下一段美好時光吧。<br>
 					 <br>
 					 找不到你的預訂？<span>聯絡我們</span>
@@ -88,7 +88,7 @@
                         </tr>
                         <tr>
                             <td class="tableB_title">狀態</td>
-                            <td style="color:#FF3333; font-weight:bold;">等待回覆</td>
+                            <td style="color:#5cb85c; font-weight:bold;">已預訂/進行中</td>
                         </tr>
                         <tr>
                             <td class="tableB_title">空間管理者</td>
@@ -99,24 +99,10 @@
                             <td>${orders.facilities.member.email}</td>
                         </tr>
                     </table>
-                    <form action="/cancelOrders" method="get" onsubmit="return confirmSubmit(this);">
-	                    <input name="ordersId" type="hidden" value="${orders.id}">
-	                    <input type="submit" class="deleteOrders" value="取消訂單">
-                    </form>
                 </div>
             </div>
        	</c:forEach>
 		</div>
 	</div>
-	<script>
-    //確認刪除提交
-    function confirmSubmit(form) {
-    	var agree = confirm("確定要取消此筆訂單？");
-    	if (agree)
-    		return true;
-    	else
-    		return false;
-    };
-	</script>
 </body>
 </html>

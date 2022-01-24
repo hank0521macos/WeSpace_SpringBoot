@@ -88,7 +88,7 @@ div.inner-content-right{
     height: 100%;
     width: 50%;
     background-color: #f6f6f6;
-    padding-top: 100px;
+    padding-top: 170px;
     position: relative;
 }
 
@@ -234,7 +234,15 @@ div.pre-button2{
 
 div.remind-tip{
     /* border: 1px solid red; */
-    margin-top: 70px;
+    margin-top: 10px;
+    color: #666666;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
+div.error-hint{
+    /* border: 1px solid red; */
+    margin-top: 10px;
     color: #666666;
     letter-spacing: 2px;
     font-size: 16px;
@@ -757,6 +765,14 @@ div.ownerImage{
 	border-radius:10px;
 	margin:30px auto;
 	box-shadow:0px 0px 5px gray;
+}
+
+span.ownerError{
+	font-size: 10px;
+    font-weight: normal;
+    color: red;
+    margin-left: 10px;
+    display:none;
 }
 
 /*********************** 最後提交 ***********************/

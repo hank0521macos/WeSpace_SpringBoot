@@ -82,7 +82,7 @@ public class OrdersAjaxAPIController {
 	@GetMapping("/listPendingOrders")
 	public List<Orders> listPendingOrders(HttpSession session) {
 		   Member member = (Member)session.getAttribute("loginData");
-		   return ordersRepository.listPendingOrdersByMemberId(member.getId());
+		   return ordersRepository.listPendingOrdersByLoginMemberId(member.getId());
 	}
 	
 	//訂單表格刷新api-訂單號遞增

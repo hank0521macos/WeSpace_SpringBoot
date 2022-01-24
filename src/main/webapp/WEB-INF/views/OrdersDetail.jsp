@@ -68,6 +68,7 @@
         <div>
             <table class="ordersList" id="ordersTable" ></table>
         </div>
+        <div style="height:100px;"></div>
 	</div>
 </div>
 

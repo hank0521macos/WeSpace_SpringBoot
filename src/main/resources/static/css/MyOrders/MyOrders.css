@@ -82,6 +82,7 @@ div.spaceInfo{
 table.tableA{
     /* border: 1px solid red; */
     height: 100%;
+    position:relative;
 }
 
 table.tableA td{
@@ -126,4 +127,34 @@ div.noOrders{
 
 div.noOrders span{
 	color: #53A385;
+}
+
+div.reasonArea{
+	width:480px;
+	height:200px;
+	position:absolute;
+	right:40px;
+	top:45px;
+	background-color:white;
+	display:none;
+	padding-left:5px;
+	color:#4a4a4a;
+	line-height:25px;
+}
+
+button.close123{
+	position:absolute;
+	width:45px;
+	height:45px;
+	font-size:30px;
+	cursor:pointer;
+	border:0;
+ 	background-color:transparent;
+ 	bottom:29px;
+	right:41px;
+	display:none;
+}
+
+.fa-long-arrow-alt-left{
+	color:#53A385;
 }

@@ -25,13 +25,27 @@
         <div class="tabs-pages">          
             <div class="navbar">
             	<a href="${pageContext.request.contextPath}/mySpace">回前頁</a>
-                <a href="javascript:;" class="tab active" id="tab1">活動類型</a>
-                <a href="javascript:;" class="tab" id="tab2">基本資訊</a>
-                <a href="javascript:;" class="tab" id="tab3">位置</a>
-                <a href="javascript:;" class="tab" id="tab4">空間配置</a>
+                <a href="javascript:;" class="tab active" id="tab1">
+                	<c:if test="${spaceTypeError!=null}"><i class="fas fa-exclamation-triangle" style="color:red;"></i></c:if>
+                	活動類型
+                </a>
+                <a href="javascript:;" class="tab" id="tab2">
+                	<c:if test="${spaceNameError!=null}"><i class="fas fa-exclamation-triangle" style="color:red;"></i></c:if>
+                	基本資訊
+                </a>
+                <a href="javascript:;" class="tab" id="tab3">
+                    <c:if test="${spaceAddressError!=null}"><i class="fas fa-exclamation-triangle" style="color:red;"></i></c:if>
+                	位置
+                </a>
+                <a href="javascript:;" class="tab" id="tab4">
+                    <c:if test="${spaceSizeError!=null || spaceGuestsError!=null}"><i class="fas fa-exclamation-triangle" style="color:red;"></i></c:if>
+                	空間配置
+                </a>
                 <a href="javascript:;" class="tab" id="tab5">設備</a>
                 <a href="javascript:;" class="tab" id="tab6">相片</a>
-                <a href="javascript:;" class="tab" id="tab7">定價</a>
+                <a href="javascript:;" class="tab" id="tab7">
+                    <c:if test="${spaceOpeningError!=null || spaceOpeningError!=null}"><i class="fas fa-exclamation-triangle" style="color:red;"></i></c:if>
+                	定價</a>
                 <a href="javascript:;" class="tab" id="tab8">管理者</a>
             </div>
         </div>	
@@ -55,7 +69,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="inner-content-right"></div>
+                    <div class="inner-content-right">
+                    	<c:if test="${spaceTypeError!=null}">
+                         	<div class="error-hint"><i class="fas fa-exclamation-triangle" style="color:red;margin: 0 10px 0 20px;"></i>${spaceTypeError}</div>
+                    	</c:if>
+                    </div>
                  </div>
             </div>
 
@@ -65,12 +83,13 @@
                     <div class="inner-content-left">
                         <div class="space-info">
                             <div class="title">基本資訊</div>
-                            <div class="inputName">空間名稱</div>
-                            <input type="text" name="name" value="${facilitiesRecord.name}" class="facilitiesName" placeholder="例：中山捷運站步行五分鐘，大型陽光會議室">
-                            <div class="inputName">場地規範</div>
-                            <textarea name="rules" value="${facilitiesRecord.rules}" class="facilitiesRules" placeholder="例：禁帶寵物"></textarea>
-                            <div class="inputName">退訂政策</div>
-                            <textarea name="cancellationPolicy" value="${facilitiesRecord.cancellationPolicy}" class="facilitiesCancellationPolicy" placeholder="例：7天前可全額退費，3天內取消恕不退費！"></textarea>
+                            <div class="inputName">空間名稱<span class="title-2">必填</span></div>
+                            <input type="text" name="name" value="${facilitiesRecord.name}" class="facilitiesName" placeholder="例：中山捷運站步行五分鐘，大型陽光會議室"
+                            	<c:if test="${spaceNameError!=null}">style="border:1px solid rgb(255, 30, 30);"</c:if>>
+                            <div class="inputName">場地規範<span class="title-2">選填</span></div>
+                            <textarea name="rules" class="facilitiesRules" placeholder="例：禁帶寵物">${facilitiesRecord.rules}</textarea>
+                            <div class="inputName">退訂政策<span class="title-2">選填</span></div>
+                            <textarea name="cancellationPolicy" class="facilitiesCancellationPolicy" placeholder="例：7天前可全額退費，3天內取消恕不退費！">${facilitiesRecord.cancellationPolicy}</textarea>
                         </div>
                         <div class="nextAndPreButton2">
                             <div class="pre-button2" onclick="preStep2()">上一步</div>
@@ -79,6 +98,9 @@
                     </div>
                     <div class="inner-content-right">
                         <div class="remind-tip"><i class="fas fa-exclamation-circle"></i>請勿填寫聯絡資訊，以免審核失敗</div>
+                        <c:if test="${spaceNameError!=null}">
+                         	<div class="error-hint"><i class="fas fa-exclamation-triangle" style="color:red;margin: 0 10px 0 20px;"></i>${spaceNameError}</div>
+                    	</c:if>
                     </div>
                 </div>
             </div>
@@ -88,9 +110,10 @@
                 <div class="inner-content">
                     <div class="inner-content-left">
                         <div class="space-info">
-                            <div class="addressTitle">地址</div>
+                            <div class="addressTitle">地址<span class="title-2">必填</span></div>
                             <div id="twzipcode"></div>
-                            <input type="text" id="search_input" name="address" class="facilitiesAddress" placeholder="例：新生南路二段..." value="${facilitiesRecord.address}">
+                            <input type="text" id="search_input" name="address" class="facilitiesAddress" placeholder="例：新生南路二段..." value="${facilitiesRecord.address}"
+                            	<c:if test="${spaceAddressError!=null}">style="border:1px solid rgb(255, 30, 30);"</c:if>>
                             <div class="addressTitle">提供交通方式<span class="title-2">選填</span></div>
                             <div class="addressSubtitle">搭乘捷運</div>
                             <input type="text" name="takeByTrain" value="${facilitiesRecord.takeByTrain}" class="facilitiesTransportation"
@@ -108,7 +131,11 @@
                             <div class="next-button2" onclick="nextStep3()">下一步</div>
                         </div>
                     </div>
-                    <div class="inner-content-right"></div>
+                    <div class="inner-content-right">
+                        <c:if test="${spaceAddressError!=null}">
+                         	<div class="error-hint"><i class="fas fa-exclamation-triangle" style="color:red;margin: 0 10px 0 20px;"></i>${spaceAddressError}</div>
+                    	</c:if>
+                    </div>
                 </div>
             </div>
             
@@ -117,16 +144,26 @@
                 <div class="inner-content">
                     <div class="inner-content-left">
                         <div class="space-info">
-                            <div class="addressTitle">空間配置</div>
-                            <span>空間大小</span><input type="text" name="size" value="${facilitiesRecord.size}" class="facilitiesSize"><span>坪</span><br>
-                            <span>空間可容納</span><input type="text" name="guests" value="${facilitiesRecord.guests}" class="facilitiesGuests"><span>人</span>
+                            <div class="addressTitle">空間配置<span class="title-2">必填</span></div>
+                            <span>空間大小</span><input type="text" name="size" value="${facilitiesRecord.size}" <c:if test="${spaceSizeError!=null}">style="border:1px solid rgb(255, 30, 30);"</c:if>
+                            						onkeyup="value=value.replace( /[^\d]/g,'')" maxlength="5" class="facilitiesSize">
+                            <span>坪</span><br>
+                            <span>空間可容納</span><input type="text" name="guests" value="${facilitiesRecord.guests}" <c:if test="${spaceGuestsError!=null}">style="border:1px solid rgb(255, 30, 30);"</c:if>
+                            						onkeyup="value=value.replace( /[^\d]/g,'')" maxlength="8" class="facilitiesGuests"><span>人</span>
                         </div>
                         <div class="nextAndPreButton3">
                             <div class="pre-button2" onclick="preStep4()">上一步</div>
                             <div class="next-button2" onclick="nextStep4()">下一步</div>
                         </div>
                     </div>
-                    <div class="inner-content-right"></div>
+                    <div class="inner-content-right">
+                        <c:if test="${spaceSizeError!=null}">
+                         	<div class="error-hint"><i class="fas fa-exclamation-triangle" style="color:red;margin: 0 10px 0 20px;"></i>${spaceSizeError}</div>
+                    	</c:if>
+                    	 <c:if test="${spaceGuestsError!=null}">
+                         	<div class="error-hint"><i class="fas fa-exclamation-triangle" style="color:red;margin: 0 10px 0 20px;"></i>${spaceGuestsError}</div>
+                    	</c:if>
+                    </div>
                 </div>
             </div>
 
@@ -135,7 +172,7 @@
                 <div class="inner-content">
                     <div class="inner-content-left">
                         <div class="space-info">
-                            <div class="addressTitle">設備</div>
+                            <div class="addressTitle">設備<span class="title-2">選填</span></div>
                             <c:forEach var="facilitiesItemsCatg" items="${facilitiesItemsCatgAll}">
                             <div class="facilitiesServiceTitle"><a href="javascript:;" class="service_button" id="btn${facilitiesItemsCatg.id}">${facilitiesItemsCatg.name}</a>
                                 <div class="facilitiesServiceCheckbox" id="toggle${facilitiesItemsCatg.id}">                         
@@ -164,7 +201,7 @@
                 <div class="inner-content">
                     <div class="inner-content-left">
                         <div class="space-info">
-                            <div class="addressTitle">上傳空間相片</div>
+                            <div class="addressTitle">上傳空間相片<span class="title-2">建議選填</span></div>
                             <div class="subtitle">上傳至少3~10張不同角度的相片</div>
                             <div class="uploadImage">
                             	<div class="uploadFakeButton">上傳空間圖片</div>
@@ -189,7 +226,7 @@
                 <div class="inner-content">
                     <div class="inner-content-left">
                         <div class="space-info">
-                            <div class="addressTitle">計費設定</div>
+                            <div class="addressTitle">計費設定<span class="title-2">必填</span></div>
                             
                             <c:forEach var="facilitiesOpening" items="${facilitiesOpeningAll}">
 	                            <div class="checkbox-days">
@@ -250,7 +287,7 @@
 	                               			<option value="23">23:00</option>
 	                               	    </select>
 	                                <div class="checkbox-hours" id="checkbox-hours${facilitiesOpening.facilitiesOpeningId}">
-	                                    <input type="number" name="expense"> 元/小時
+	                                    <input type="text" name="expense" maxlength="8" onkeyup="value=value.replace( /[^\d]/g,'')" > 元/小時
 	                                </div>
 	                            </div>
                             </c:forEach>
@@ -261,6 +298,11 @@
                             <div class="next-button2" onclick="nextStep7()">下一步</div>
                         </div>
                     </div>
+                    <div class="inner-content-right">
+                        <c:if test="${spaceOpeningError!=null}">
+                         	<div class="error-hint"><i class="fas fa-exclamation-triangle" style="color:red;margin: 0 10px 0 20px;"></i>${spaceOpeningError}</div>
+                    	</c:if>
+                    </div>
                 </div>
             </div>
 		</form>
@@ -270,7 +312,7 @@
                 <div class="inner-content">
                     <div class="inner-content-left">
                         <div class="space-info">
-                            <div class="addressTitle">管理者資訊</div>
+                            <div class="addressTitle">管理者資訊<span class="title-2">必填</span></div>
                             <div class="subtitle">空間皆需要一個管理者，讓客戶了解管理者是誰，並代表空間接收並支付款項。</div>
                             <div class="selectOwnerArea" id="selectOwnerArea">
                             	<select class="selectOwner" id="ownerSelect" form="form1" name="facilitiesOwner"></select>
@@ -290,21 +332,21 @@
                                 </div>
                                 <div class="facilities_owner_data">
                                     <h3>公開基本資料</h3>
-                                    <div class="owner_data_title">管理單位名稱 *</div>
+                                    <div class="owner_data_title">管理單位名稱 *<span id="ownerNameError" class="ownerError">管理單位名稱不得為空！</span></div>
                                     <input type="text" id="name" name="name" placeholder="例：滿客連鎖出租空間">
                                     <div class="owner_data_title">管理單位介紹</div>
                                     <input type="text" id="description" name="description" placeholder="例：我們是經營兩年的連鎖空間...">
                                     <h3>保密資訊</h3>
-                                    <div class="owner_data_title">聯絡人 *</div>
+                                    <div class="owner_data_title">聯絡人 *<span id="ownerContactNameError" class="ownerError">聯絡人名稱不得為空！</span></div>
                                     <input type="text" id="contactName" name="contactName" placeholder="請填寫真實姓名">
                                     <div class="owner_data_title">常用電話/公司電話</div>
-                                    <input type="text" id="contactPhone" name="contactPhone" placeholder="例：0228123456">
+                                    <input type="text" id="contactPhone" name="contactPhone" placeholder="例：0228123456"  onkeyup="value=value.replace( /[^\d]/g,'')" maxlength="10">
                                     <div class="owner_data_title">手機</div>
-                                    <input type="text" id="contactMobilePhone" name="contactMobilePhone" placeholder="例：0912345678">
+                                    <input type="text" id="contactMobilePhone" name="contactMobilePhone" placeholder="例：0912345678"  onkeyup="value=value.replace( /[^\d]/g,'')" maxlength="10">
                                     <div class="owner_data_title">發票抬頭</div>
                                     <input type="text" id="invoiceHeading" name="invoiceHeading">
                                     <div class="owner_data_title">發票統編</div>
-                                    <input type="text" id="taxId" name="taxId">
+                                    <input type="text" id="taxId" name="taxId"  onkeyup="value=value.replace( /[^\d]/g,'')" maxlength="8">
                                     <h3>收款資訊</h3>
                                     <div class="owner_data_title">收款銀行名稱與代號 *</div>
                                     <select id="payeeBankName" name="payeeBankName" class="owner_bank">
@@ -410,11 +452,11 @@
                                         <option value="951">951 – 北農中心</option>
                                         <option value="954">954 – 中南部地區農漁會</option>
                                     </select>
-                                    <div class="owner_data_title">分行 *</div>
+                                    <div class="owner_data_title">分行 *<span id="ownerPayeeBranchNameError" class="ownerError">分行名稱不得為空！</span></div>
                                     <input type="text" id="payeeBranchName" name="payeeBranchName">
-                                    <div class="owner_data_title">收款帳號 *</div>
-                                    <input type="text" id="account" name="account" placeholder="勿填寫符號或空白">
-                                    <div class="owner_data_title">戶名 *</div>
+                                    <div class="owner_data_title">收款帳號 *<span id="ownerAccountError" class="ownerError">收款帳號不得為空！</span></div>
+                                    <input type="text" id="account" name="account" placeholder="勿填寫符號或空白"  onkeyup="value=value.replace( /[^\d]/g,'')" maxlength="14">
+                                    <div class="owner_data_title">戶名 *<span id="ownerPayeeNameError" class="ownerError">戶名不得為空！</span></div>
                                     <input type="text" id="payeeName" name="payeeName">
                                     <button type="button" id="ownerCancel" onclick="showAreaButton()">取消</button>
                                     <button type="button" class="ownerButton" id="ownerSave">新增管理員</button>
@@ -428,7 +470,6 @@
                         </div>              
                         <div class="nextAndPreButton3" style="margin-bottom:140px;">
                             <div class="pre-button2" onclick="preStep8()">上一步</div>
-                            <div class="next-button2" onclick="nextStep8()">下一步</div>
                         </div>
                     </div>
                      <div class="inner-content-right">
@@ -725,7 +766,6 @@
             for (var i = 0; i<curFiles.length; i++) {
                 formdata.append('uploadFiles', curFiles[i]);
             }
-            console.log(formdata);
             $.ajax({
                 url: 'http://localhost:8081/multipleImageUpload',
                 type: 'post',

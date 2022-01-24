@@ -39,8 +39,8 @@ import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesOwner;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.FacilitiesType;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Member;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.domain.Orders;
+import tw.hankSideproject.WeSpace_SSH_SpringBoot.imageUpload.util.FileUtils;
 import tw.hankSideproject.WeSpace_SSH_SpringBoot.service.MemberBackEndService;
-import tw.hankSideproject.WeSpcae_SSH_imageUpload.util.FileUtils;
 
 @Controller
 public class MemberBackEndController {
@@ -180,11 +180,53 @@ public class MemberBackEndController {
 			@ModelAttribute FacilitiesOpeningDetail facilitiesOpeningDetail,
 			BindingResult bindingResult, 
 			HttpServletRequest request, 
-			HttpSession session) throws InterruptedException {
+			HttpSession session,Model model) throws InterruptedException {
 		//讓新增晚一秒執行,避免ajax新增時造成取參數問題
 		Thread.sleep(1000);
 		Member member = (Member)session.getAttribute("loginData");
-		if(member != null) {	
+		model.addAttribute("facilitiesTypeAll",facilitiesTypeRepository.findAll());
+		model.addAttribute("facilitiesItemsAll",facilitiesItemsRepository.findAll());
+		model.addAttribute("facilitiesItemsCatgAll",facilitiesItemsCatgRepository.findAll());
+		model.addAttribute("facilitiesOpeningAll",facilitiesOpeningRepository.findAll());
+		model.addAttribute("facilitiesOwnerAll", member.getFacilitiesOwner());
+		
+		
+		model.addAttribute("facilitiesRecord", facilities);
+		model.addAttribute("facilitiesTypeRecord",facilitiesTypeId);
+		model.addAttribute("facilitiesItemsRecord",facilitiesItemsId);
+		model.addAttribute("facilitiesOpeningRecord",facilitiesOpeningId);
+		
+		
+		if(facilitiesTypeId==null || facilities.getName()==null || facilities.getName().trim().length() == 0 || 
+		   facilities.getAddress()==null || facilities.getAddress().trim().length() == 0 ||
+		   facilities.getSize()==null || facilities.getSize() == 0 || 
+		   facilities.getGuests()==null || facilities.getGuests() == 0) {
+			//空間類型未填錯誤訊息
+			if(facilitiesTypeId==null) {
+				model.addAttribute("spaceTypeError","請至少選擇一種活動類型！");
+			}
+			//空間名稱不得為空
+			if(facilities.getName()==null || facilities.getName().trim().length() == 0) {
+				model.addAttribute("spaceNameError","請務必輸入空間名稱！");
+			}
+			//空間地址不得為空
+			if(facilities.getAddress()==null || facilities.getAddress().trim().length() == 0) {
+				model.addAttribute("spaceAddressError","請務必輸入空間地址！");
+			}
+			//空間大小不得為空
+			if(facilities.getSize()==null || facilities.getSize() == 0) {
+				model.addAttribute("spaceSizeError","請務必輸入空間坪數大小！");
+			}
+			//空間容納人數不得為空
+			if(facilities.getGuests()==null || facilities.getGuests() == 0) {
+				model.addAttribute("spaceGuestsError","請務必輸入可容納人數！");
+			}
+			//空間開放日不得為空
+			if(facilitiesOpeningId==null) {
+				model.addAttribute("spaceOpeningError","請至少選取一個開放日！");
+			}
+			return "addSpace";
+		}else if(member != null) {	
 			//確認錯誤後調用service方法新增空間資料
 			memberBackEndService.saveFacilities(facilitiesTypeId,facilitiesItemsId,facilitiesOpeningId,startTime,
 					closeTime,expense,facilities,member,facilitiesType,facilitiesOpening,facilitiesOpeningDetail);
@@ -194,7 +236,8 @@ public class MemberBackEndController {
 			filenameList.clear();
 			return "redirect:/mySpace";
 		}
-		return "redirect:/";
+			return "redirect:/";
+		
 	}
 	
 	@GetMapping("/deleteSpace") 
@@ -293,40 +336,58 @@ public class MemberBackEndController {
 	@GetMapping("/myOrders")
 	public String myOrders(Model model,HttpSession session){
 		Member member = (Member)session.getAttribute("loginData");
-		List<Orders> orders = ordersRepository.listOrdersByMemberId(member.getId());
+		List<Orders> orders = ordersRepository.listPendingOrdersByMemberId(member.getId());
 		model.addAttribute("orders",orders);
 		return "MyOrders";
 	}
+
+	//已預訂訂單頁面導向
+	@GetMapping("/myOrdersAccept")
+	public String myOrdersAccept(Model model,HttpSession session){
+		Member member = (Member)session.getAttribute("loginData");
+		List<Orders> orders = ordersRepository.listAcceptOrdersByMemberId(member.getId());
+		model.addAttribute("orders",orders);
+		return "MyOrdersAccept";
+	}	
 	
 	//取消訂單頁面導向
 	@GetMapping("/myOrdersCancel")
 	public String myOrdersCancel(Model model,HttpSession session){
 		Member member = (Member)session.getAttribute("loginData");
-		List<Orders> orders = ordersRepository.listOrdersByMemberId(member.getId());
+		List<Orders> orders = ordersRepository.listRejectOrdersByMemberId(member.getId());
 		model.addAttribute("orders",orders);
 		return "MyOrdersCancel";
 	}
 	
-	//退訂標籤頁面
+	//完成訂單頁面導向
+	@GetMapping("/myOrdersFinish")
+	public String myOrdersFinish(Model model,HttpSession session){
+		Member member = (Member)session.getAttribute("loginData");
+		List<Orders> orders = ordersRepository.listRefuseOrFinishOrCancelOrdersByMemberId(member.getId());
+		model.addAttribute("orders",orders);
+		return "MyOrdersFinish";
+	}
+	
+	//退訂按鈕
 	@GetMapping("/cancelOrders")
 	public String cancelOrders(Model model,HttpSession session,@RequestParam(value="ordersId",required=false) Integer ordersId) {
 		Orders orders = ordersRepository.getById(ordersId);
-		orders.setStatus(0);//0:取消/退訂 1:處理中 2:已預訂 3:已結束
+		orders.setStatus(0);
 		ordersRepository.save(orders);
 		Member member = (Member)session.getAttribute("loginData");
-		List<Orders> orders2 = ordersRepository.listOrdersByMemberId(member.getId());
+		List<Orders> orders2 = ordersRepository.listPendingOrdersByMemberId(member.getId());
 		model.addAttribute("orders",orders2);
 		return "MyOrders";
 	}
 	
-	//取消退訂重新訂購
+	//取消退訂按鈕
 	@GetMapping("/reCancelOrders")
 	public String reCancelOrders(Model model,HttpSession session,@RequestParam(value="ordersId",required=false) Integer ordersId) {
 		Orders orders = ordersRepository.getById(ordersId);
-		orders.setStatus(1); //0:取消/退訂 1:處理中 2:已預訂 3:已結束
+		orders.setStatus(1);
 		ordersRepository.save(orders);
 		Member member = (Member)session.getAttribute("loginData");
-		List<Orders> orders2 = ordersRepository.listOrdersByMemberId(member.getId());
+		List<Orders> orders2 = ordersRepository.listRejectOrdersByMemberId(member.getId());
 		model.addAttribute("orders",orders2);
 		return "MyOrdersCancel";
 	}
@@ -347,12 +408,5 @@ public class MemberBackEndController {
 	public String ordersDetailInfo(Model model,HttpSession session) {
 		return "OrdersDetail2";
 	}
-	
-	//我的場地-聯絡單頁面
-	@GetMapping("/ordersContact")
-	public String ordersContact(Model model,HttpSession session) {
-		return "OrdersContact";
-	}
-	
 
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +15,8 @@
 <body>
 <jsp:include page="Header.jsp" flush="true" />
     <div id="basic-modal-content2">
-        <h2>歡迎回來！</h2>
-        <p>還沒有WeSpace帳號？ <a href="${pageContext.request.contextPath}/regist">立即註冊</a></p>
+        <h2><spring:message code="login.welcome"/></h2>
+        <p><spring:message code="login.signup.title"/> <a href="${pageContext.request.contextPath}/regist"><spring:message code="login.signup"/></a></p>
         <hr>
         <form action="/login-member" method="post">
         	<c:if test="${not empty error}">
@@ -33,21 +34,21 @@
             <input type="password" required="required" name="password" id="password" value="${member.password}" class="sign-in-password" placeholder="密碼">
             <div class="remember_forget_button">
                 <input type="checkbox" name="remember" id="remember" value="true">
-                <p>記住我</p>
-                <a href="${pageContext.request.contextPath}/forgot">忘記密碼？</a>
+                <p><spring:message code="login.remember"/></p>
+                <a href="${pageContext.request.contextPath}/forgot"><spring:message code="login.forget.password"/></a>
             </div>
-            <input type="submit" class="sign-in-submit" value="登入">
+            <input type="submit" class="sign-in-submit" value="<spring:message code="login.signin"/>">
         </form>
         <form action="/reVerifyMailLogin" method="get">
 	        <c:if test="${loginData != null && loginData.status == 0}">
-	        	<input type="submit" class="reSendMail" value="補發驗證信">
+	        	<input type="submit" class="reSendMail" value="<spring:message code="login.sendmail"/>">
 	       </c:if>
 	    </form>
         <hr>
         <div class="advertise">
             <i class="fas fa-hand-holding-usd"></i>
-            <p>出租你的空間，賺取報酬！</p>
-            <a href="#">成為場地主→</a>
+            <p><spring:message code="login.footer.title"/></p>
+            <a href="#"><spring:message code="login.footer.owner"/>→</a>
         </div>
     </div>
     

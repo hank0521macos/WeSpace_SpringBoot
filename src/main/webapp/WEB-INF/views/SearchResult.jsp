@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix = "spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,16 +25,16 @@
 		<!-- --------------------左側區塊-------------------- -->
 		<form action="/subSearchResult" method="get" id="form1">
 		<div class="sidebar">
-			<p>目的</p>
+			<p><spring:message code="searchResult.left.searchBox.purpose"/></p>
           	<select name="facilitiesTypeId">
-                <option disabled selected>活動性質</option>
+                <option disabled selected><spring:message code="searchResult.left.searchBox.type"/></option>
 	            <c:forEach var="facilitiesType" items="${facilitiesTypeAll}">
 	            	<option value="${facilitiesType.facilitiesTypeId}">${facilitiesType.name}</option>
 	            </c:forEach>    
             </select>
-			<p>活動人數</p>
+			<p><spring:message code="searchResult.left.searchBox.guests"/></p>
             <select name="facilitiesGuests">
-                <option disabled selected>活動人數</option>
+                <option disabled selected><spring:message code="searchResult.left.searchBox.guests"/></option>
                 <option value="1">1-10</option>
                 <option value="11">11-20</option>
                 <option value="21">21-40</option>
@@ -47,9 +47,9 @@
                 <option value="401">401-500</option>
                 <option value="501">500+</option>
             </select>
-			<p>縣市</p>
+			<p><spring:message code="searchResult.left.searchBox.city"/></p>
 			<select name="facilitiesCity">
-                <option disabled selected>地點</option>
+                <option disabled selected><spring:message code="searchResult.left.searchBox.location"/></option>
                 <option value="基隆市">基隆市</option>
                 <option value="臺北市">臺北市</option>
                 <option value="新北市">新北市</option>
@@ -73,9 +73,9 @@
                 <option value="連江縣">連江縣</option>
                 <option value="澎湖縣">澎湖縣</option>
             </select>
-			<p>每小時/預算上限</p>
+			<p><spring:message code="searchResult.left.searchBox.maxBudget"/></p>
 			<select name="facilitiesMaxBudget">
-				<option disabled selected>請選擇</option>
+				<option disabled selected><spring:message code="searchResult.left.searchBox.select"/></option>
 				<option value="200">200 NT$</option>
 				<option value="300">300 NTS</option>
 				<option value="400">400 NTS</option>
@@ -89,9 +89,9 @@
 				<option value="5000">5000 NTS</option>
 				<option value="7000">7000 NTS</option>
 			</select>
-			<p>每小時/最低預算</p>
+			<p><spring:message code="searchResult.left.searchBox.minBudget"/></p>
 			<select name="facilitiesMinBudget">
-				<option disabled selected>請選擇</option>
+				<option disabled selected><spring:message code="searchResult.left.searchBox.select"/></option>
 				<option value="200">200 NT$</option>
 				<option value="300">300 NTS</option>
 				<option value="400">400 NTS</option>
@@ -105,17 +105,17 @@
 				<option value="5000">5000 NTS</option>
 				<option value="7000">7000 NTS</option>
 			</select>
-			<p>場地名稱搜尋</p>
+			<p><spring:message code="searchResult.left.searchBox.searchName"/></p>
 			<input type="text" class="name_search" name="facilitiesName">
-			<p>平日或假日？</p>
-			<input type="radio" class="checkbox" name="facilitiesOpeningDay" value="1"><span>平日</span> 
-			<input type="radio" class="checkbox" name="facilitiesOpeningDay" value="2"><span>假日</span>
+			<p><spring:message code="searchResult.left.searchBox.weekdaysOrWeekends"/></p>
+			<input type="radio" class="checkbox" name="facilitiesOpeningDay" value="1"><span><spring:message code="searchResult.left.searchBox.weekdays"/></span> 
+			<input type="radio" class="checkbox" name="facilitiesOpeningDay" value="2"><span><spring:message code="searchResult.left.searchBox.weekends"/></span>
 			<p>租用時段？</p>
-			<input type="radio" name="facilitiesOpeningPeriod" class="checkbox" value="1"><span>上午</span> 
-			<input type="radio" name="facilitiesOpeningPeriod" class="checkbox" value="2"><span>下午</span> 
-			<input type="radio" name="facilitiesOpeningPeriod" class="checkbox" value="3"><span>晚上</span><br>
-			<input type="radio" name="facilitiesOpeningPeriod" class="checkbox" value="0"><span>凌晨</span> 
-			<input type="submit" class="search-submit" value="搜尋">
+			<input type="radio" name="facilitiesOpeningPeriod" class="checkbox" value="1"><span style="margin-right:16px;"><spring:message code="searchResult.left.searchBox.morning"/></span> 
+			<input type="radio" name="facilitiesOpeningPeriod" class="checkbox" value="2"><span style="margin-right:16px;"><spring:message code="searchResult.left.searchBox.afternoon"/></span> 
+			<input type="radio" name="facilitiesOpeningPeriod" class="checkbox" value="3"><span style="margin-right:16px;"><spring:message code="searchResult.left.searchBox.night"/></span>
+			<input type="radio" name="facilitiesOpeningPeriod" class="checkbox" value="0"><span style="margin-right:16px;"><spring:message code="searchResult.left.searchBox.midnight"/></span> 
+			<input type="submit" class="search-submit" value="<spring:message code="searchResult.left.searchBox.searchButton"/>">
 		</div>
 		</form>
 		
@@ -143,7 +143,7 @@
 						<td class="facilities_info"><i class="fas fa-map-marker-alt"></i>
 							<span>${facilitiesByMainSearch.city} ${facilitiesByMainSearch.town}</span> 
 							<i class="fas fa-user"></i> 
-							<span>${facilitiesByMainSearch.guests}人</span>
+							<span>${facilitiesByMainSearch.guests}<spring:message code="searchResult.right.resultBox.person"/></span>
 						</td>
 					</tr>
 					<tr>
@@ -158,7 +158,7 @@
 				</table>
 				<a href="${pageContext.request.contextPath}/oneSpacePage?facilitiesId=${facilitiesByMainSearch.id}">
 					<div class="facilities_expense_per_hour">
-						<p>每小時$${facilitiesByMainSearch.minBudget}起</p>
+						<p><spring:message code="searchResult.right.resultBox.perHour"/>${facilitiesByMainSearch.minBudget}<spring:message code="searchResult.right.resultBox.atLeast"/></p>
 					</div>
 				</a>
 			</div>

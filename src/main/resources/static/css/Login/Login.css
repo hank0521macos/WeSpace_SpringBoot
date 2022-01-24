@@ -104,7 +104,7 @@ input.sign-in-submit{
     cursor: pointer;
     background-color: #53A385;
     color: white;
-    letter-spacing: 20px;
+    letter-spacing: 10px;
     padding-left: 20px;
     border-radius: 999em;
     outline: none;
@@ -124,8 +124,6 @@ input.reSendMail{
     border: 0;
     font-size: 16px;
 }
-
-
 
 div.advertise{
     /* border: 1px solid red; */
