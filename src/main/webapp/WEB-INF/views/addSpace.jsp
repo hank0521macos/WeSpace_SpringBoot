@@ -466,7 +466,7 @@
                             </div>
                             </form>
                             <div id="ownerDetail"></div>
-                            <br><br><br><br><br><br><hr>
+                            <br><br><br><br><br><br>
                         </div>              
                         <div class="nextAndPreButton3" style="margin-bottom:140px;">
                             <div class="pre-button2" onclick="preStep8()">上一步</div>
