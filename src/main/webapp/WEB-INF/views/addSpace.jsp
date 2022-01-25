@@ -517,7 +517,7 @@
 
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOwners",
+			url: "/listOwners",
 			success: function(data) {
 				var owners = JSON.parse(JSON.stringify(data));
 				$('#ownerSelect').append('<option selected disabled>請選擇一名管理者</option>');
@@ -537,7 +537,7 @@
 	       const ownerId = select.options[select.selectedIndex].value;
 	       $.ajax({
 	            type:"DELETE",
-	            url:"http://localhost:8081/deleteOwner/" + ownerId,
+	            url:"/deleteOwner/" + ownerId,
 	            success: function(data){
 	                assignDataToOwnerSelect();
 					alert("成功刪除此管理員");
@@ -564,7 +564,7 @@
 		   $.ajax({    
 		          type:"GET",
 		          contentType: "application/json",
-		          url:"http://localhost:8081/listOwners/" + ownerId,
+		          url:"/listOwners/" + ownerId,
 		          success: function(data) {
 		            var owner = JSON.parse(JSON.stringify(data));
 					$('#name').val(owner.name);
@@ -610,7 +610,7 @@
                    payeeName: $("#payeeName").val(),
                };
    		$.ajax({
-			url: 'http://localhost:8081/uploadOwnerImg',
+			url: '/uploadOwnerImg',
 			type: 'POST',
 			data: formData,
 			enctype: 'multipart/form-data',
@@ -621,7 +621,7 @@
 			success: function() {
 			       $.ajax({
 			            type:"PUT",
-			            url:"http://localhost:8081/updateOwner/" + ownerId,
+			            url:"/updateOwner/" + ownerId,
 			            data: JSON.stringify(jsonVar),
 		                contentType: "application/json",
 			            success: function(data){
@@ -767,7 +767,7 @@
                 formdata.append('uploadFiles', curFiles[i]);
             }
             $.ajax({
-                url: 'http://localhost:8081/multipleImageUpload',
+                url: '/multipleImageUpload',
                 type: 'post',
                 data: formdata,
                 processData: false,

@@ -31,7 +31,7 @@ $(document).ready(function() {
 			return false;
 		}else{
 			$.ajax({
-				url: 'http://localhost:8081/uploadOwnerImg',
+				url: '/uploadOwnerImg',
 				type: 'POST',
 				data: formData,
 				enctype: 'multipart/form-data',
@@ -42,7 +42,7 @@ $(document).ready(function() {
 				success: function() {
 					$.ajax({
 						type: "POST",
-						url: "http://localhost:8081/saveOwner",
+						url: "/saveOwner",
 						data: data,
 						sync: true,
 						success: function(data) {
@@ -84,7 +84,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOwners",
+			url: "/listOwners",
 			success: function(data) {
 				var owners = JSON.parse(JSON.stringify(data));
 				$('#ownerSelect').append('<option selected disabled>請選擇一名管理者</option>');
@@ -106,7 +106,7 @@ $(document).ready(function() {
 		$('#onLoadImageNew').html("<p class='preImageTitle'>已上傳圖片</p>");
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listSpaceImages",
+			url: "/listSpaceImages",
 			success: function(data) {
 				images = JSON.parse(JSON.stringify(data));
 				for (var i in images) {
@@ -133,7 +133,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: "GET",
 			contentType: "application/json",
-			url: "http://localhost:8081/listOwners/" + ownerId,
+			url: "/listOwners/" + ownerId,
 			success: function(data) {
 				var owner = JSON.parse(JSON.stringify(data));
 

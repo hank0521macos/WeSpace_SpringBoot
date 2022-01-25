@@ -24,7 +24,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listFinishOrders",
+			url: "/listFinishOrders",
 			success: function(data) {
 				var orders = JSON.parse(JSON.stringify(data));
 				let totalPrice = 0;

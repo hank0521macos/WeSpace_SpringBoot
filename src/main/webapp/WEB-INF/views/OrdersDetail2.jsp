@@ -115,7 +115,7 @@ function searchConditionSubmit(){
   	
   	$.ajax({
         type:"POST",
-        url:"http://localhost:8081/listFinishOrdersByDateCondition",
+        url:"/listFinishOrdersByDateCondition",
         data: JSON.stringify(jsonVar),
         contentType: "application/json",
         success: function(data){
@@ -163,7 +163,7 @@ function searchConditionSubmit(){
 function infoBox(ordersId){
   $.ajax({
         type:"GET",
-        url:"http://localhost:8081/listOrdersById/" + ordersId,
+        url:"/listOrdersById/" + ordersId,
         success: function(data){
         	var orders = JSON.parse(JSON.stringify(data));
         	
@@ -239,7 +239,7 @@ function infoBox(ordersId){
     		//顯示訂單明細的圖片
     		  $.ajax({
     	          type:"GET",
-    	          url:"http://localhost:8081/listOrdersImgById/" + ordersId,
+    	          url:"/listOrdersImgById/" + ordersId,
     	          success: function(data){
     	          	var ordersImg = JSON.parse(JSON.stringify(data));
     	  			$('#spaceImg').css({
@@ -335,7 +335,7 @@ function assignDataToOrdersTable() {
 	
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8081/listFinishOrders",
+		url: "/listFinishOrders",
 		success: function(data) {
 			var orders = JSON.parse(JSON.stringify(data));
 			let totalPrice = 0;
@@ -399,7 +399,7 @@ function assignDataToOrdersTableIdDesc() {
 	
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8081/listFinishOrdersIdDesc",
+		url: "/listFinishOrdersIdDesc",
 		success: function(data) {
 			var orders = JSON.parse(JSON.stringify(data));
 			let totalPrice = 0;
@@ -463,7 +463,7 @@ function assignDataToOrdersTableDateAsc() {
 	
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8081/listFinishOrdersDateAsc",
+		url: "/listFinishOrdersDateAsc",
 		success: function(data) {
 			var orders = JSON.parse(JSON.stringify(data));
 			let totalPrice = 0;
@@ -527,7 +527,7 @@ function assignDataToOrdersTableDateDesc() {
 	
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8081/listFinishOrdersDateDesc",
+		url: "/listFinishOrdersDateDesc",
 		success: function(data) {
 			var orders = JSON.parse(JSON.stringify(data));
 			let totalPrice = 0;
@@ -591,7 +591,7 @@ function assignDataToOrdersTableTimeAsc() {
 	
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8081/listFinishOrdersTimeAsc",
+		url: "/listFinishOrdersTimeAsc",
 		success: function(data) {
 			var orders = JSON.parse(JSON.stringify(data));
 			let totalPrice = 0;
@@ -655,7 +655,7 @@ function assignDataToOrdersTableTimeDesc() {
 	
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8081/listFinishOrdersTimeDesc",
+		url: "/listFinishOrdersTimeDesc",
 		success: function(data) {
 			var orders = JSON.parse(JSON.stringify(data));
 			let totalPrice = 0;
@@ -719,7 +719,7 @@ function assignDataToOrdersTableExpenseAsc() {
 	
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8081/listFinishOrdersExpenseAsc",
+		url: "/listFinishOrdersExpenseAsc",
 		success: function(data) {
 			var orders = JSON.parse(JSON.stringify(data));
 			let totalPrice = 0;
@@ -783,7 +783,7 @@ function assignDataToOrdersTableExpenseDesc() {
 	
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8081/listFinishOrdersExpenseDesc",
+		url: "/listFinishOrdersExpenseDesc",
 		success: function(data) {
 			var orders = JSON.parse(JSON.stringify(data));
 			let totalPrice = 0;

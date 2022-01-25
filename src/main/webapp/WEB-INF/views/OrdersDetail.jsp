@@ -110,7 +110,7 @@
 	      if(val != ''){
 	 		  $.ajax({
 		            type:"POST",
-		            url:"http://localhost:8081/listOrdersByMultipleCondition",
+		            url:"/listOrdersByMultipleCondition",
 		            data: JSON.stringify(jsonVar),
 		            contentType: "application/json",
 		            success: function(data){
@@ -252,7 +252,7 @@
 	      
   		  $.ajax({
 	            type:"POST",
-	            url:"http://localhost:8081/listOrdersByDateCondition",
+	            url:"/listOrdersByDateCondition",
 	            data: JSON.stringify(jsonVar),
 	            contentType: "application/json",
 	            success: function(data){
@@ -357,7 +357,7 @@
 			
 			$.ajax({
 				type: "GET",
-				url: "http://localhost:8081/listPendingOrders",
+				url: "/listPendingOrders",
 				success: function(data) {
 					var orders = JSON.parse(JSON.stringify(data));
 					
@@ -425,7 +425,7 @@
 	function infoBox(ordersId){
 	  $.ajax({
             type:"GET",
-            url:"http://localhost:8081/listOrdersById/" + ordersId,
+            url:"/listOrdersById/" + ordersId,
             success: function(data){
             	var orders = JSON.parse(JSON.stringify(data));
             	
@@ -501,7 +501,7 @@
         		//顯示訂單明細的圖片
         		  $.ajax({
         	          type:"GET",
-        	          url:"http://localhost:8081/listOrdersImgById/" + ordersId,
+        	          url:"/listOrdersImgById/" + ordersId,
         	          success: function(data){
         	          	var ordersImg = JSON.parse(JSON.stringify(data));
         	  			$('#spaceImg').css({
@@ -534,7 +534,7 @@
 	  if(agree){
 	  $.ajax({
             type:"PUT",
-            url:"http://localhost:8081/acceptOrders/" + ordersId,
+            url:"/acceptOrders/" + ordersId,
             success: function(){
             	 assignDataToOrdersTable();
             	 assignDataToOrdersDetailCountsData();
@@ -553,7 +553,7 @@
 	  if(agree){
 	  $.ajax({
             type:"PUT",
-            url:"http://localhost:8081/finishOrders/" + ordersId,
+            url:"/finishOrders/" + ordersId,
             success: function(){
             	 assignDataToOrdersTable();
             	 assignDataToOrdersDetailCountsData();
@@ -572,7 +572,7 @@
 		if(agree){
 		  $.ajax({
 	            type:"PUT",
-	            url:"http://localhost:8081/cancelOrders/" + ordersId,
+	            url:"/cancelOrders/" + ordersId,
 	            success: function(){
 	            	 assignDataToOrdersTable();	
 	            	 assignDataToOrdersDetailCountsData();
@@ -601,7 +601,7 @@
 		if(agree){
 		  $.ajax({
 	            type:"PUT",
-	            url:"http://localhost:8081/refuseOrders/" + ordersId,
+	            url:"/refuseOrders/" + ordersId,
 	            data: JSON.stringify(jsonVar),
 	            contentType: "application/json",
 	            success: function(data){
@@ -645,7 +645,7 @@
 		if(agree){
 		  $.ajax({
 	            type:"DELETE",
-	            url:"http://localhost:8081/deleteOrders/" + ordersId,
+	            url:"/deleteOrders/" + ordersId,
 	            success: function(){
 	            	 assignDataToOrdersTable();
 	            	 assignDataToOrdersDetailCountsData();
@@ -663,7 +663,7 @@
 		//所有筆數
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersCounts",
+			url: "/listOrdersCounts",
 			success: function(data) {
 				var counts = JSON.parse(JSON.stringify(data));
 				$('#c1').html(''+counts+'<br>所有筆數<br>&nbsp;<br>&nbsp;');
@@ -675,7 +675,7 @@
 		//接受預訂
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersCountsStatus2",
+			url: "/listOrdersCountsStatus2",
 			success: function(data) {
 				var counts = JSON.parse(JSON.stringify(data));
 				$('#c2').html(''+counts+'<br>接受預訂<br>');
@@ -687,7 +687,7 @@
 		//接受預訂的金額
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/acceptOrdersPrice",
+			url: "/acceptOrdersPrice",
 			success: function(data) {
 				var counts = JSON.parse(JSON.stringify(data));
 				$('#c2').append('$'+counts+'<br>&nbsp;');
@@ -699,7 +699,7 @@
 		//拒絕預訂
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersCountsStatus3",
+			url: "/listOrdersCountsStatus3",
 			success: function(data) {
 				var counts = JSON.parse(JSON.stringify(data));
 				$('#c3').html(''+counts+'<br>拒絕預訂<br>&nbsp;<br>&nbsp;');
@@ -711,7 +711,7 @@
 		//尚未處理
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersCountsStatus1",
+			url: "/listOrdersCountsStatus1",
 			success: function(data) {
 				var counts = JSON.parse(JSON.stringify(data));
 				$('#c4').html(''+counts+'<br>尚未處理<br>&nbsp;<br>&nbsp;');
@@ -802,7 +802,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrders",
+			url: "/listOrders",
 			success: function(data) {
 				var orders = JSON.parse(JSON.stringify(data));
 				
@@ -884,7 +884,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersIdDesc",
+			url: "/listOrdersIdDesc",
 			success: function(data) {
 				var orders = JSON.parse(JSON.stringify(data));
 				
@@ -966,7 +966,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersDateAsc",
+			url: "/listOrdersDateAsc",
 			success: function(data) {
 				var orders = JSON.parse(JSON.stringify(data));
 				
@@ -1048,7 +1048,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersDateDesc",
+			url: "/listOrdersDateDesc",
 			success: function(data) {
 				var orders = JSON.parse(JSON.stringify(data));
 				
@@ -1130,7 +1130,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersExpenseAsc",
+			url: "/listOrdersExpenseAsc",
 			success: function(data) {
 				var orders = JSON.parse(JSON.stringify(data));
 				
@@ -1212,7 +1212,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersExpenseDesc",
+			url: "/listOrdersExpenseDesc",
 			success: function(data) {
 				var orders = JSON.parse(JSON.stringify(data));
 				
@@ -1294,7 +1294,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersStatusAsc",
+			url: "/listOrdersStatusAsc",
 			success: function(data) {
 				var orders = JSON.parse(JSON.stringify(data));
 				
@@ -1376,7 +1376,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersStatusDesc",
+			url: "/listOrdersStatusDesc",
 			success: function(data) {
 				var orders = JSON.parse(JSON.stringify(data));
 				
@@ -1458,7 +1458,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersTimeAsc",
+			url: "/listOrdersTimeAsc",
 			success: function(data) {
 				var orders = JSON.parse(JSON.stringify(data));
 				
@@ -1540,7 +1540,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersTimeDesc",
+			url: "/listOrdersTimeDesc",
 			success: function(data) {
 				var orders = JSON.parse(JSON.stringify(data));
 				

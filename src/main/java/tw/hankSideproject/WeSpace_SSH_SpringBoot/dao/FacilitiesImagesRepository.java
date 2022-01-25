@@ -14,12 +14,12 @@ public interface FacilitiesImagesRepository extends JpaRepository<FacilitiesImag
 	@Transactional
 	@Modifying
 	@Query(value="delete from facilities_images where facilities_id=?1",nativeQuery = true)
-	void deleteFacilitiesImages(int id);
+	public void deleteFacilitiesImages(int id);
 	
 	@Transactional
 	@Modifying
 	@Query(value="delete from facilities_images where facilities_images_name=?1",nativeQuery = true)
-	void deleteFacilitiesImagesByName(String name);
+	public void deleteFacilitiesImagesByName(String name);
 
 	@Transactional
 	@Query(value="select * from facilities_images where facilities_id=?1",nativeQuery = true)

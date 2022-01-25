@@ -35,7 +35,7 @@ $(document).ready(function() {
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrders",
+			url: "/listOrders",
 			success: function(data) {
 				var orders = JSON.parse(JSON.stringify(data));
 				
@@ -99,7 +99,7 @@ $(document).ready(function() {
 		//所有筆數
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersCounts",
+			url: "/listOrdersCounts",
 			success: function(data) {
 				var counts = JSON.parse(JSON.stringify(data));
 				$('#c1').html(''+counts+'<br>所有筆數<br>&nbsp;<br>&nbsp;');
@@ -111,7 +111,7 @@ $(document).ready(function() {
 		//接受預訂
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersCountsStatus2",
+			url: "/listOrdersCountsStatus2",
 			success: function(data) {
 				var counts = JSON.parse(JSON.stringify(data));
 				$('#c2').html(''+counts+'<br>接受預訂<br>');
@@ -123,7 +123,7 @@ $(document).ready(function() {
 		//接受預訂的金額
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/acceptOrdersPrice",
+			url: "/acceptOrdersPrice",
 			success: function(data) {
 				var counts = JSON.parse(JSON.stringify(data));
 				$('#c2').append('$'+counts+'<br>&nbsp;');
@@ -135,7 +135,7 @@ $(document).ready(function() {
 		//拒絕預訂
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersCountsStatus3",
+			url: "/listOrdersCountsStatus3",
 			success: function(data) {
 				var counts = JSON.parse(JSON.stringify(data));
 				$('#c3').html(''+counts+'<br>拒絕預訂<br>&nbsp;<br>&nbsp;');
@@ -147,7 +147,7 @@ $(document).ready(function() {
 		//尚未處理
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8081/listOrdersCountsStatus1",
+			url: "/listOrdersCountsStatus1",
 			success: function(data) {
 				var counts = JSON.parse(JSON.stringify(data));
 				$('#c4').html(''+counts+'<br>尚未處理<br>&nbsp;<br>&nbsp;');

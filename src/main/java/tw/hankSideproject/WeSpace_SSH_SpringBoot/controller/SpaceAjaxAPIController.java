@@ -139,7 +139,7 @@ public class SpaceAjaxAPIController {
     	if(facilitiesImages == null) {
             return ResponseEntity.notFound().build();
         }
-    	facilitiesImagesRepository.deleteById(Integer.parseInt(id));
+    	facilitiesImagesRepository.deleteFacilitiesImagesByName(facilitiesImages.getName());
         return ResponseEntity.ok().build();
     }
     
