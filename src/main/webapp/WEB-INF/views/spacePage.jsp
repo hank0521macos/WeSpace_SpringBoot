@@ -331,7 +331,7 @@
 				}
         		$.ajax({
         			type: "GET",
-        			url: "http://localhost:8081/listTime/"+${facilities.id}+"&"+openingDayId,
+        			url: "/listTime/"+${facilities.id}+"&"+openingDayId,
         			success: function(data) {
         				var openingDetail = JSON.parse(JSON.stringify(data));
         				$('#startTime').append('<option selected disabled>開始時間</option>');
@@ -359,7 +359,7 @@
 				}
         		$.ajax({
         			type: "GET",
-        			url: "http://localhost:8081/listTime/"+${facilities.id}+"&"+openingDayId,
+        			url: "/listTime/"+${facilities.id}+"&"+openingDayId,
         			success: function(data) {
         				var openingDetail = JSON.parse(JSON.stringify(data));
         				$('#closeTime').append('<option selected disabled>結束時間</option>');
@@ -391,7 +391,7 @@
 				}
         		$.ajax({
         			type: "GET",
-        			url: "http://localhost:8081/listTime/"+${facilities.id}+"&"+openingDayId,
+        			url: "/listTime/"+${facilities.id}+"&"+openingDayId,
         			success: function(data) {
         				var openingDetail = JSON.parse(JSON.stringify(data));
                 		$('.subTotal').append('<span class="subTotalLeft">$'+openingDetail.expense+' x '+(closeTime-startTime)+'小時</span><span class="subTotalRight">$'+(openingDetail.expense*(closeTime-startTime))+'</span>');

@@ -182,8 +182,6 @@ public class MemberBackEndController {
 			BindingResult bindingResult, 
 			HttpServletRequest request, 
 			HttpSession session,Model model) throws InterruptedException {
-		//讓新增晚一秒執行,避免ajax新增時造成取參數問題
-		Thread.sleep(1000);
 		Member member = (Member)session.getAttribute("loginData");
 		model.addAttribute("facilitiesTypeAll",facilitiesTypeRepository.findAll());
 		model.addAttribute("facilitiesItemsAll",facilitiesItemsRepository.findAll());
@@ -319,8 +317,6 @@ public class MemberBackEndController {
 			@ModelAttribute FacilitiesOpeningDetail facilitiesOpeningDetail,
 			HttpServletRequest request,
 			HttpSession session) throws InterruptedException {
-		//讓更新晚一秒執行,避免ajax新增時造成取參數問題
-		Thread.sleep(1000);
 		Member member = (Member)session.getAttribute("loginData");
     	//執行service的facilities更新
 		memberBackEndService.updateFacilities(facilitiesTypeId,facilitiesItemsId,facilitiesOpeningId,

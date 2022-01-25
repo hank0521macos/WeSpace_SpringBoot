@@ -478,7 +478,7 @@
                     </div>
                 </div>
             </div>
-            	<input type="submit" value="儲存並離開" class="spaceSubmit" form="form1" onclick="checkSubmit()">
+            	<input type="button" value="儲存並離開" class="spaceSubmit" form="form1" onclick="checkSubmit()">
         </div>
     </div>
 
@@ -773,6 +773,7 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
+                	document.getElementById("form1").submit();
                 },
                 error: function(err) {
                 }

@@ -440,7 +440,7 @@
                             </div>
                             </form>
                             <div id="ownerDetail"></div>
-                            <br><br><br><br><br><br><hr>
+                            <br><br><br><br><br><br>
                         </div>              
                         <div class="nextAndPreButton3" style="margin-bottom:140px;">
                             <div class="pre-button2" onclick="preStep8()">上一步</div>
@@ -454,7 +454,7 @@
                     </div>
                 </div>
             </div>
-            	<input type="submit" value="儲存並離開" class="spaceSubmit" form="form1" onclick="checkSubmit()">
+            	<input type="button" value="儲存並離開" class="spaceSubmit" form="form1" onclick="checkSubmit()">
         		
         </div>
     </div>
@@ -774,6 +774,7 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
+                	document.getElementById("form1").submit();
                 },
                 error: function(err) {
                 }
