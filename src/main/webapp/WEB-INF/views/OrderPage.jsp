@@ -179,7 +179,9 @@
         
      	<div class="contentPageRight2">
             <div class="spaceInfo">
-                <div class="spaceImg" style="background-image: url(./img/小樹屋.png);"></div>
+                <c:forEach var="facilitiesImage" items="${orderData.facilities.facilitiesImages}" begin="0" end="0">
+                	<div class="spaceImg" style="background-image: url(${pageContext.request.contextPath}/uploaded/${facilitiesImage.name});"></div>
+                </c:forEach>
                 <div class="spaceName">${orderData.facilities.name}</div>
                 <div class="spaceAddress">
                     <i class="far fa-compass"></i>
