@@ -138,7 +138,7 @@
                     </div>
                     <div class="spacePolicy">
                         <h1>場地規範</h1>
-                        <p>${facilities.rules}</p>
+                        <p id="spacePolicy">${facilities.rules}</p>
                     </div>
                     <div class="spaceLocation">
                         <div class="spaceAddress">
@@ -185,8 +185,6 @@
             <img src='img/x.png' alt='' />
         </div>
 
-	<!-- ------------下面footer資訊------------ -->
-    <div class="banner" style="background-image: url(img/banner.png);"></div>
 
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>

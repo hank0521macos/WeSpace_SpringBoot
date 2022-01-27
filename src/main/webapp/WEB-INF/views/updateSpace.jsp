@@ -779,6 +779,8 @@
                 error: function(err) {
                 }
             });
+        }else{
+        	document.getElementById("form1").submit();
         };
     };
 
