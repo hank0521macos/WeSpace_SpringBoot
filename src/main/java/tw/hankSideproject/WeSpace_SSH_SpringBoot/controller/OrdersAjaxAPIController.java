@@ -261,7 +261,11 @@ public class OrdersAjaxAPIController {
 					 //所有的斷言 及條件
 		             List<Predicate> predicates = new ArrayList<>();
 		             
-		             Predicate predicate = builder.equal(root.get("member"), member);
+		             List<Predicate> predicate = new ArrayList<>();
+		             
+		             for(Orders o: ordersRepository.listOrdersByLoginMemberId(member.getId())) {
+		            	 predicate.add(builder.equal(root.get("facilities"), o.getFacilities()));
+		             }
 		             
 		             if(request.getSpaceName() != null && !request.getSpaceName().equals("")) {
 		            	 predicates.add(builder.like(root.get("spaceName"), "%" + request.getSpaceName() + "%"));
@@ -276,7 +280,7 @@ public class OrdersAjaxAPIController {
 		             }
 		             
 		             Predicate finalPredicate
-		             = builder.and(builder.or(predicates.toArray(new Predicate[predicates.size()])), predicate);
+		             = builder.and(builder.or(predicates.toArray(new Predicate[predicates.size()])), builder.or(predicate.toArray(new Predicate[predicate.size()])));
 
 					 return finalPredicate;
 				 }
